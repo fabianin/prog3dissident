@@ -117,15 +117,14 @@ class Turma {
     public Professor getProfessor() {
         return this.professor;
     }
-    
 
     @Override
     public String toString() {
-        return "Turma: "  + this.getId() + "\r\nPeriodo: " + this.getPeriodo() + "\r\nNumero de vagas: "
-                + this.getNumeroVagas() + "\r\nSala: " + this.getSala() + "\r\nDisciplina: " + this.getDisciplina() 
-                + "\r\nAno: " + this.getAno() + "\r\nAtividades: " + this.getAtividades() + "\r\nAlunos: " +
-                this.getAlunos() + "\r\nFaltas: " + this.getFaltas() + "\r\nnotas: " + this.getNotas() +
-                "\r\nProfessor=" + this.getProfessor();
+        return "Turma: " + this.getId() + "\r\nPeriodo: " + this.getPeriodo() + "\r\nNumero de vagas: "
+                + this.getNumeroVagas() + "\r\nSala: " + this.getSala() + "\r\nDisciplina: " + this.getDisciplina()
+                + "\r\nAno: " + this.getAno() + "\r\nAtividades: " + this.getAtividades() + "\r\nAlunos: "
+                + this.getAlunos() + "\r\nFaltas: " + this.getFaltas() + "\r\nnotas: " + this.getNotas()
+                + "\r\nProfessor=" + this.getProfessor();
     }
 
 }

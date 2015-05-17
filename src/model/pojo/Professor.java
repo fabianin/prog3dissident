@@ -10,5 +10,5 @@ package model.pojo;
  * @author Fabiano
  */
 public class Professor {
-    
+
 }
