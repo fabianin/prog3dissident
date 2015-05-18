@@ -5,6 +5,7 @@
  */
 package model.dao;
 
+import exceptions.AlunoJaCadastradoException;
 import model.pojo.Turma;
 import java.util.ArrayList;
 import model.pojo.Aluno;
@@ -39,6 +40,20 @@ public class AlunoDAO {
                 }
             }
             return false;
+        }
+    }
+
+    /** Adiciona um aluno a lista de todos os alunos.
+     *
+     * @param aluno
+     * @throws AlunoJaCadastradoException
+     */
+    public void addAluno(Aluno aluno)throws AlunoJaCadastradoException{
+        if(listaAlunos.contains(aluno)){
+            throw new AlunoJaCadastradoException("Esse aluno já existe.");
+        }
+        else{
+            listaAlunos.add(aluno);
         }
     }
     
