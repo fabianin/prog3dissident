@@ -10,5 +10,9 @@ package model.pojo;
  * @author Fabiano
  */
 public class Atividade {
+
+    Iterable<Nota> getNotas() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

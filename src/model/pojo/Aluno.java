@@ -37,4 +37,26 @@ public class Aluno extends Pessoa {
                 + " Turmas: " + this.getTurmas() + "\r\n";
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Aluno other = (Aluno) obj;
+        if (this.matricula != other.matricula) {
+            return false;
+        }
+        return true;
+    }
+    
+
 }
