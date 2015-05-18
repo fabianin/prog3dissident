@@ -16,6 +16,7 @@ public class Professor extends Pessoa {
 
     private final String departamento;
     private ArrayList<Disciplina> disciplinasApto;
+    private ArrayList<Turma> turmasLecionando;
 
     public Professor(String nome, long cpf, String departamento) {
         super(nome, cpf);
@@ -32,6 +33,15 @@ public class Professor extends Pessoa {
         }
         this.disciplinasApto.add(disciplina);
         
+    }
+    public void addTurma(Turma turma) throws IllegalArgumentException, NullPointerException{
+        Objects.requireNonNull(turma,"Turma não pode ser NULL");
+        if(this.turmasLecionando.contains(turma)){
+            throw new IllegalArgumentException("turma já cadastrada");
+        }
+        else{
+            this.turmasLecionando.add(turma);
+        }
     }
 
 }
