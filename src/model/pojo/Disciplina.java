@@ -5,6 +5,7 @@
  */
 package model.pojo;
 
+import exceptions.TurmaJaCadastradaException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -21,6 +22,14 @@ public class Disciplina {
     private final long cargaHoraria;
     private final ArrayList<Turma> turmas;
 
+    /**
+     * Construtor da disciplina
+     *
+     * @param nome Nome da disciplina
+     * @param ementa Ementa da disciplina
+     * @param cargaHoraria Carga horária da disciplina
+     * @throws IllegalArgumentException
+     */
     public Disciplina(String nome, String ementa, long cargaHoraria) throws IllegalArgumentException {
         Objects.requireNonNull(nome, "Nome não pode ser vazio");
         Objects.requireNonNull(ementa, "Ementa não pode ser vazio.");
@@ -35,24 +44,55 @@ public class Disciplina {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public void addTurma(Turma turma) {
-        this.turmas.add(turma);
+    /**
+     * Adiciona uma turma na lista de turma
+     *
+     * @param turma Turma a ser adicionada
+     * @throws exceptions.TurmaJaCadastradaException
+     */
+    public void addTurma(Turma turma) throws TurmaJaCadastradaException {
+        Objects.requireNonNull(turma, "Turma não pode ser null.");
+        if (!this.turmas.contains(turma)) { // caso a turma não exista nesta disciplina
+            this.turmas.add(turma);
+        } else {
+            throw new TurmaJaCadastradaException("Você não pode cadastrar duas turmas em uma mesma disciplina.");
+        }
     }
 
+    /**
+     * Obtém a lista de turmas
+     *
+     * @return lista de turmas
+     */
     public ArrayList<Turma> getTurmas() {
-        return turmas;
+        return this.turmas;
     }
 
+    /**
+     * Obtém ID
+     *
+     * @return obtém id
+     */
     public String getId() {
-        return id;
+        return this.id;
     }
 
+    /**
+     * Obtém nome
+     *
+     * @return nome
+     */
     public String getNome() {
-        return nome;
+        return this.nome;
     }
 
+    /**
+     * Obtém ementa
+     *
+     * @return ementa
+     */
     public String getEmenta() {
-        return ementa;
+        return this.ementa;
     }
 
     @Override
@@ -82,8 +122,13 @@ public class Disciplina {
         return true;
     }
 
+    /**
+     * Obtém carga horária
+     *
+     * @return carga horária
+     */
     public long getCargaHoraria() {
-        return cargaHoraria;
+        return this.cargaHoraria;
     }
 
 }

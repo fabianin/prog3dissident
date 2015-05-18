@@ -5,6 +5,8 @@
  */
 package model.pojo;
 
+import exceptions.DisciplinaJaCadastradaException;
+import exceptions.TurmaJaCadastradaException;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -42,25 +44,64 @@ public class Professor extends Pessoa {
     public String getDepartamento() {
         return this.departamento;
     }
-    public void addDisciplinaApto(Disciplina disciplina)throws IllegalArgumentException, NullPointerException{
-        Objects.requireNonNull(disciplina,"Não pode ser NULL");
-        if(this.disciplinasApto.contains(disciplina)){
-            throw new IllegalArgumentException("Disciplina já cadastrada nesse professor");
+
+    /**
+     * Adiciona uma disciplina que o professor pode lecionar
+     *
+     * @param disciplina Disciplina que poderá lecionar
+     * @throws IllegalArgumentException
+     * @throws NullPointerException
+     * @throws DisciplinaJaCadastradaException
+     */
+    public void addDisciplinaApto(Disciplina disciplina) throws IllegalArgumentException, NullPointerException, DisciplinaJaCadastradaException {
+        Objects.requireNonNull(disciplina, "Não pode ser NULL");
+        if (this.disciplinasApto.contains(disciplina)) {
+            throw new DisciplinaJaCadastradaException("Você não pode adicionar duas disciplinas iguais a um mesmo professor.");
         }
         this.disciplinasApto.add(disciplina);
-        
     }
-    public void addTurma(Turma turma) throws IllegalArgumentException, NullPointerException{
-        Objects.requireNonNull(turma,"Turma não pode ser NULL");
-        if(this.turmasLecionando.contains(turma)){
-            throw new IllegalArgumentException("turma já cadastrada");
-        }
-        else{
+
+    /**
+     * Adiciona uma turma ao professor
+     *
+     * @param turma Turma a ser adicionada
+     * @throws IllegalArgumentException
+     * @throws NullPointerException
+     */
+    public void addTurma(Turma turma) throws IllegalArgumentException, NullPointerException, TurmaJaCadastradaException {
+        Objects.requireNonNull(turma, "Turma não pode ser null");
+        if (this.turmasLecionando.contains(turma)) {
+            throw new TurmaJaCadastradaException("Você não pode adicionar duas turmas em um mesmo professor");
+        } else {
             this.turmasLecionando.add(turma);
         }
     }
-    public int numDisciplinaLecionadas(){
+
+    /**
+     * Obtém o número de disciplinas que esse professor leciona
+     *
+     * @return número de disciplinas
+     */
+    public int numDisciplinaLecionadas() {
         return this.turmasLecionando.size();
+    }
+
+    /**
+     * Obtém as turmas apto
+     *
+     * @return lista de turma
+     */
+    public ArrayList<Disciplina> getDisciplinasApto() {
+        return disciplinasApto;
+    }
+
+    /**
+     * Obtém as turmas que leciona
+     *
+     * @return lista de turma
+     */
+    public ArrayList<Turma> getTurmasLecionando() {
+        return turmasLecionando;
     }
 
 }

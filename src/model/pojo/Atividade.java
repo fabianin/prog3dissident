@@ -55,7 +55,7 @@ public class Atividade {
      */
     public void addNota(Nota nota) throws NotaJaCadastradaException, NullPointerException {
         Objects.requireNonNull(nota); // não premite nota null
-        if (notas.indexOf(nota) == -1) { // caso a nota não tenha sido cadastrada
+        if (!notas.contains(nota)) { // caso a nota não tenha sido cadastrada
             this.notas.add(nota); // adiciona nota na lista
         } else { // caso já tenha cadastrado, lança exception
             throw new NotaJaCadastradaException("Você não pode cadastrar uma nota duas vezes."); // lança exception
@@ -96,6 +96,35 @@ public class Atividade {
      */
     public String getTipo() {
         return tipo;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 89 * hash + Objects.hashCode(this.nome);
+        hash = 89 * hash + Objects.hashCode(this.data);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Atividade other = (Atividade) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.data, other.data)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipo, other.tipo)) {
+            return false;
+        }
+        return true;
     }
 
 }

@@ -16,20 +16,40 @@ import java.util.ArrayList;
 public class Aluno extends Pessoa {
 
     private final long matricula;
-    private final ArrayList<Turma> turmas = new ArrayList<>();
+    private final ArrayList<Turma> turmas;
 
+    /**
+     * Construtor do aluno
+     *
+     * @param matricula Número da matrícula
+     * @param nome Nome do aluno
+     * @param cpf CPF do aluno
+     * @throws IllegalArgumentException
+     * @throws NullPointerException
+     */
     public Aluno(long matricula, String nome, long cpf) throws IllegalArgumentException, NullPointerException {
         super(nome, cpf);
         if (matricula < 0) {
             throw new IllegalArgumentException("Matrícula deve ser positivo.");
         }
         this.matricula = matricula;
+        this.turmas = new ArrayList<>();
     }
 
+    /**
+     * Obtém a matrícula do aluno
+     *
+     * @return Matrícula do aluno
+     */
     public long getMatricula() {
         return matricula;
     }
 
+    /**
+     * Obtém uma lista de turma
+     *
+     * @return Lista de turmas
+     */
     public ArrayList<Turma> getTurmas() {
         return turmas;
     }
@@ -42,7 +62,8 @@ public class Aluno extends Pessoa {
 
     @Override
     public int hashCode() {
-        int hash = 7;
+        int hash = 5;
+        hash = 83 * hash + (int) (this.matricula ^ (this.matricula >>> 32));
         return hash;
     }
 
@@ -55,10 +76,7 @@ public class Aluno extends Pessoa {
             return false;
         }
         final Aluno other = (Aluno) obj;
-        if (this.matricula != other.matricula) {
-            return false;
-        }
-        return true;
+        return (this.matricula == other.matricula);
     }
 
 }

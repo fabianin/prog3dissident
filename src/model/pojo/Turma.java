@@ -5,6 +5,7 @@
  */
 package model.pojo;
 
+import exceptions.ProfessorNaoAptoDisciplinaException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.UUID;
@@ -26,8 +27,20 @@ public class Turma {
     private final ArrayList<Falta> faltas = new ArrayList<>();
     private final Professor professor;
 
+    /**
+     * Construtor de uma turma
+     *
+     * @param disciplina Disciplina para a turma
+     * @param periodo Período da turma
+     * @param numeroVagas Número de vagas da turma
+     * @param sala Sala da turma
+     * @param ano Ano da turma
+     * @param professor Professor da turma
+     * @throws NullPointerException
+     * @throws IllegalArgumentException
+     */
     public Turma(Disciplina disciplina, long periodo, long numeroVagas, long sala, long ano, Professor professor)
-            throws NullPointerException, IllegalArgumentException {
+            throws NullPointerException, IllegalArgumentException, ProfessorNaoAptoDisciplinaException {
         Objects.requireNonNull(ano, "Ano não pode ser null");
         Objects.requireNonNull(professor, "Professor não pode ser null");
         Objects.requireNonNull(disciplina, "Disciplina não pode ser NULL");
@@ -39,6 +52,8 @@ public class Turma {
             throw new IllegalArgumentException("Sala não pode ser menor que 1");
         } else if (numeroVagas < 1) {
             throw new IllegalArgumentException("Numero de vagas não pode ser 0 ou negativo");
+        } else if (!professor.getDisciplinasApto().contains(disciplina)) {
+            throw new ProfessorNaoAptoDisciplinaException("Este professor não está apto a dar essa disciplina.");
         }
         this.disciplina = disciplina;
         this.periodo = periodo;
@@ -61,44 +76,89 @@ public class Turma {
         return (other.getId() == null ? this.getId() == null : other.getId().equals(this.getId()));
     }
 
+    /**
+     * Obtém o ID da turma
+     *
+     * @return ID da turma
+     */
     public String getId() {
         return this.id;
     }
 
+    /**
+     * Obtém o período da turma
+     *
+     * @return período da turma
+     */
     public long getPeriodo() {
         return this.periodo;
     }
 
+    /**
+     * Obtém o número de vagas da turma
+     *
+     * @return número de vagas da turma
+     */
     public long getNumeroVagas() {
         return this.numeroVagas;
     }
 
+    /**
+     * Obtém o número da sala
+     *
+     * @return número da sala
+     */
     public long getSala() {
         return this.sala;
     }
 
+    /**
+     * Obtém a disciplina da turma
+     *
+     * @return disciplina
+     */
     public Disciplina getDisciplina() {
         return this.disciplina;
     }
 
+    /**
+     * Obtém o ano da turma
+     *
+     * @return ano
+     */
     public long getAno() {
         return this.ano;
     }
 
+    /**
+     * Obtém atividades da turma
+     *
+     * @return lista de atividade
+     */
     public ArrayList<Atividade> getAtividades() {
         return this.atividades;
     }
 
+    /**
+     * Obtém alunos matriculados na turma
+     *
+     * @return lista de aluno
+     */
     public ArrayList<Aluno> getAlunos() {
         return this.alunos;
     }
 
+    /**
+     * Obtém lista de faltas
+     *
+     * @return lista de falta
+     */
     public ArrayList<Falta> getFaltas() {
         return this.faltas;
     }
 
-    /** Recebe um aluno e retorna o numero de falta desse aluno
-     * na referida turma
+    /**
+     * Recebe um aluno e retorna o numero de falta desse aluno na referida turma
      *
      * @param aluno
      * @return
@@ -113,6 +173,11 @@ public class Turma {
         throw new IllegalArgumentException("Aluno não existe.");
     }
 
+    /**
+     * Obtém o professor da turma
+     *
+     * @return professor
+     */
     public Professor getProfessor() {
         return this.professor;
     }
@@ -125,7 +190,8 @@ public class Turma {
                 + this.getAlunos() + "\r\nFaltas: " + this.getFaltas() + "\r\nProfessor=" + this.getProfessor();
     }
 
-    /** Retorna a média do aluno na turma
+    /**
+     * Retorna a média do aluno na turma
      *
      * @param aluno
      * @return média do aluno na turma
