@@ -16,6 +16,13 @@ public class Nota {
     private final double valorObtido;
     private final Aluno aluno;
 
+    /**
+     * Construtor da nota
+     *
+     * @param valorObtido Valor obtido
+     * @param aluno Aluno da nota
+     * @throws IllegalArgumentException
+     */
     public Nota(double valorObtido, Aluno aluno) throws IllegalArgumentException {
         Objects.requireNonNull(aluno, "Aluno não pode ser null.");
         if (valorObtido < 0 || valorObtido > 10) {
@@ -25,6 +32,11 @@ public class Nota {
         this.aluno = aluno;
     }
 
+    /**
+     * Obtém o valor
+     *
+     * @return Valor obtido
+     */
     public double getValorObtido() {
         return valorObtido;
     }
@@ -34,6 +46,11 @@ public class Nota {
         return "valor Obtido = " + valorObtido + "\r\n";
     }
 
+    /**
+     * Obtém o aluno
+     *
+     * @return Aluno
+     */
     public Aluno getAluno() {
         return aluno;
     }

@@ -18,8 +18,11 @@ public class Aluno extends Pessoa {
     private final long matricula;
     private final ArrayList<Turma> turmas = new ArrayList<>();
 
-    public Aluno(long matricula, String nome, long cpf) {
+    public Aluno(long matricula, String nome, long cpf) throws IllegalArgumentException, NullPointerException {
         super(nome, cpf);
+        if (matricula < 0) {
+            throw new IllegalArgumentException("Matrícula deve ser positivo.");
+        }
         this.matricula = matricula;
     }
 
@@ -57,6 +60,5 @@ public class Aluno extends Pessoa {
         }
         return true;
     }
-    
 
 }
