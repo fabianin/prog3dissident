@@ -8,6 +8,7 @@ package model.dao;
 import exceptions.AlunoJaCadastradoException;
 import model.pojo.Turma;
 import java.util.ArrayList;
+import java.util.Objects;
 import model.pojo.Aluno;
 
 /**
@@ -28,14 +29,18 @@ public class AlunoDAO {
      * @param turma
      * @return True, False
      */
-    public boolean aprovado(Aluno aluno,Turma  turma){
+    public boolean aprovado(Aluno aluno,Turma  turma)throws IllegalAccessException, NullPointerException{
+        Objects.requireNonNull(aluno, "Aluno não pode ser NULL");
+        Objects.requireNonNull(turma, "Turma não pode ser NULL");
         if(!listaAlunos.contains(aluno)){
             throw new IllegalArgumentException("Aluno não cadastrado");
         } else{
             for(Aluno x : this.listaAlunos){
                 if(x.equals(aluno)){
-                    if(turma.getMedia(x) >= 7 && (turma.getFaltas(aluno)/turma.getDisciplina().getCargaHoraria())<0.25){
-                        return true;
+                    if(turma.getMedia(x) >= 6){
+                        if ((turma.getFaltas(aluno)/turma.getDisciplina().getCargaHoraria())<0.25) {
+                            return true;
+                        }
                     }
                 }
             }
