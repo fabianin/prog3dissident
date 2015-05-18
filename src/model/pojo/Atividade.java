@@ -53,7 +53,7 @@ public class Atividade {
      * @throws NotaJaCadastradaException
      * @throws NullPointerException
      */
-    public void adicionarNota(Nota nota) throws NotaJaCadastradaException, NullPointerException {
+    public void addNota(Nota nota) throws NotaJaCadastradaException, NullPointerException {
         Objects.requireNonNull(nota); // não premite nota null
         if (notas.indexOf(nota) == -1) { // caso a nota não tenha sido cadastrada
             this.notas.add(nota); // adiciona nota na lista
@@ -62,8 +62,40 @@ public class Atividade {
         }
     }
 
+    /**
+     * Obtém notas da atividade
+     *
+     * @return Notas da atividade
+     */
     public ArrayList<Nota> getNotas() {
         return this.notas;
+    }
+
+    /**
+     * Obtém nome da atividade
+     *
+     * @return Nome da atividade
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * Obtém data da atividade
+     *
+     * @return Data da atividade
+     */
+    public Calendar getData() {
+        return data;
+    }
+
+    /**
+     * Obtém tipo da atividade
+     *
+     * @return Tipo da atividade
+     */
+    public String getTipo() {
+        return tipo;
     }
 
 }
