@@ -62,4 +62,8 @@ public class Atividade {
         }
     }
 
+    public ArrayList<Nota> getNotas() {
+        return this.notas;
+    }
+
 }

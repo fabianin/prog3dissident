@@ -36,33 +36,5 @@ public class NotaTest {
     @After
     public void tearDown() {
     }
-
-    /**
-     * Test of getMatricula method, of class Nota.
-     */
-    @Test
-    public void testGetMatricula() {
-        System.out.println("getMatricula");
-        Nota instance = null;
-        long expResult = 0L;
-        long result = instance.getMatricula();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getNota method, of class Nota.
-     */
-    @Test
-    public void testGetNota() {
-        System.out.println("getNota");
-        Nota instance = null;
-        float expResult = 0.0F;
-        float result = instance.getNota();
-        assertEquals(expResult, result, 0.0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
     
 }

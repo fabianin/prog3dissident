@@ -8,14 +8,15 @@ package model.pojo;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
+import java.util.UUID;
 
 /**
  *
  * @author Fabiano
  */
-class Turma {
+public class Turma {
 
-    private final int id;
+    private final String id;
     private final int periodo;
     private final int numeroVagas;
     private final int sala;
@@ -47,19 +48,7 @@ class Turma {
         this.sala = sala;
         this.ano = ano;
         this.professor = professor;
-        this.id = this.hashCode();
-    }
-
-    @Override
-    public final int hashCode() {
-        int hash = 3;
-        hash = 13 * hash + this.id;
-        hash = 13 * hash + this.periodo;
-        hash = 13 * hash + this.numeroVagas;
-        hash = 13 * hash + this.sala;
-        hash = 13 * hash + Objects.hashCode(this.ano);
-        hash = 13 * hash + Objects.hashCode(this.professor);
-        return hash;
+        this.id = UUID.randomUUID().toString();
     }
 
     @Override
@@ -74,7 +63,19 @@ class Turma {
         return other.getId() == this.getId();
     }
 
-    public int getId() {
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + this.periodo;
+        hash = 97 * hash + this.sala;
+        hash = 97 * hash + Objects.hashCode(this.disciplina);
+        hash = 97 * hash + Objects.hashCode(this.ano);
+        hash = 97 * hash + Objects.hashCode(this.professor);
+        return hash;
+    }
+
+    public String getId() {
         return this.id;
     }
 
@@ -110,6 +111,15 @@ class Turma {
         return this.faltas;
     }
 
+    public long getFaltas(String matricula) throws IllegalArgumentException {
+        for (Falta falta : this.getFaltas()) {
+            if (matricula.equals(falta.getAluno())) {
+                return falta.getFaltas();
+            }
+        }
+        throw new IllegalArgumentException("Aluno não existe.");
+    }
+
     public ArrayList<Nota> getNotas() {
         return this.notas;
     }
@@ -125,6 +135,26 @@ class Turma {
                 + "\r\nAno: " + this.getAno() + "\r\nAtividades: " + this.getAtividades() + "\r\nAlunos: "
                 + this.getAlunos() + "\r\nFaltas: " + this.getFaltas() + "\r\nnotas: " + this.getNotas()
                 + "\r\nProfessor=" + this.getProfessor();
+    }
+
+    /**
+     *
+     * @param aluno
+     * @return média do aluno na turma
+     */
+    public double getMedia(Aluno aluno) throws IllegalArgumentException {
+        double total = 0.0;
+        if (this.getAlunos().contains(aluno)) {
+            for (Atividade atividade : this.getAtividades()) {
+                for (Nota nota : atividade.getNotas()) {
+                    if (nota.getAluno().equals(aluno)) {
+                        total += nota.getValorObtido();
+                    }
+                }
+            }
+            return total / this.getAtividades().size();
+        }
+        throw new IllegalArgumentException("Aluno não encontrado");
     }
 
 }

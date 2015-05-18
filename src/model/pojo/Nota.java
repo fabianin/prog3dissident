@@ -5,31 +5,32 @@
  */
 package model.pojo;
 
+import java.util.Objects;
+
 /**
  *
  * @author Fabiano
  */
 public class Nota {
 
-    private final long matricula;
-    private final float nota;
+    private final double valorObtido;
+    private final Aluno aluno;
 
-    public Nota(long matricula, float nota) {
-        if (matricula < 0) {
-            throw new IllegalArgumentException("Matrícula deve ser um valor positivo.");
-        } else if (nota < 0) {
-            throw new IllegalArgumentException("Nota deve ser um valor positivo.");
+    public Nota(double valorObtido, Aluno aluno) throws IllegalArgumentException {
+        Objects.requireNonNull(aluno, "Aluno não pode ser null.");
+        if (valorObtido < 0 || valorObtido > 10) {
+            throw new IllegalArgumentException("Valor obtido deve ser entre 0 e 10.");
         }
-        this.matricula = matricula;
-        this.nota = nota;
+        this.valorObtido = valorObtido;
+        this.aluno = aluno;
     }
 
-    public long getMatricula() {
-        return this.matricula;
+    public double getValorObtido() {
+        return valorObtido;
     }
 
-    public float getNota() {
-        return this.nota;
+    public Aluno getAluno() {
+        return aluno;
     }
 
 }
