@@ -19,11 +19,13 @@ public class AlunoDAO {
     public AlunoDAO() {
     }
 
-    /**
+    /** retorna TRUE caso o aluno esteja com a situação de aprovado na turma
+     * retorna false caso o aluno não tenha obtido média suficiente ou
+     * estrapolou o numero maximo de faltas
      *
      * @param aluno
      * @param turma
-     * @return
+     * @return True, False
      */
     public boolean aprovado(Aluno aluno,Turma  turma){
         if(!listaAlunos.contains(aluno)){

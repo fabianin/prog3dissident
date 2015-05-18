@@ -25,7 +25,6 @@ public class Turma {
     private final ArrayList<Atividade> atividades = new ArrayList<>();
     private final ArrayList<Aluno> alunos = new ArrayList<>();
     private final ArrayList<Falta> faltas = new ArrayList<>();
-    private final ArrayList<Nota> notas = new ArrayList<>();
     private final Professor professor;
 
     public Turma(Disciplina disciplina, int periodo, int numeroVagas, int sala, Calendar ano, Professor professor)
@@ -111,17 +110,20 @@ public class Turma {
         return this.faltas;
     }
 
-    public long getFaltas(String matricula) throws IllegalArgumentException {
+    /** Recebe um aluno e retorna o numero de falta desse aluno
+     * na referida turma
+     *
+     * @param aluno
+     * @return
+     * @throws IllegalArgumentException
+     */
+    public long getFaltas(Aluno aluno) throws IllegalArgumentException {
         for (Falta falta : this.getFaltas()) {
-            if (matricula.equals(falta.getAluno())) {
+            if (aluno.equals(falta.getAluno())) {
                 return falta.getFaltas();
             }
         }
         throw new IllegalArgumentException("Aluno não existe.");
-    }
-
-    public ArrayList<Nota> getNotas() {
-        return this.notas;
     }
 
     public Professor getProfessor() {
@@ -133,11 +135,10 @@ public class Turma {
         return "Turma: " + this.getId() + "\r\nPeriodo: " + this.getPeriodo() + "\r\nNumero de vagas: "
                 + this.getNumeroVagas() + "\r\nSala: " + this.getSala() + "\r\nDisciplina: " + this.getDisciplina()
                 + "\r\nAno: " + this.getAno() + "\r\nAtividades: " + this.getAtividades() + "\r\nAlunos: "
-                + this.getAlunos() + "\r\nFaltas: " + this.getFaltas() + "\r\nnotas: " + this.getNotas()
-                + "\r\nProfessor=" + this.getProfessor();
+                + this.getAlunos() + "\r\nFaltas: " + this.getFaltas() + "\r\nProfessor=" + this.getProfessor();
     }
 
-    /**
+    /** Retorna a média do aluno na turma
      *
      * @param aluno
      * @return média do aluno na turma
