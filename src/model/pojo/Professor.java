@@ -5,6 +5,9 @@
  */
 package model.pojo;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  *
  * @author Fabiano
@@ -12,6 +15,7 @@ package model.pojo;
 public class Professor extends Pessoa {
 
     private final String departamento;
+    private ArrayList<Disciplina> disciplinasApto;
 
     public Professor(String nome, long cpf, String departamento) {
         super(nome, cpf);
@@ -20,6 +24,14 @@ public class Professor extends Pessoa {
 
     public String getDepartamento() {
         return this.departamento;
+    }
+    public void addDisciplinaApto(Disciplina disciplina)throws IllegalArgumentException, NullPointerException{
+        Objects.requireNonNull(disciplina,"Não pode ser NULL");
+        if(this.disciplinasApto.contains(disciplina)){
+            throw new IllegalArgumentException("Disciplina já cadastrada nesse professor");
+        }
+        this.disciplinasApto.add(disciplina);
+        
     }
 
 }
