@@ -43,5 +43,8 @@ public class Professor extends Pessoa {
             this.turmasLecionando.add(turma);
         }
     }
+    public int numDisciplinaLecionadas(){
+        return this.turmasLecionando.size();
+    }
 
 }
