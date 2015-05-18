@@ -6,7 +6,6 @@
 package model.pojo;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -17,17 +16,17 @@ import java.util.UUID;
 public class Turma {
 
     private final String id;
-    private final int periodo;
-    private final int numeroVagas;
-    private final int sala;
+    private final long periodo;
+    private final long numeroVagas;
+    private final long sala;
     private final Disciplina disciplina;
-    private final Calendar ano;
+    private final long ano;
     private final ArrayList<Atividade> atividades = new ArrayList<>();
     private final ArrayList<Aluno> alunos = new ArrayList<>();
     private final ArrayList<Falta> faltas = new ArrayList<>();
     private final Professor professor;
 
-    public Turma(Disciplina disciplina, int periodo, int numeroVagas, int sala, Calendar ano, Professor professor)
+    public Turma(Disciplina disciplina, long periodo, long numeroVagas, long sala, long ano, Professor professor)
             throws NullPointerException, IllegalArgumentException {
         Objects.requireNonNull(ano, "Ano não pode ser null");
         Objects.requireNonNull(professor, "Professor não pode ser null");
@@ -59,34 +58,22 @@ public class Turma {
             throw new IllegalArgumentException();
         }
         final Turma other = (Turma) obj;
-        return other.getId() == this.getId();
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.id);
-        hash = 97 * hash + this.periodo;
-        hash = 97 * hash + this.sala;
-        hash = 97 * hash + Objects.hashCode(this.disciplina);
-        hash = 97 * hash + Objects.hashCode(this.ano);
-        hash = 97 * hash + Objects.hashCode(this.professor);
-        return hash;
+        return (other.getId() == null ? this.getId() == null : other.getId().equals(this.getId()));
     }
 
     public String getId() {
         return this.id;
     }
 
-    public int getPeriodo() {
+    public long getPeriodo() {
         return this.periodo;
     }
 
-    public int getNumeroVagas() {
+    public long getNumeroVagas() {
         return this.numeroVagas;
     }
 
-    public int getSala() {
+    public long getSala() {
         return this.sala;
     }
 
@@ -94,7 +81,7 @@ public class Turma {
         return this.disciplina;
     }
 
-    public Calendar getAno() {
+    public long getAno() {
         return this.ano;
     }
 
