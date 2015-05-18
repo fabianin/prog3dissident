@@ -29,6 +29,7 @@ public class TurmaDAO {
         }
         else{
             this.turmas.add(turma);
+            turma.getProfessor().addTurma(turma);
         }
     }
 
