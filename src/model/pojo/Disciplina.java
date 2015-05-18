@@ -44,6 +44,34 @@ public class Disciplina {
         return ementa;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Disciplina other = (Disciplina) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.ementa, other.ementa)) {
+            return false;
+        }
+        if (this.cargaHoraria != other.cargaHoraria) {
+            return false;
+        }
+        return true;
+    }
+    
+
     public long getCargaHoraria() {
         return cargaHoraria;
     }
