@@ -5,6 +5,7 @@
  */
 package model.pojo;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -18,6 +19,7 @@ public class Disciplina {
     private final String nome;
     private final String ementa;
     private final long cargaHoraria;
+    private final ArrayList<Turma> turmas;
 
     public Disciplina(String nome, String ementa, long cargaHoraria) throws IllegalArgumentException {
         Objects.requireNonNull(nome, "Nome não pode ser vazio");
@@ -26,10 +28,19 @@ public class Disciplina {
             throw new IllegalArgumentException("Carga horária não pode ser menor que 1.");
         }
         cont++;
+        this.turmas = new ArrayList<>();
         this.id = String.valueOf(cont);
         this.nome = nome;
         this.ementa = ementa;
         this.cargaHoraria = cargaHoraria;
+    }
+
+    public void addTurma(Turma turma) {
+        this.turmas.add(turma);
+    }
+
+    public ArrayList<Turma> getTurmas() {
+        return turmas;
     }
 
     public String getId() {
@@ -70,7 +81,6 @@ public class Disciplina {
         }
         return true;
     }
-    
 
     public long getCargaHoraria() {
         return cargaHoraria;
