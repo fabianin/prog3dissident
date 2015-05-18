@@ -28,6 +28,11 @@ public class Falta {
         return this.faltas;
     }
 
+    @Override
+    public String toString() {
+        return "Nome: " + aluno.getNome() +"\r\nfaltas=" + faltas +"\r\n";
+    }
+
     public Aluno getAluno() {
         return aluno;
     }
