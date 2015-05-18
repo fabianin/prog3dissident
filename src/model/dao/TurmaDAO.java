@@ -7,6 +7,8 @@ package model.dao;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import model.pojo.Atividade;
+import model.pojo.Disciplina;
 import model.pojo.Turma;
 
 /**
@@ -31,6 +33,18 @@ public class TurmaDAO {
             this.turmas.add(turma);
             turma.getProfessor().addTurma(turma);
             turma.getDisciplina().addTurma(turma);
+        }
+    }
+    
+    public void listarTurma(Disciplina disciplina, long ano, long periodo){
+        for(Turma x : turmas){
+            if(x.getDisciplina().equals(disciplina) && x.getAno()== ano && x.getPeriodo() == periodo){
+                System.out.println(x.getFaltas());
+                for(Atividade k : x.getAtividades()){
+                    System.out.println(k.getNome());
+                    System.out.println(k.getNotas());
+                }
+            }
         }
     }
 
