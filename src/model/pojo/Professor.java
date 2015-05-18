@@ -9,6 +9,17 @@ package model.pojo;
  *
  * @author Fabiano
  */
-public class Professor {
+public class Professor extends Pessoa {
+
+    private final String departamento;
+
+    public Professor(String nome, long cpf, String departamento) {
+        super(nome, cpf);
+        this.departamento = departamento;
+    }
+
+    public String getDepartamento() {
+        return this.departamento;
+    }
 
 }

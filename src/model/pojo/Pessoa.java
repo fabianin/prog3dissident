@@ -10,6 +10,7 @@ package model.pojo;
  * @author Fabiano
  */
 public abstract class Pessoa {
+
     private final String nome;
     private final long cpf;
 
@@ -25,6 +26,5 @@ public abstract class Pessoa {
     public long getCpf() {
         return cpf;
     }
-    
-    
+
 }
