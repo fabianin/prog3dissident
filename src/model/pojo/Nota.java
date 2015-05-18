@@ -29,6 +29,11 @@ public class Nota {
         return valorObtido;
     }
 
+    @Override
+    public String toString() {
+        return "valor Obtido = " + valorObtido + "\r\n";
+    }
+
     public Aluno getAluno() {
         return aluno;
     }
