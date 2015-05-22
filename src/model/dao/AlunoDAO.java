@@ -5,61 +5,21 @@
  */
 package model.dao;
 
-import exceptions.AlunoJaCadastradoException;
-import model.pojo.Turma;
 import java.util.ArrayList;
-import java.util.Objects;
 import model.pojo.Aluno;
 
 /**
  *
- * @author Fabiano
+ * @author Elias Júnior
  */
-public class AlunoDAO {
-    ArrayList<Aluno> listaAlunos = new ArrayList<>();
+public interface AlunoDao {
 
-    public AlunoDAO() {
-    }
+    public Aluno getAlunoByID(Integer id);
 
-    /** retorna TRUE caso o aluno esteja com a situação de aprovado na turma
-     * retorna false caso o aluno não tenha obtido média suficiente ou
-     * estrapolou o numero maximo de faltas
-     *
-     * @param aluno
-     * @param turma
-     * @return True, False
-     */
-    public boolean aprovado(Aluno aluno,Turma  turma)throws IllegalAccessException, NullPointerException{
-        Objects.requireNonNull(aluno, "Aluno não pode ser NULL");
-        Objects.requireNonNull(turma, "Turma não pode ser NULL");
-        if(!listaAlunos.contains(aluno)){
-            throw new IllegalArgumentException("Aluno não cadastrado");
-        } else{
-            for(Aluno x : this.listaAlunos){
-                if(x.equals(aluno)){
-                    if(turma.getMedia(x) >= 6){
-                        if ((turma.getFaltas(aluno)/turma.getDisciplina().getCargaHoraria())<0.25) {
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-    }
+    public Integer adicionaAluno(Aluno aluno);
 
-    /** Adiciona um aluno a lista de todos os alunos.
-     *
-     * @param aluno
-     * @throws AlunoJaCadastradoException
-     */
-    public void addAluno(Aluno aluno)throws AlunoJaCadastradoException{
-        if(listaAlunos.contains(aluno)){
-            throw new AlunoJaCadastradoException("Esse aluno já existe.");
-        }
-        else{
-            listaAlunos.add(aluno);
-        }
-    }
-    
+    public ArrayList<Aluno> getAlunos();
+
+    public boolean removeAluno(Integer id);
+
 }
