@@ -16,7 +16,6 @@ import java.util.Objects;
 public class Disciplina {
 
     private static long cont;
-    private final String id;
     private final String nome;
     private final String ementa;
     private final long cargaHoraria;
@@ -38,7 +37,6 @@ public class Disciplina {
         }
         cont++;
         this.turmas = new ArrayList<>();
-        this.id = String.valueOf(cont);
         this.nome = nome;
         this.ementa = ementa;
         this.cargaHoraria = cargaHoraria;
@@ -66,15 +64,6 @@ public class Disciplina {
      */
     public ArrayList<Turma> getTurmas() {
         return this.turmas;
-    }
-
-    /**
-     * Obtém ID
-     *
-     * @return obtém id
-     */
-    public String getId() {
-        return this.id;
     }
 
     /**

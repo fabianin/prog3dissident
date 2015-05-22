@@ -16,7 +16,6 @@ import java.util.UUID;
  */
 public class Turma {
 
-    private final String id;
     private final long periodo;
     private final long numeroVagas;
     private final long sala;
@@ -61,28 +60,42 @@ public class Turma {
         this.sala = sala;
         this.ano = ano;
         this.professor = professor;
-        this.id = UUID.randomUUID().toString();
     }
 
     @Override
-    public boolean equals(Object obj) throws NullPointerException, IllegalArgumentException {
-        if (obj == null) {
-            throw new NullPointerException();
-        }
-        if (getClass() != obj.getClass()) {
-            throw new IllegalArgumentException();
-        }
-        final Turma other = (Turma) obj;
-        return (other.getId() == null ? this.getId() == null : other.getId().equals(this.getId()));
+    public int hashCode() {
+        int hash = 5;
+        return hash;
     }
 
-    /**
-     * Obtém o ID da turma
-     *
-     * @return ID da turma
-     */
-    public String getId() {
-        return this.id;
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Turma other = (Turma) obj;
+        if (this.periodo != other.periodo) {
+            return false;
+        }
+        if (this.numeroVagas != other.numeroVagas) {
+            return false;
+        }
+        if (this.sala != other.sala) {
+            return false;
+        }
+        if (!Objects.equals(this.disciplina, other.disciplina)) {
+            return false;
+        }
+        if (this.ano != other.ano) {
+            return false;
+        }
+        if (!Objects.equals(this.professor, other.professor)) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -184,7 +197,7 @@ public class Turma {
 
     @Override
     public String toString() {
-        return "Turma: " + this.getId() + "\r\nPeriodo: " + this.getPeriodo() + "\r\nNumero de vagas: "
+        return "Turma: \r\nPeriodo: " + this.getPeriodo() + "\r\nNumero de vagas: "
                 + this.getNumeroVagas() + "\r\nSala: " + this.getSala() + "\r\nDisciplina: " + this.getDisciplina()
                 + "\r\nAno: " + this.getAno() + "\r\nAtividades: " + this.getAtividades() + "\r\nAlunos: "
                 + this.getAlunos() + "\r\nFaltas: " + this.getFaltas() + "\r\nProfessor=" + this.getProfessor();

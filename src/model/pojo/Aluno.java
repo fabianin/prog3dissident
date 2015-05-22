@@ -8,8 +8,8 @@ package model.pojo;
 import java.util.ArrayList;
 
 /**
- * Essa classe representa a entidade aluno e o ID de cada objeto será a prórpria
- * matircula do aluno
+ * Essa classe representa a entidade aluno e o ID de cada objeto será a própria
+ * matrícula do aluno
  *
  * @author Fabiano
  */
@@ -56,8 +56,7 @@ public class Aluno extends Pessoa {
 
     @Override
     public String toString() {
-        return "Aluno: " + this.getNome() + " CPF: " + this.getCpf() + " Matricula: " + this.getMatricula()
-                + " Turmas: " + this.getTurmas() + "\r\n";
+        return "Aluno{" + "matricula=" + matricula + '}';
     }
 
     @Override
