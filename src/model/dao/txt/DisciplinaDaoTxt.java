@@ -31,7 +31,7 @@ public class DisciplinaDaoTxt implements DisciplinaDao {
     private final File file;
     private ArrayList<Disciplina> disciplinas;
 
-    public DisciplinaDaoTxt() throws IOException {
+    public DisciplinaDaoTxt() {
         this.file = new File(this.filePath);
         this.disciplinas = new ArrayList<>();
         this.initDao();

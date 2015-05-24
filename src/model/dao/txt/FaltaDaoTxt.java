@@ -22,13 +22,13 @@ import org.json.JSONObject;
  *
  * @author Fabiano
  */
-public class FaltaDaoTxt implements FaltaDao{
+public class FaltaDaoTxt implements FaltaDao {
 
     private final String filePath = "txtdatabase/faltas.txt";
     private final File file;
     private final ArrayList<Falta> faltas;
 
-    public FaltaDaoTxt() throws IOException {
+    public FaltaDaoTxt() {
         this.file = new File(this.filePath);
         this.faltas = new ArrayList<>();
         this.initDao();
@@ -57,7 +57,8 @@ public class FaltaDaoTxt implements FaltaDao{
         return faltas;
     }
 
-    /** Lança uma falta
+    /**
+     * Lança uma falta
      *
      * @param falta
      * @throws FaltaJaCadastradaException
@@ -73,7 +74,8 @@ public class FaltaDaoTxt implements FaltaDao{
         }
     }
 
-    /** Salva a lista de objetos em txt
+    /**
+     * Salva a lista de objetos em txt
      *
      * @throws IOException
      */
