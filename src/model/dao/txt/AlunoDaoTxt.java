@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import model.dao.AlunoDao;
 import model.pojo.Aluno;
@@ -71,6 +72,7 @@ public class AlunoDaoTxt implements AlunoDao {
 
     @Override
     public Aluno getAlunoByID(Integer id) {
+        Objects.requireNonNull(id, "ID não pode ser NULL");
         for (String line : this.fileContent) {
             if (!line.isEmpty()) {
                 String[] colunas = line.split(";");
@@ -87,7 +89,10 @@ public class AlunoDaoTxt implements AlunoDao {
     }
 
     @Override
-    public Integer adicionaAluno(Aluno aluno) {
+    public Integer adicionaAluno(Aluno aluno) throws IllegalArgumentException {
+        if(aluno == null){
+            throw new IllegalArgumentException("this method can't recieve NULL");
+        }
         if (this.getAlunos().contains(aluno)) {
             return null;
         } else {
@@ -101,6 +106,9 @@ public class AlunoDaoTxt implements AlunoDao {
     public ArrayList<Aluno> getAlunos() {
         ArrayList<Aluno> alunos = new ArrayList<>();
         for (String line : this.fileContent) {
+            if(line.isEmpty()){
+                return null;
+            }
             if (!line.isEmpty()) {
                 String[] colunas = line.split(";");
                 long matricula = Long.parseLong(colunas[1]);
@@ -115,6 +123,9 @@ public class AlunoDaoTxt implements AlunoDao {
 
     @Override
     public boolean removeAluno(Integer id) {
+        if(id==null){
+            return false;
+        }
         int count = 0;
         for (String line : this.fileContent) {
             if (!line.isEmpty()) {
