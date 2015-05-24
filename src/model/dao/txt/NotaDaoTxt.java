@@ -34,6 +34,7 @@ public class NotaDaoTxt implements NotaDao {
     public NotaDaoTxt() {
         this.notas = new ArrayList<>();
         this.file = new File(this.filePath);
+        this.initDao();
     }
 
     private void initDao() {
@@ -81,13 +82,37 @@ public class NotaDaoTxt implements NotaDao {
     public void adicionaNota(Nota nota) throws NotaJaCadastradaException {
         if (this.getNotaPorId(nota.hashCode()) == null) {
             this.notas.add(nota);
+            try {
+                this.salva();
+            } catch (IOException ex) {
+                Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else {
             throw new NotaJaCadastradaException();
         }
     }
-    
-    private void salva() {
-        
+
+    private void salva() throws IOException {
+        this.saveFile(this.filePath, this.notas);
+    }
+
+    private void saveFile(String path, ArrayList<Nota> itens) throws IOException {
+        File f = new File(path);
+        if(f.isFile()) {
+            System.out.println("ahhh");
+            FileUtils.forceDelete(f);
+        } else {
+            System.out.println("beee");
+        }
+        itens.stream().forEach(item -> {
+            try {
+                FileUtils.writeStringToFile(f, DaoTxtUtils.toJSON(item) + "\r\n", "UTF-8", true);
+            } catch (IOException ex) {
+                Logger.getLogger(DaoTxtUtils.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException ex) {
+                Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
 }

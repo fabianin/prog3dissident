@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.function.Consumer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.pojo.Aluno;
@@ -252,20 +253,6 @@ public class DaoTxtUtils {
         turmaJson.put("alunos", alunosJson);
         turmaJson.put("faltas", faltasJson);
         return turmaJson.toString();
-    }
-
-    public static <E> void saveFile(String path, ArrayList<E> itens) throws IOException {
-        File file = new File(path);
-        FileUtils.forceDelete(file);
-        itens.stream().forEach(item -> {
-            try {
-                FileUtils.writeStringToFile(file, DaoTxtUtils.toJSON((Nota) item), "UTF-8", true);
-            } catch (IOException ex) {
-                Logger.getLogger(DaoTxtUtils.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JSONException ex) {
-                Logger.getLogger(DaoTxtUtils.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        });
     }
 
 }
