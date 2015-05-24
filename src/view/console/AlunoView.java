@@ -22,10 +22,10 @@ public class AlunoView {
 
     public AlunoView() {
     }
-    public static void imprimirAlunos(AlunoDao alunos){
+    public void imprimirAlunos(AlunoDao alunos){
         alunos.getAlunos().stream().forEach((x) -> System.out.println(x));
     }
-    public static void cadastraAluno(AlunoDao alunos) throws IOException{
+    public void cadastraAluno(AlunoDao alunos) throws IOException{
         Aluno al;
         Scanner sci = new Scanner(System.in);
         String nome;
