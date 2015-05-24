@@ -227,8 +227,19 @@ public class Turma {
         throw new IllegalArgumentException("Aluno não encontrado");
     }
 
-    String toFile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /** @brief método que formata o objeto para ser salvo em arquivo
+     *
+     * @return na sequencia Alunos, Ano, Atividades, Disciplina, Faltas, Numero de vagas, Periodo, Professor, Sala
+     */
+    public String toFile() {
+        String str = "";
+        str = this.getAlunos().stream().map((x) -> x.toFile()+"#").reduce(str, String::concat);
+        str+=this.getAno()+";";
+        str = this.getAtividades().stream().map((x) -> x.toFile()+"#").reduce(str, String::concat);
+        str+=this.getDisciplina()+";";
+        str = this.getFaltas().stream().map((x) -> x.toFile()+"#").reduce(str, String::concat);
+        str+= this.getNumeroVagas()+";"+this.getPeriodo()+";"+this.getProfessor().toFile()+";"+this.getSala()+"%";
+        return str;
     }
 
 }
