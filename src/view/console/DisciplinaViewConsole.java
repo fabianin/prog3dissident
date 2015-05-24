@@ -8,9 +8,11 @@ package view.console;
 import exceptions.DisciplinaJaCadastradaException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import model.dao.DisciplinaDao;
 import model.pojo.Disciplina;
 
@@ -45,6 +47,13 @@ public class DisciplinaViewConsole {
         disciplinas.getDisciplinas().stream().forEach((Disciplina x) -> {
             System.out.println(x);
         });
+    }
+    
+    public static void consultarTurmas(DisciplinaDao disciplinas, int disciplinaId){
+        List<Disciplina> dd;
+        dd = disciplinas.getDisciplinas().stream().filter(x -> x.getId()==disciplinaId).collect(Collectors.toList());
+        System.out.println("Existem " + dd.get(0).getTurmas().size()+" turmas dessa disciplina");
+
     }
     
 }
