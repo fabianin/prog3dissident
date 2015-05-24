@@ -38,6 +38,8 @@ public class TelaPricipalConsole {
     public static void main(String[] args) {
         TelaPricipalConsole tpc = new TelaPricipalConsole();
         AlunoViewConsole alvc = new AlunoViewConsole();
+        TurmaViewConsole tvc = new TurmaViewConsole();
+        DisciplinaViewConsole dvc = new DisciplinaViewConsole();
         int opcao;
         do {
             opcao = tpc.showMenu();
