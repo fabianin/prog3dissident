@@ -15,7 +15,7 @@ public class Nota {
 
     private final int id;
 
-    private final double valorObtido;
+    private double valorObtido;
     private final int aluno;
 
     /**
@@ -44,6 +44,14 @@ public class Nota {
         return valorObtido;
     }
 
+    public void setValorObtido(double valorObtido) throws IllegalArgumentException {
+        if (valorObtido < 0 || valorObtido > 10) {
+            throw new IllegalArgumentException("Valor obtido deve ser entre 0 e 10.");
+        }
+        this.valorObtido = valorObtido;
+    }
+    
+
     @Override
     public String toString() {
         return "valor Obtido = " + valorObtido + "\r\n";
@@ -56,6 +64,8 @@ public class Nota {
         hash = 67 * hash + Objects.hashCode(this.aluno);
         return hash;
     }
+    
+    
 
     @Override
     public boolean equals(Object obj) {

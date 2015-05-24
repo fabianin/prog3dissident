@@ -5,6 +5,8 @@
  */
 package view.console;
 
+import exceptions.AlunoJaCadastradoException;
+import java.io.IOException;
 import model.dao.AlunoDao;
 import model.dao.AtividadeDao;
 import model.dao.DisciplinaDao;
@@ -19,6 +21,7 @@ import model.dao.txt.FaltaDaoTxt;
 import model.dao.txt.NotaDaoTxt;
 import model.dao.txt.ProfessorDaoTxt;
 import model.dao.txt.TurmaDaoTxt;
+import model.pojo.Aluno;
 
 /**
  *
@@ -34,8 +37,39 @@ public class TelaPricipalConsole {
     private final ProfessorDao professores = new ProfessorDaoTxt();
     private final TurmaDao turmas = new TurmaDaoTxt();
 
-    public static void main(String[] args) {
-        System.out.println("ahhh");
+    public static void main(String[] args) throws AlunoJaCadastradoException, IOException {
+        TelaPricipalConsole tp = new TelaPricipalConsole();
+        AlunoView.imprimirAlunos(tp.getAlunos());
+        Aluno al = new Aluno(1231, "Fabiano", 20);
+        tp.getAlunos().adicionaAluno(al);
+    }
+
+    public AlunoDao getAlunos() {
+        return alunos;
+    }
+
+    public AtividadeDao getAtividades() {
+        return atividades;
+    }
+
+    public DisciplinaDao getDisciplinas() {
+        return disciplinas;
+    }
+
+    public FaltaDao getFaltas() {
+        return faltas;
+    }
+
+    public NotaDao getNotas() {
+        return notas;
+    }
+
+    public ProfessorDao getProfessores() {
+        return professores;
+    }
+
+    public TurmaDao getTurmas() {
+        return turmas;
     }
     
 }
