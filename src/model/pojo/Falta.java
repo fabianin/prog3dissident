@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class Falta {
 
-    private final Integer aluno;
+    private final int aluno;
     private final int faltas;
     private final int id;
 
@@ -25,11 +25,9 @@ public class Falta {
      * @throws IllegalArgumentException
      * @throws NullPointerException
      */
-    public Falta(Integer aluno, int faltas) throws IllegalArgumentException, NullPointerException {
+    public Falta(int aluno, int faltas) throws IllegalArgumentException, NullPointerException {
         if (faltas < 0) {
             throw new IllegalArgumentException("Faltas deve ser um valor positivo.");
-        } else if (aluno == null) {
-            throw new NullPointerException("Aluno não pode ser null.");
         }
         this.aluno = aluno;
         this.faltas = faltas;
@@ -51,7 +49,7 @@ public class Falta {
      *
      * @return Aluno
      */
-    public Integer getAluno() {
+    public int getAluno() {
         return aluno;
     }
 

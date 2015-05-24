@@ -5,6 +5,7 @@
  */
 package model.dao.txt;
 
+import exceptions.NotaJaCadastradaException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -74,6 +75,19 @@ public class NotaDaoTxt implements NotaDao {
             return notas.get(0);
         }
         return null;
+    }
+
+    @Override
+    public void adicionaNota(Nota nota) throws NotaJaCadastradaException {
+        if (this.getNotaPorId(nota.hashCode()) == null) {
+            this.notas.add(nota);
+        } else {
+            throw new NotaJaCadastradaException();
+        }
+    }
+    
+    private void salva() {
+        
     }
 
 }

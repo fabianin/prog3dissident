@@ -1,11 +1,19 @@
 package model.dao.txt;
 
+import exceptions.AlunoJaCadastradoException;
+import exceptions.AtividadeJaCadastradaException;
 import exceptions.DisciplinaJaCadastradaException;
+import exceptions.FaltaJaCadastradaException;
 import exceptions.NotaJaCadastradaException;
 import exceptions.ProfessorNaoAptoDisciplinaException;
 import exceptions.TurmaJaCadastradaException;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.pojo.Aluno;
 import model.pojo.Atividade;
 import model.pojo.Disciplina;
@@ -13,6 +21,7 @@ import model.pojo.Falta;
 import model.pojo.Nota;
 import model.pojo.Professor;
 import model.pojo.Turma;
+import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +51,7 @@ public class DaoTxtUtils {
 
     }
 
-    public static Turma createTurmaFromJSON(JSONObject obj) throws JSONException, NullPointerException, IllegalArgumentException, ProfessorNaoAptoDisciplinaException {
+    public static Turma createTurmaFromJSON(JSONObject obj) throws JSONException, NullPointerException, IllegalArgumentException, ProfessorNaoAptoDisciplinaException, FaltaJaCadastradaException, AlunoJaCadastradoException, AtividadeJaCadastradaException {
 
         long periodo = obj.getLong("periodo");
         long numeroVagas = obj.getLong("numeroVagas");
@@ -162,6 +171,101 @@ public class DaoTxtUtils {
 
         return atividade;
 
+    }
+
+    public static String toJSON(Nota nota) throws JSONException {
+        JSONObject notaJson = new JSONObject();
+        notaJson.put("valorObtido", nota.getValorObtido());
+        notaJson.put("aluno", nota.getAluno());
+        return notaJson.toString();
+    }
+
+    public static String toJSON(Aluno aluno) throws JSONException {
+        JSONObject alunoJson = new JSONObject();
+        alunoJson.put("matricula", aluno.getMatricula());
+        alunoJson.put("nome", aluno.getNome());
+        alunoJson.put("cpf", aluno.getCpf());
+        JSONArray turmasJson = new JSONArray();
+        aluno.getTurmas().stream().forEach((id) -> turmasJson.put(id));
+        alunoJson.put("turmas", turmasJson);
+        return alunoJson.toString();
+    }
+
+    public static String toJSON(Atividade atividade) throws JSONException {
+        JSONObject atividadeJson = new JSONObject();
+        atividadeJson.put("nome", atividade.getNome());
+        atividadeJson.put("data", atividade.getData().toString());
+        atividadeJson.put("tipo", atividade.getTipo());
+        JSONArray notasJson = new JSONArray();
+        atividade.getNotas().stream().forEach((id) -> notasJson.put(id));
+        atividadeJson.put("notas", notasJson);
+        return atividade.toString();
+    }
+
+    public static String toJSON(Disciplina disciplina) throws JSONException {
+        JSONObject disciplinaJson = new JSONObject();
+        disciplinaJson.put("nome", disciplina.getNome());
+        disciplinaJson.put("ementa", disciplina.getEmenta());
+        disciplinaJson.put("cargaHoraria", disciplina.getCargaHoraria());
+        JSONArray turmasJson = new JSONArray();
+        disciplina.getTurmas().stream().forEach((id) -> turmasJson.put(id));
+        disciplinaJson.put("turmas", turmasJson);
+        return disciplinaJson.toString();
+    }
+
+    public static String toJSON(Falta falta) throws JSONException {
+        JSONObject faltaJson = new JSONObject();
+        faltaJson.put("faltas", falta.getFaltas());
+        faltaJson.put("aluno", falta.getAluno());
+        return faltaJson.toString();
+    }
+
+    public static String toJSON(Professor professor) throws JSONException {
+        JSONObject professorJson = new JSONObject();
+        professorJson.put("departamento", professor.getDepartamento());
+        professorJson.put("nome", professor.getNome());
+        professorJson.put("cpf", professor.getCpf());
+        JSONArray disciplinasAptoJson = new JSONArray();
+        JSONArray turmasLecionandoJson = new JSONArray();
+        professor.getDisciplinasApto().stream().forEach((id) -> disciplinasAptoJson.put(id));
+        professor.getTurmasLecionando().stream().forEach((id) -> turmasLecionandoJson.put(id));
+        professorJson.put("disciplinasApto", disciplinasAptoJson);
+        professorJson.put("turmasLecionando", turmasLecionandoJson);
+        return professorJson.toString();
+    }
+
+    public static String toJSON(Turma turma) throws JSONException {
+        JSONObject turmaJson = new JSONObject();
+        turmaJson.put("periodo", turma.getPeriodo());
+        turmaJson.put("numeroVagas", turma.getNumeroVagas());
+        turmaJson.put("sala", turma.getSala());
+        turmaJson.put("disciplina", turma.getDisciplina());
+        turmaJson.put("ano", turma.getAno());
+        turmaJson.put("professor", turma.getProfessor());
+        JSONArray atividadesJson = new JSONArray();
+        JSONArray alunosJson = new JSONArray();
+        JSONArray faltasJson = new JSONArray();
+        turma.getAtividades().stream().forEach((id) -> atividadesJson.put(id));
+        turma.getAlunos().stream().forEach((id) -> alunosJson.put(id));
+        turma.getFaltas().stream().forEach((id) -> faltasJson.put(id));
+        turmaJson.put("atividades", atividadesJson);
+        turmaJson.put("alunos", alunosJson);
+        turmaJson.put("faltas", faltasJson);
+        return turmaJson.toString();
+    }
+
+    public static <E> void saveFile(String path, ArrayList<E> itens) throws IOException {
+        File file = new File(path);
+        FileUtils.forceDelete(file);
+        itens.stream().forEach(item -> {
+            try {
+                FileUtils.writeStringToFile(file, DaoTxtUtils.toJSON((Nota) item), "UTF-8", true);
+            } catch (IOException ex) {
+                Logger.getLogger(DaoTxtUtils.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException ex) {
+                Logger.getLogger(DaoTxtUtils.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
 }
