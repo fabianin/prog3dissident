@@ -63,18 +63,22 @@ public class DisciplinaDaoTxt implements DisciplinaDao {
     }
 
     @Override
-    public void addDisciplina(Disciplina disciplina) throws DisciplinaJaCadastradaException{
-        if(this.disciplinas.contains(disciplina)){
+    public void addDisciplina(Disciplina disciplina) throws DisciplinaJaCadastradaException {
+        if (this.disciplinas.contains(disciplina)) {
             throw new DisciplinaJaCadastradaException();
-        }else{
+        } else {
             this.disciplinas.add(disciplina);
         }
     }
 
     @Override
     public Disciplina getDisciplinaById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Disciplina> disci = (List<Disciplina>) this.disciplinas.stream().filter(x -> x.getId() == id);
+        if (disci.size() > 0) {
+            return disci.get(0);
+        } else {
+            return null;
+        }
     }
-    
 
 }

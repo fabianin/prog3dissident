@@ -20,6 +20,7 @@ public class Disciplina {
     private final String ementa;
     private final long cargaHoraria;
     private final ArrayList<Integer> turmas;
+    private int id;
 
     /**
      * Construtor da disciplina
@@ -40,6 +41,7 @@ public class Disciplina {
         this.nome = nome;
         this.ementa = ementa;
         this.cargaHoraria = cargaHoraria;
+        this.id = this.hashCode();
     }
 
     /**
@@ -94,7 +96,7 @@ public class Disciplina {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int hash = 5;
         hash = 67 * hash + Objects.hashCode(this.nome);
         hash = 67 * hash + Objects.hashCode(this.ementa);
@@ -117,5 +119,12 @@ public class Disciplina {
         }
         return true;
     }
+
+    public int getId() {
+        return id;
+    }
+    
+    
+    
 
 }
