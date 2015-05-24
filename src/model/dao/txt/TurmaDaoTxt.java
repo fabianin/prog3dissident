@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package model.dao.txt;
-
+import org.json.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +23,7 @@ public class TurmaDaoTxt implements TurmaDao {
     private final String filePath;
     private final File file;
     private List<String> fileContent;
+    
 
     public TurmaDaoTxt() {
         this.filePath = "txtdatabase/turmas.txt";
@@ -65,7 +66,7 @@ public class TurmaDaoTxt implements TurmaDao {
 
     @Override
     public Integer adicionaTurma(Turma turma) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.)
     }
 
     @Override
