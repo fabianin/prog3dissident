@@ -16,7 +16,7 @@ public class Nota {
     private final int id;
 
     private final double valorObtido;
-    private final Integer aluno;
+    private final int aluno;
 
     /**
      * Construtor da nota
@@ -25,7 +25,7 @@ public class Nota {
      * @param aluno Aluno da nota
      * @throws IllegalArgumentException
      */
-    public Nota(double valorObtido, Integer aluno) throws IllegalArgumentException {
+    public Nota(double valorObtido, int aluno) throws IllegalArgumentException {
         Objects.requireNonNull(aluno, "Aluno não pode ser null.");
         if (valorObtido < 0 || valorObtido > 10) {
             throw new IllegalArgumentException("Valor obtido deve ser entre 0 e 10.");
@@ -77,7 +77,7 @@ public class Nota {
      *
      * @return Aluno
      */
-    public Integer getAluno() {
+    public int getAluno() {
         return aluno;
     }
 

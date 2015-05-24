@@ -1,5 +1,8 @@
 package model.dao.txt;
 
+import exceptions.DisciplinaJaCadastradaException;
+import exceptions.NotaJaCadastradaException;
+import exceptions.ProfessorNaoAptoDisciplinaException;
 import exceptions.TurmaJaCadastradaException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -39,7 +42,7 @@ public class DaoTxtUtils {
 
     }
 
-    public static Turma createTurmaFromJSON(JSONObject obj) throws JSONException {
+    public static Turma createTurmaFromJSON(JSONObject obj) throws JSONException, NullPointerException, IllegalArgumentException, ProfessorNaoAptoDisciplinaException {
 
         long periodo = obj.getLong("periodo");
         long numeroVagas = obj.getLong("numeroVagas");
@@ -73,7 +76,7 @@ public class DaoTxtUtils {
 
     }
 
-    public static Disciplina createDisciplinaFromJSON(JSONObject obj) throws JSONException {
+    public static Disciplina createDisciplinaFromJSON(JSONObject obj) throws JSONException, TurmaJaCadastradaException {
 
         String nome = obj.getString("nome");
         String ementa = obj.getString("ementa");
@@ -116,7 +119,7 @@ public class DaoTxtUtils {
 
     }
 
-    public static Professor createProfessorFromJSON(JSONObject obj) throws JSONException {
+    public static Professor createProfessorFromJSON(JSONObject obj) throws JSONException, TurmaJaCadastradaException, IllegalArgumentException, NullPointerException, DisciplinaJaCadastradaException {
 
         String nome = obj.getString("nome");
         long cpf = obj.getLong("cpf");
@@ -141,7 +144,7 @@ public class DaoTxtUtils {
 
     }
 
-    public static Atividade createAtividadeFromJSON(JSONObject obj) throws JSONException {
+    public static Atividade createAtividadeFromJSON(JSONObject obj) throws JSONException, NotaJaCadastradaException {
 
         String nome = obj.getString("nome");
         String dataStr = obj.getString("data");
