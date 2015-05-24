@@ -1,0 +1,2 @@
+{"cpf":123,"departamento":"asdfasdf","nome":"teste","turmasLecionando":[],"disciplinasApto":[]}
+{"cpf":1234,"departamento":"Teste","nome":"Elias","turmasLecionando":[],"disciplinasApto":[]}

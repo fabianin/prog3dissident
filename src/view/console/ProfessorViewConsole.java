@@ -5,14 +5,10 @@
  */
 package view.console;
 
-import exceptions.AlunoJaCadastradoException;
 import exceptions.ProfessorJaCadastradoException;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.dao.ProfessorDao;
-import model.pojo.Aluno;
 import model.pojo.Professor;
 
 /**
@@ -29,22 +25,21 @@ public class ProfessorViewConsole {
 
         Scanner sc = new Scanner(System.in);
         String nome;
-        long cpf;
         String departamento;
+        long cpf;
 
         System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎");
         System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎ CADASTRO ALUNO ∎∎∎∎∎∎∎∎∎∎∎∎∎");
         System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎");
 
         System.out.println("");
-        System.out.println("Digite o nome do professor: ");
+        System.out.print("Digite o nome do professor: ");
         nome = sc.nextLine();
-        System.out.println("Digite o CPF do professor: ");
-        cpf = sc.nextLong();
-        System.out.println("Digite o departamento do professor");
         departamento = sc.nextLine();
+        System.out.print("Digite o CPF do professor: ");
+        cpf = sc.nextLong();
 
-        System.out.println("Tentando cadastrar aluno...");
+        System.out.println("Tentando cadastrar professor...");
 
         Professor professor = new Professor(nome, cpf, departamento);
 
