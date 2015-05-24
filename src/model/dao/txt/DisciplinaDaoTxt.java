@@ -27,13 +27,14 @@ import org.json.JSONObject;
  */
 public class DisciplinaDaoTxt implements DisciplinaDao {
 
-    private final String filePath;
+    private final String filePath = "txtdatabase/disciplinas.txt";
+    ;
     private final File file;
     private ArrayList<Disciplina> disciplinas;
 
     public DisciplinaDaoTxt() throws IOException {
-        this.filePath = "txtdatabase/disciplinas.txt";
         this.file = new File(this.filePath);
+        this.disciplinas = new ArrayList<>();
         this.initDao();
     }
 
