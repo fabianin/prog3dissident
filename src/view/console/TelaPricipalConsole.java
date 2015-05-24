@@ -39,8 +39,9 @@ public class TelaPricipalConsole {
 
     public static void main(String[] args) throws IOException {
         TelaPricipalConsole tpc = new TelaPricipalConsole();
+        AlunoView av = new AlunoView();
         tpc.showMenu();
-        AlunoView.cadastraAluno(tpc.alunos);
+        av.cadastraAluno(tpc.alunos);
     }
 
     private void showMenu() {
