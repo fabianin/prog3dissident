@@ -37,9 +37,10 @@ public class TelaPricipalConsole {
     private final ProfessorDao professores = new ProfessorDaoTxt();
     private final TurmaDao turmas = new TurmaDaoTxt();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         TelaPricipalConsole tpc = new TelaPricipalConsole();
         tpc.showMenu();
+        AlunoView.cadastraAluno(tpc.alunos);
     }
 
     private void showMenu() {
