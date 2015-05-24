@@ -28,7 +28,7 @@ public class Aluno extends Pessoa {
      * @throws IllegalArgumentException
      * @throws NullPointerException
      */
-    public Aluno(long matricula, String nome, long cpf) throws IllegalArgumentException, NullPointerException {
+    public Aluno(long matricula, String nome, long cpf) throws IllegalArgumentException {
         super(nome, cpf);
         if (matricula < 0) {
             throw new IllegalArgumentException("Matrícula deve ser positivo.");
@@ -52,7 +52,7 @@ public class Aluno extends Pessoa {
      * @return Lista de turmas
      */
     public ArrayList<Turma> getTurmas() {
-        return turmas;
+        return this.turmas;
     }
 
     public void addTurma(Turma turma) throws TurmaJaCadastradaException {
