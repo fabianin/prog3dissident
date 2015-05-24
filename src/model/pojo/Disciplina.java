@@ -84,9 +84,22 @@ public class Disciplina {
         return this.ementa;
     }
 
+    /**
+     * Obtém carga horária
+     *
+     * @return carga horária
+     */
+    public long getCargaHoraria() {
+        return this.cargaHoraria;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.nome);
+        hash = 67 * hash + Objects.hashCode(this.ementa);
+        hash = 67 * hash + (int) (this.cargaHoraria ^ (this.cargaHoraria >>> 32));
+        hash = 67 * hash + Objects.hashCode(this.turmas);
         return hash;
     }
 
@@ -99,25 +112,10 @@ public class Disciplina {
             return false;
         }
         final Disciplina other = (Disciplina) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.ementa, other.ementa)) {
-            return false;
-        }
-        if (this.cargaHoraria != other.cargaHoraria) {
+        if (this.hashCode() != other.hashCode()) {
             return false;
         }
         return true;
-    }
-
-    /**
-     * Obtém carga horária
-     *
-     * @return carga horária
-     */
-    public long getCargaHoraria() {
-        return this.cargaHoraria;
     }
 
 }

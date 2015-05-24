@@ -7,6 +7,7 @@ package model.pojo;
 
 import exceptions.TurmaJaCadastradaException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Essa classe representa a entidade aluno e o ID de cada objeto será a própria
@@ -16,7 +17,7 @@ import java.util.ArrayList;
  */
 public class Aluno extends Pessoa {
 
-    private final long matricula;
+    private final long matricula;   
     private final ArrayList<Turma> turmas;
 
     /**
@@ -77,8 +78,9 @@ public class Aluno extends Pessoa {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + (int) (this.matricula ^ (this.matricula >>> 32));
+        int hash = 7;
+        hash = 19 * hash + (int) (this.matricula ^ (this.matricula >>> 32));
+        hash = 19 * hash + Objects.hashCode(this.turmas);
         return hash;
     }
 
@@ -91,7 +93,10 @@ public class Aluno extends Pessoa {
             return false;
         }
         final Aluno other = (Aluno) obj;
-        return (this.matricula == other.matricula);
+        if (this.hashCode() != other.hashCode()) {
+            return false;
+        }
+        return true;
     }
 
 }
