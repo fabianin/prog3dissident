@@ -78,17 +78,4 @@ public class AlunoDaoTxtTest {
         assertEquals(expResult, result);
     }
 
-    /**
-     * Test of removeAluno method, of class AlunoDaoTxt.
-     */
-    @Test
-    public void testRemoveAluno() {
-        System.out.println("removeAluno");
-        Integer id = null;
-        AlunoDaoTxt instance = new AlunoDaoTxt();
-        boolean expResult = false;
-        boolean result = instance.removeAluno(id);
-        assertEquals(expResult, result);
-    }
-
 }

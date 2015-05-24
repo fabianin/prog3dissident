@@ -121,22 +121,4 @@ public class AlunoDaoTxt implements AlunoDao {
         return alunos;
     }
 
-    @Override
-    public boolean removeAluno(Integer id) {
-        if(id==null){
-            return false;
-        }
-        int count = 0;
-        for (String line : this.fileContent) {
-            if (!line.isEmpty()) {
-                if (this.getLineIndex(line, 0).equals(id.toString())) {
-                    this.fileContent.set(count, "");
-                    return true;
-                }
-            }
-            count++;
-        }
-        return false;
-    }
-
 }
