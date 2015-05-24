@@ -26,16 +26,22 @@ import model.dao.txt.TurmaDaoTxt;
  */
 public class TelaPrincipalConsole {
 
-    private final static AlunoDao alunos = new AlunoDaoTxt();
-    private final static AtividadeDao atividades = new AtividadeDaoTxt();
-    private final static DisciplinaDao disciplinas = new DisciplinaDaoTxt();
-    private final static FaltaDao faltas = new FaltaDaoTxt();
-    private final static NotaDao notas = new NotaDaoTxt();
-    private final static ProfessorDao professores = new ProfessorDaoTxt();
-    private final static TurmaDao turmas = new TurmaDaoTxt();
+    private final AlunoDao alunos;
+    private final AtividadeDao atividades;
+    private final DisciplinaDao disciplinas;
+    private final FaltaDao faltas;
+    private final NotaDao notas;
+    private final ProfessorDao professores;
+    private final TurmaDao turmas;
 
     public TelaPrincipalConsole() {
-        
+        this.alunos = new AlunoDaoTxt();
+        this.atividades = new AtividadeDaoTxt();
+        this.disciplinas = new DisciplinaDaoTxt();
+        this.faltas = new FaltaDaoTxt();
+        this.notas = new NotaDaoTxt();
+        this.professores = new ProfessorDaoTxt();
+        this.turmas = new TurmaDaoTxt();
     }
 
     public static void main(String[] args) {
