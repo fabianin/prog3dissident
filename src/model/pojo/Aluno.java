@@ -55,6 +55,11 @@ public class Aluno extends Pessoa {
         return this.turmas;
     }
 
+    /**
+     * Adicionar turma em um aluno
+     * @param turma turma a ser cadastrado
+     * @throws TurmaJaCadastradaException
+     */
     public void addTurma(Turma turma) throws TurmaJaCadastradaException {
         if (!this.turmas.contains(turma)) {
             this.turmas.add(turma);
