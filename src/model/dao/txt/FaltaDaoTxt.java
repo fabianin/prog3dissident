@@ -52,10 +52,18 @@ public class FaltaDaoTxt implements FaltaDao{
         }
     }
 
+    @Override
     public ArrayList<Falta> getFaltas() {
         return faltas;
     }
 
+    /** Lança uma falta
+     *
+     * @param falta
+     * @throws FaltaJaCadastradaException
+     * @throws IOException
+     */
+    @Override
     public void addFalta(Falta falta) throws FaltaJaCadastradaException, IOException {
         if (this.faltas.contains(falta)) {
             throw new FaltaJaCadastradaException();
@@ -65,6 +73,11 @@ public class FaltaDaoTxt implements FaltaDao{
         }
     }
 
+    /** Salva a lista de objetos em txt
+     *
+     * @throws IOException
+     */
+    @Override
     public void saveFile() throws IOException {
         File f = new File(this.filePath);
         if (f.isFile()) {
@@ -81,6 +94,12 @@ public class FaltaDaoTxt implements FaltaDao{
         });
     }
 
+    /**
+     *
+     * @param id
+     * @return Passado um ID retorna o objeto falta que contem aquele ID
+     */
+    @Override
     public Falta getFaltaById(int id) {
         List<Falta> falta = (List<Falta>) this.faltas.stream().filter(fal -> fal.hashCode() == id);
         if (falta.size() > 0) {
