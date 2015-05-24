@@ -52,7 +52,7 @@ public class AlunoView {
         try {
             alunos.adicionaAluno(aluno);
         } catch (AlunoJaCadastradoException ex) {
-            Logger.getLogger(AlunoView.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Esse aluno já está cadastrado no sistema.");
         } catch (IOException ex) {
             Logger.getLogger(AlunoView.class.getName()).log(Level.SEVERE, null, ex);
         }
