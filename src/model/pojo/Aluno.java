@@ -36,6 +36,12 @@ public class Aluno extends Pessoa {
         this.matricula = matricula;
         this.turmas = new ArrayList<>();
     }
+    public String toFile(){
+        String str;
+        str= this.getNome()+";"+this.getCpf()+";"+this.getMatricula()+";";
+        str = this.getTurmas().stream().map((x) -> x.toFile()+"#").reduce(str, String::concat);
+        return str;
+    }
 
     /**
      * Obtém a matrícula do aluno
