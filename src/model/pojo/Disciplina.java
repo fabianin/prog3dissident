@@ -29,14 +29,14 @@ public class Disciplina {
      * @param cargaHoraria Carga horária da disciplina
      * @throws IllegalArgumentException
      */
-    public Disciplina(String nome, String ementa, long cargaHoraria) throws IllegalArgumentException {
+    public Disciplina(String nome, String ementa, long cargaHoraria, ArrayList<Turma> turmas) throws IllegalArgumentException {
         Objects.requireNonNull(nome, "Nome não pode ser vazio");
         Objects.requireNonNull(ementa, "Ementa não pode ser vazio.");
         if (cargaHoraria < 1) {
             throw new IllegalArgumentException("Carga horária não pode ser menor que 1.");
         }
         cont++;
-        this.turmas = new ArrayList<>();
+        this.turmas = turmas;
         this.nome = nome;
         this.ementa = ementa;
         this.cargaHoraria = cargaHoraria;
