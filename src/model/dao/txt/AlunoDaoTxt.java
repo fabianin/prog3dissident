@@ -91,11 +91,12 @@ public class AlunoDaoTxt implements AlunoDao {
     }
 
     @Override
-    public void adicionaAluno(Aluno aluno) throws AlunoJaCadastradoException {
+    public void adicionaAluno(Aluno aluno) throws AlunoJaCadastradoException, IOException {
         if (this.alunos.contains(aluno)) {
             throw new AlunoJaCadastradoException();
         } else {
             this.alunos.add(aluno);
+            this.saveFile();
         }
     }
 

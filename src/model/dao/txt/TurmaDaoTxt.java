@@ -103,11 +103,12 @@ public class TurmaDaoTxt implements TurmaDao {
     }
 
     @Override
-    public void adicionarTurma(Turma turma) throws TurmaJaCadastradaException {
+    public void adicionarTurma(Turma turma) throws TurmaJaCadastradaException, IOException {
         if (this.turmas.contains(turma.hashCode())) {
             throw new TurmaJaCadastradaException();
         } else {
             this.turmas.add(turma);
+            this.saveFile();
         }
     }
 

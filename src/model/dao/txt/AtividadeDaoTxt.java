@@ -1,6 +1,6 @@
 package model.dao.txt;
 
-
+import exceptions.AtividadeJaCadastradaException;
 import exceptions.NotaJaCadastradaException;
 import exceptions.TurmaJaCadastradaException;
 import java.io.File;
@@ -90,6 +90,16 @@ public class AtividadeDaoTxt implements AtividadeDao {
                 Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
+    }
+
+    @Override
+    public void adicionarAtividade(Atividade atividade) throws AtividadeJaCadastradaException, IOException {
+        if (this.atividades.contains(atividade)) {
+            throw new AtividadeJaCadastradaException();
+        } else {
+            this.atividades.add(atividade);
+            this.saveFile();
+        }
     }
 
 }

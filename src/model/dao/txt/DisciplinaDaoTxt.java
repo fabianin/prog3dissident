@@ -62,16 +62,12 @@ public class DisciplinaDaoTxt implements DisciplinaDao {
     }
 
     @Override
-    public void addDisciplina(Disciplina disciplina) throws DisciplinaJaCadastradaException {
+    public void addDisciplina(Disciplina disciplina) throws DisciplinaJaCadastradaException, IOException {
         if (this.disciplinas.contains(disciplina)) {
             throw new DisciplinaJaCadastradaException();
         } else {
             this.disciplinas.add(disciplina);
-            try {
-                this.saveFile();
-            } catch (IOException ex) {
-                Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.saveFile();
         }
     }
 

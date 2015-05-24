@@ -81,11 +81,12 @@ public class ProfessorDaoTxt implements ProfessorDao {
     }
 
     @Override
-    public void adicionaProfessor(Professor professor) throws ProfessorJaCadastradoException {
+    public void adicionaProfessor(Professor professor) throws ProfessorJaCadastradoException, IOException {
         if (this.professores.contains(professor)) {
             throw new ProfessorJaCadastradoException();
         } else {
             this.professores.add(professor);
+            this.saveFile();
         }
     }
 

@@ -22,6 +22,6 @@ public interface TurmaDao {
 
     public void saveFile() throws IOException;
 
-    public void adicionarTurma(Turma turma) throws TurmaJaCadastradaException;
+    public void adicionarTurma(Turma turma) throws TurmaJaCadastradaException, IOException;
 
 }

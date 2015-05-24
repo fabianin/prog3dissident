@@ -86,14 +86,10 @@ public class NotaDaoTxt implements NotaDao {
     }
 
     @Override
-    public void adicionaNota(Nota nota) throws NotaJaCadastradaException {
+    public void adicionaNota(Nota nota) throws NotaJaCadastradaException, IOException {
         if (this.getNotaPorId(nota.hashCode()) == null) {
             this.notas.add(nota);
-            try {
-                this.saveFile();
-            } catch (IOException ex) {
-                Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            this.saveFile();
         } else {
             throw new NotaJaCadastradaException();
         }

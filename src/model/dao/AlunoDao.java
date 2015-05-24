@@ -44,7 +44,7 @@ public interface AlunoDao {
      *
      * @param aluno
      */
-    public void adicionaAluno(Aluno aluno) throws AlunoJaCadastradoException;
+    public void adicionaAluno(Aluno aluno) throws AlunoJaCadastradoException, IOException;
 
     /**
      * Salva arquivo

@@ -44,7 +44,7 @@ public interface NotaDao {
      *
      * @param nota
      */
-    public void adicionaNota(Nota nota) throws NotaJaCadastradaException;
+    public void adicionaNota(Nota nota) throws NotaJaCadastradaException, IOException;
 
     /**
      * Salva o arquivo atual

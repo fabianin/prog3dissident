@@ -15,7 +15,7 @@ import model.pojo.Disciplina;
  */
 public interface DisciplinaDao {
 
-    public void addDisciplina(Disciplina disciplina) throws DisciplinaJaCadastradaException;
+    public void addDisciplina(Disciplina disciplina) throws DisciplinaJaCadastradaException, IOException;
 
     public Disciplina getDisciplinaById(int id);
     

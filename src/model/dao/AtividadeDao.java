@@ -5,6 +5,7 @@
  */
 package model.dao;
 
+import exceptions.AtividadeJaCadastradaException;
 import java.io.IOException;
 import java.util.ArrayList;
 import model.pojo.Atividade;
@@ -20,5 +21,7 @@ public interface AtividadeDao {
     public ArrayList<Atividade> getAtividades();
 
     public void saveFile() throws IOException;
+    
+    public void adicionarAtividade(Atividade atividade) throws AtividadeJaCadastradaException, IOException;
 
 }

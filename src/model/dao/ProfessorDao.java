@@ -20,7 +20,7 @@ public interface ProfessorDao {
 
     public ArrayList<Professor> getProfessores();
 
-    public void adicionaProfessor(Professor professor) throws ProfessorJaCadastradoException;
+    public void adicionaProfessor(Professor professor) throws ProfessorJaCadastradoException, IOException;
 
     public void saveFile() throws IOException;
 
