@@ -17,7 +17,7 @@ import java.util.Objects;
  */
 public class Aluno extends Pessoa {
 
-    private final long matricula;
+    private final long matricula;   
     private final ArrayList<Turma> turmas;
 
     /**
@@ -36,15 +36,6 @@ public class Aluno extends Pessoa {
         }
         this.matricula = matricula;
         this.turmas = new ArrayList<>();
-    }
-
-    public String toFile() {
-        String str;
-        str = this.getNome() + ";" + this.getCpf() + ";" + this.hashCode() + ";";
-        for (Turma x : this.getTurmas()) {
-            str += x.toFile() + "#";
-        }
-        return str;
     }
 
     /**
