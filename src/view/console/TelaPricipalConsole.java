@@ -67,7 +67,7 @@ public class TelaPricipalConsole {
                     break;
                 case 10: DisciplinaViewConsole.consultarTurmas(tpc.getDisciplinas());
                     break;
-                case 11:
+                case 11: ProfessorViewConsole.numDisciplinaLecionada(tpc.getProfessores());
                     break;
                 default:
                     System.out.println("Nenhuma opção selecionada");
