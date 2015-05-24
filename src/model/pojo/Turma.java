@@ -5,6 +5,9 @@
  */
 package model.pojo;
 
+import exceptions.AlunoJaCadastradoException;
+import exceptions.AtividadeJaCadastradaException;
+import exceptions.FaltaJaCadastradaException;
 import exceptions.ProfessorNaoAptoDisciplinaException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -190,9 +193,9 @@ public class Turma {
      *
      * @param faltaId
      */
-    public void addFalta(int faltaId) {
+    public void addFalta(int faltaId) throws FaltaJaCadastradaException {
         if (this.faltas.contains(faltaId)) {
-            throw new IllegalArgumentException();
+            throw new FaltaJaCadastradaException();
         } else {
             this.faltas.add(faltaId);
         }
@@ -203,9 +206,9 @@ public class Turma {
      *
      * @param alunoId
      */
-    public void addAluno(int alunoId) {
+    public void addAluno(int alunoId) throws AlunoJaCadastradoException {
         if (this.alunos.contains(alunoId)) {
-            throw new IllegalArgumentException();
+            throw new AlunoJaCadastradoException();
         } else {
             this.alunos.add(alunoId);
         }
@@ -216,9 +219,9 @@ public class Turma {
      *
      * @param atividadeId
      */
-    public void addAtividade(int atividadeId) {
+    public void addAtividade(int atividadeId) throws AtividadeJaCadastradaException {
         if (this.atividades.contains(atividadeId)) {
-            throw new IllegalArgumentException();
+            throw new AtividadeJaCadastradaException();
         } else {
             this.atividades.add(atividadeId);
         }
