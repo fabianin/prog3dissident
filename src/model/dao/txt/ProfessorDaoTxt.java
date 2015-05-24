@@ -40,28 +40,30 @@ public class ProfessorDaoTxt implements ProfessorDao {
     }
 
     private void initDao() {
-        try {
-            List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
-            conteudo.stream().filter(str -> !str.isEmpty()).forEach((String str) -> {
-                try {
-                    JSONObject objProfessor = new JSONObject(str);
-                    Professor professor;
-                    professor = DaoTxtUtils.createProfessorFromJSON(objProfessor);
-                    this.professores.add(professor);
-                } catch (JSONException ex) {
-                    Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (TurmaJaCadastradaException ex) {
-                    Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalArgumentException ex) {
-                    Logger.getLogger(ProfessorDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (NullPointerException ex) {
-                    Logger.getLogger(ProfessorDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (DisciplinaJaCadastradaException ex) {
-                    Logger.getLogger(ProfessorDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-        } catch (IOException ex) {
-            Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+        if (this.file.canRead()) {
+            try {
+                List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
+                conteudo.stream().filter(str -> !str.isEmpty()).forEach((String str) -> {
+                    try {
+                        JSONObject objProfessor = new JSONObject(str);
+                        Professor professor;
+                        professor = DaoTxtUtils.createProfessorFromJSON(objProfessor);
+                        this.professores.add(professor);
+                    } catch (JSONException ex) {
+                        Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (TurmaJaCadastradaException ex) {
+                        Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalArgumentException ex) {
+                        Logger.getLogger(ProfessorDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NullPointerException ex) {
+                        Logger.getLogger(ProfessorDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (DisciplinaJaCadastradaException ex) {
+                        Logger.getLogger(ProfessorDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            } catch (IOException ex) {
+                Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

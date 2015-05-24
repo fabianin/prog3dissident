@@ -45,19 +45,21 @@ public class NotaDaoTxt implements NotaDao {
      * nas variáveis
      */
     private void initDao() {
-        try {
-            List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
-            conteudo.stream().filter(str -> !str.isEmpty()).forEach(str -> {
-                try {
-                    JSONObject objNota = new JSONObject(str);
-                    Nota nota = DaoTxtUtils.createNotaFromJSON(objNota);
-                    this.notas.add(nota);
-                } catch (JSONException ex) {
-                    Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-        } catch (IOException ex) {
-            Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+        if (this.file.canRead()) {
+            try {
+                List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
+                conteudo.stream().filter(str -> !str.isEmpty()).forEach(str -> {
+                    try {
+                        JSONObject objNota = new JSONObject(str);
+                        Nota nota = DaoTxtUtils.createNotaFromJSON(objNota);
+                        this.notas.add(nota);
+                    } catch (JSONException ex) {
+                        Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            } catch (IOException ex) {
+                Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

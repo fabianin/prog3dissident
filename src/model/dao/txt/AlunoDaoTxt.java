@@ -46,22 +46,24 @@ public class AlunoDaoTxt implements AlunoDao {
      * nas variáveis
      */
     private void initDao() {
-        try {
-            List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
-            conteudo.stream().filter(str -> !str.isEmpty()).forEach((String str) -> {
-                try {
-                    JSONObject objAluno = new JSONObject(str);
-                    Aluno aluno;
-                    aluno = DaoTxtUtils.createAlunoFromJSON(objAluno);
-                    this.alunos.add(aluno);
-                } catch (JSONException ex) {
-                    Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (TurmaJaCadastradaException ex) {
-                    Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-        } catch (IOException ex) {
-            Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+        if (this.file.canRead()) {
+            try {
+                List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
+                conteudo.stream().filter(str -> !str.isEmpty()).forEach((String str) -> {
+                    try {
+                        JSONObject objAluno = new JSONObject(str);
+                        Aluno aluno;
+                        aluno = DaoTxtUtils.createAlunoFromJSON(objAluno);
+                        this.alunos.add(aluno);
+                    } catch (JSONException ex) {
+                        Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (TurmaJaCadastradaException ex) {
+                        Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            } catch (IOException ex) {
+                Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

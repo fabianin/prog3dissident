@@ -42,32 +42,34 @@ public class TurmaDaoTxt implements TurmaDao {
     }
 
     private void initDao() {
-        try {
-            List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
-            conteudo.stream().filter(str -> !str.isEmpty()).forEach((String str) -> {
-                try {
-                    JSONObject objTurma = new JSONObject(str);
-                    Turma turma;
-                    turma = DaoTxtUtils.createTurmaFromJSON(objTurma);
-                    this.turmas.add(turma);
-                } catch (JSONException ex) {
-                    Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (NullPointerException ex) {
-                    Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IllegalArgumentException ex) {
-                    Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ProfessorNaoAptoDisciplinaException ex) {
-                    Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (FaltaJaCadastradaException ex) {
-                    Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (AlunoJaCadastradoException ex) {
-                    Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (AtividadeJaCadastradaException ex) {
-                    Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-        } catch (IOException ex) {
-            Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+        if (this.file.canRead()) {
+            try {
+                List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
+                conteudo.stream().filter(str -> !str.isEmpty()).forEach((String str) -> {
+                    try {
+                        JSONObject objTurma = new JSONObject(str);
+                        Turma turma;
+                        turma = DaoTxtUtils.createTurmaFromJSON(objTurma);
+                        this.turmas.add(turma);
+                    } catch (JSONException ex) {
+                        Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NullPointerException ex) {
+                        Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (IllegalArgumentException ex) {
+                        Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (ProfessorNaoAptoDisciplinaException ex) {
+                        Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (FaltaJaCadastradaException ex) {
+                        Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (AlunoJaCadastradoException ex) {
+                        Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (AtividadeJaCadastradaException ex) {
+                        Logger.getLogger(TurmaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            } catch (IOException ex) {
+                Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

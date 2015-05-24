@@ -41,22 +41,24 @@ public class AtividadeDaoTxt implements AtividadeDao {
     }
 
     private void initDao() {
-        try {
-            List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
-            conteudo.stream().filter(str -> !str.isEmpty()).forEach((String str) -> {
-                try {
-                    JSONObject objAtividade = new JSONObject(str);
-                    Atividade atividade;
-                    atividade = DaoTxtUtils.createAtividadeFromJSON(objAtividade);
-                    this.atividades.add(atividade);
-                } catch (JSONException ex) {
-                    Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (NotaJaCadastradaException ex) {
-                    Logger.getLogger(AtividadeDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-        } catch (IOException ex) {
-            Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+        if (this.file.canRead()) {
+            try {
+                List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
+                conteudo.stream().filter(str -> !str.isEmpty()).forEach((String str) -> {
+                    try {
+                        JSONObject objAtividade = new JSONObject(str);
+                        Atividade atividade;
+                        atividade = DaoTxtUtils.createAtividadeFromJSON(objAtividade);
+                        this.atividades.add(atividade);
+                    } catch (JSONException ex) {
+                        Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (NotaJaCadastradaException ex) {
+                        Logger.getLogger(AtividadeDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            } catch (IOException ex) {
+                Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
