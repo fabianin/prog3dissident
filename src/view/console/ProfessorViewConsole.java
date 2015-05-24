@@ -67,8 +67,12 @@ public class ProfessorViewConsole {
         int profId;
         System.out.println("Digite o ID do professor que deseja consultar: ");
         profId = sc.nextInt();
-        List<Professor> pp = professores.getProfessores().stream().filter(x -> x.getId()== profId).collect(Collectors.toList());
-        System.out.println("Esse professor já lecionou " + pp.get(0).getTurmasLecionando()+" turmas.");
+        Professor x = professores.getProfessorById(profId);
+        if(x!=null){
+            System.out.println("Esse professor já lecionou " + x.getTurmasLecionando().size()+" turmas.");
+        } else{
+            System.out.println("Esse professor ainda não existe no sistema. Verifique o ID");
+        }
     }
 
 }
