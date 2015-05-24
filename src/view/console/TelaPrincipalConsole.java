@@ -34,10 +34,6 @@ public class TelaPrincipalConsole {
     private final static ProfessorDao professores = new ProfessorDaoTxt();
     private final static TurmaDao turmas = new TurmaDaoTxt();
 
-    public TelaPrincipalConsole() {
-        
-    }
-
     public static void main(String[] args) {
         TelaPrincipalConsole tpc = new TelaPrincipalConsole();
     }
