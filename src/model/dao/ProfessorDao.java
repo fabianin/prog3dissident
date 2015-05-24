@@ -1,0 +1,27 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package model.dao;
+
+import exceptions.ProfessorJaCadastradoException;
+import java.io.IOException;
+import java.util.ArrayList;
+import model.pojo.Professor;
+
+/**
+ *
+ * @author Elias Júnior
+ */
+public interface ProfessorDao {
+
+    public Professor getProfessorById(int id);
+
+    public ArrayList<Professor> getProfessores();
+
+    public void adicionaProfessor(Professor professor) throws ProfessorJaCadastradoException;
+
+    public void saveFile() throws IOException;
+
+}
