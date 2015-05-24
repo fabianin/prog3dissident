@@ -25,24 +25,40 @@ public class AlunoView {
     public void imprimirAlunos(AlunoDao alunos){
         alunos.getAlunos().stream().forEach((x) -> System.out.println(x));
     }
-    public void cadastraAluno(AlunoDao alunos) throws IOException{
-        Aluno al;
-        Scanner sci = new Scanner(System.in);
+    private void cadastraAluno(AlunoDao alunos) {
+
+        Scanner sc = new Scanner(System.in);
         String nome;
         long cpf;
         long matricula;
+
+        System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎");
+        System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎ CADASTRO ALUNO ∎∎∎∎∎∎∎∎∎∎∎∎∎");
+        System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎");
+
+        System.out.println("");
         System.out.println("Digite o nome do aluno: ");
-        nome = sci.nextLine();
+        nome = sc.nextLine();
         System.out.println("Digite o CPF do aluno: ");
-        cpf = sci.nextLong();
-        System.out.println("Digite a matricula do ALuno: ");
-        matricula = sci.nextInt();
-        al = new Aluno(matricula, nome, cpf);
+        cpf = sc.nextLong();
+        System.out.println("Digite a matrícula do aluno");
+        matricula = sc.nextLong();
+
+        System.out.println("Tentando cadastrar aluno...");
+
+        Aluno aluno = new Aluno(matricula, nome, cpf);
+
         try {
-            alunos.adicionaAluno(al);
+            this.alunos.adicionaAluno(aluno);
         } catch (AlunoJaCadastradoException ex) {
-            System.out.println("Esse aluno já foi cadastrado no sistema, por favor tente novamente");
+            System.out.println("O aluno já está cadastrado e não foi cadastrado.");
+        } catch (IOException ex) {
+            System.out.println("Não foi possível salvar o aluno ao banco de dados. Poderá ocorrer perda de dados por isso.");
         }
+
+        System.out.println("Fim!");
+        System.out.println("");
+
     }
     
 }
