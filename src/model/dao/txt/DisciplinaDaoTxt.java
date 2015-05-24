@@ -28,7 +28,6 @@ import org.json.JSONObject;
 public class DisciplinaDaoTxt implements DisciplinaDao {
 
     private final String filePath = "txtdatabase/disciplinas.txt";
-    ;
     private final File file;
     private ArrayList<Disciplina> disciplinas;
 
@@ -68,14 +67,19 @@ public class DisciplinaDaoTxt implements DisciplinaDao {
             throw new DisciplinaJaCadastradaException();
         } else {
             this.disciplinas.add(disciplina);
+            try {
+                this.saveFile();
+            } catch (IOException ex) {
+                Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
     @Override
     public Disciplina getDisciplinaById(int id) {
-        List<Disciplina> disciplinas = (List<Disciplina>) this.disciplinas.stream().filter(disciplina -> disciplina.hashCode() == id);
-        if (disciplinas.size() > 0) {
-            return disciplinas.get(0);
+        List<Disciplina> disc = (List<Disciplina>) this.disciplinas.stream().filter(disciplina -> disciplina.hashCode() == id);
+        if (disc.size() > 0) {
+            return disc.get(0);
         } else {
             return null;
         }
