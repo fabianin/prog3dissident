@@ -1,0 +1,2 @@
+{"turmas":[],"ementa":"bbb","nome":"aaa","cargaHoraria":20}
+{"turmas":[],"ementa":"dd","nome":"cc","cargaHoraria":30}
