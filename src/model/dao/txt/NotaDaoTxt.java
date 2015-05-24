@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import model.dao.NotaDao;
 import model.pojo.Aluno;
 import model.pojo.Nota;
@@ -38,24 +40,9 @@ public class NotaDaoTxt implements NotaDao {
             List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
             conteudo.stream().filter(str -> !str.isEmpty()).forEach(str -> {
                 try {
-
-                    // JSON
-                    JSONObject linha = new JSONObject(str);
-                    JSONObject objAluno = linha.getJSONObject("aluno");
-
-                    // Dados Aluno
-                    String nome = objAluno.getString("nome");
-                    long cpf = objAluno.getLong("cpf");
-                    long matricula = objAluno.getLong("matricula");
-
-                    // Dados Nota
-                    double valorObtido = linha.getDouble("valorObtido");
-                    Aluno aluno = new Aluno(matricula, nome, cpf);
-                    Nota nota = new Nota(valorObtido, aluno);   
-                    
-                    // Adiciona nota
+                    JSONObject objNota = new JSONObject(str);
+                    Nota nota = DaoTxtUtils.createNotaFromJSON(objNota);
                     this.notas.add(nota);
-
                 } catch (JSONException ex) {
                     Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -66,13 +53,26 @@ public class NotaDaoTxt implements NotaDao {
     }
 
     @Override
-    public Nota getNotaPorMatricula(long matricula) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public ArrayList<Nota> getNotas() {
+        return this.notas;
     }
 
     @Override
-    public ArrayList<Nota> getNotas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Nota getNotaPorAlunoId(int alunoId) {
+        List<Nota> notas = this.notas.stream().filter(nota -> nota.getAluno() == alunoId).collect(Collectors.toList());
+        if (notas.size()) {
+            return notas.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public Nota getNotaPorId(int notaId) {
+        List<Nota> notas = this.notas.stream().filter(nota -> nota.hashCode() == notaId).collect(Collectors.toList());
+        if (notas.size()) {
+            return notas.get(0);
+        }
+        return null;
     }
 
 }

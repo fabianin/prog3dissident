@@ -15,16 +15,18 @@ import model.pojo.Nota;
 public interface NotaDao {
     
     /**
-     * Obtém a nota de um aluno recebendo uma matrícula como referência
-     * @param matricula
-     * @return 
-     */
-    public Nota getNotaPorMatricula(long matricula);
-    
-    /**
      * Obtém todos os registros de notas no banco de dados
      * @return notas
      */
     public ArrayList<Nota> getNotas();
+    
+    /**
+     * Obtém uma nota à partir de um ID do aluno
+     * @param alunoId
+     * @return 
+     */
+    public Nota getNotaPorAlunoId(int alunoId);
+    
+    public Nota getNotaPorId(int notaId);
     
 }
