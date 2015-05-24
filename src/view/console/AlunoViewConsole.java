@@ -18,11 +18,11 @@ import model.pojo.Aluno;
  *
  * @author Fabiano
  */
-public class AlunoView {
+public class AlunoViewConsole {
 
     private Object alunos;
 
-    public AlunoView() {
+    public AlunoViewConsole() {
     }
 
     public void imprimirAlunos(AlunoDao alunos) {
@@ -54,7 +54,7 @@ public class AlunoView {
         } catch (AlunoJaCadastradoException ex) {
             System.out.println("Esse aluno já está cadastrado no sistema.");
         } catch (IOException ex) {
-            Logger.getLogger(AlunoView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AlunoViewConsole.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("Fim!");
         System.out.println("");

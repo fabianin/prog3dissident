@@ -7,6 +7,7 @@ package model.dao;
 
 import exceptions.DisciplinaJaCadastradaException;
 import java.io.IOException;
+import java.util.ArrayList;
 import model.pojo.Disciplina;
 
 /**
@@ -20,5 +21,7 @@ public interface DisciplinaDao {
     public Disciplina getDisciplinaById(int id);
     
     public void saveFile() throws IOException;
+    
+    public ArrayList<Disciplina> getDisciplinas();
 
 }
