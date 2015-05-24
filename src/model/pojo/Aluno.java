@@ -38,7 +38,7 @@ public class Aluno extends Pessoa {
     }
     public String toFile(){
         String str;
-        str= this.getNome()+";"+this.getCpf()+";"+this.getMatricula()+";";
+        str= this.getNome()+";"+this.getCpf()+";"+this.hashCode()+";";
         str = this.getTurmas().stream().map((x) -> x.toFile()+"#").reduce(str, String::concat);
         return str;
     }
