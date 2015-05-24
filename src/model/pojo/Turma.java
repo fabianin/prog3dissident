@@ -227,4 +227,8 @@ public class Turma {
         }
     }
 
+    public int getId() {
+        return this.id;
+    }
+
 }

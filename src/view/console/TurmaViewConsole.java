@@ -60,6 +60,8 @@ public class TurmaViewConsole {
         try {
             Turma turma = new Turma(disciplina, periodo, numeroVagas, sala, ano, professor);
             turmas.adicionarTurma(turma);
+            pp = professores.getProfessores().stream().filter(x -> x.getId()==professor).collect(Collectors.toList());
+            pp.get(0).addTurmaLecionando(turma.getId());
         } catch (NullPointerException | IllegalArgumentException | ProfessorNaoAptoDisciplinaException | TurmaJaCadastradaException | IOException ex) {
             Logger.getLogger(TurmaViewConsole.class.getName()).log(Level.SEVERE, null, ex);
         }
