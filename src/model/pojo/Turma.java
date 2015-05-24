@@ -70,6 +70,9 @@ public class Turma {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null){
+            return false;
+        }
         if (obj == null) {
             return false;
         }
@@ -222,6 +225,10 @@ public class Turma {
             return total / this.getAtividades().size();
         }
         throw new IllegalArgumentException("Aluno não encontrado");
+    }
+
+    String toFile() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
