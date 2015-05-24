@@ -36,6 +36,8 @@ public class Professor extends Pessoa {
         }
         this.departamento = departamento;
         this.id = this.hashCode();
+        this.disciplinasApto = new ArrayList<>();
+        this.turmasLecionando = new ArrayList<>();
     }
 
     /**
