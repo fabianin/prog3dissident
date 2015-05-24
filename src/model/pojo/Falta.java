@@ -5,14 +5,17 @@
  */
 package model.pojo;
 
+import java.util.Objects;
+
 /**
  *
  * @author Fabiano
  */
 public class Falta {
 
-    private final Aluno aluno;
+    private final Integer aluno;
     private final int faltas;
+    private final int id;
 
     /**
      * Construtor da falta
@@ -22,7 +25,7 @@ public class Falta {
      * @throws IllegalArgumentException
      * @throws NullPointerException
      */
-    public Falta(Aluno aluno, int faltas) throws IllegalArgumentException, NullPointerException {
+    public Falta(Integer aluno, int faltas) throws IllegalArgumentException, NullPointerException {
         if (faltas < 0) {
             throw new IllegalArgumentException("Faltas deve ser um valor positivo.");
         } else if (aluno == null) {
@@ -30,6 +33,7 @@ public class Falta {
         }
         this.aluno = aluno;
         this.faltas = faltas;
+        this.id = this.hashCode();
     }
 
     /**
@@ -41,18 +45,38 @@ public class Falta {
         return this.faltas;
     }
 
-    @Override
-    public String toString() {
-        return "Nome: " + aluno.getNome() + "\r\nfaltas=" + faltas + "\r\n";
-    }
 
     /**
      * Obtém aluno relacionado a falta
      *
      * @return Aluno
      */
-    public Aluno getAluno() {
+    public Integer getAluno() {
         return aluno;
     }
+
+    @Override
+    public final int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + Objects.hashCode(this.aluno);
+        hash = 47 * hash + this.faltas;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Falta other = (Falta) obj;
+        if (!Objects.equals(this.aluno, other.aluno)) {
+            return false;
+        }
+        return this.faltas == other.faltas;
+    }
+    
 
 }
