@@ -20,12 +20,16 @@ import model.pojo.Aluno;
  */
 public class AlunoView {
 
+    private Object alunos;
+
     public AlunoView() {
     }
-    public void imprimirAlunos(AlunoDao alunos){
+
+    public void imprimirAlunos(AlunoDao alunos) {
         alunos.getAlunos().stream().forEach((x) -> System.out.println(x));
     }
-    private void cadastraAluno(AlunoDao alunos) {
+
+    public void cadastraAluno(AlunoDao alunos) {
 
         Scanner sc = new Scanner(System.in);
         String nome;
@@ -43,22 +47,18 @@ public class AlunoView {
         cpf = sc.nextLong();
         System.out.println("Digite a matrícula do aluno");
         matricula = sc.nextLong();
-
         System.out.println("Tentando cadastrar aluno...");
-
         Aluno aluno = new Aluno(matricula, nome, cpf);
-
         try {
-            this.alunos.adicionaAluno(aluno);
+            alunos.adicionaAluno(aluno);
         } catch (AlunoJaCadastradoException ex) {
-            System.out.println("O aluno já está cadastrado e não foi cadastrado.");
+            Logger.getLogger(AlunoView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            System.out.println("Não foi possível salvar o aluno ao banco de dados. Poderá ocorrer perda de dados por isso.");
+            Logger.getLogger(AlunoView.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         System.out.println("Fim!");
         System.out.println("");
 
     }
-    
+
 }
