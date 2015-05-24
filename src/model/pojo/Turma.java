@@ -70,7 +70,7 @@ public class Turma {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null){
+        if (obj == null) {
             return false;
         }
         if (obj == null) {
@@ -227,8 +227,10 @@ public class Turma {
         throw new IllegalArgumentException("Aluno não encontrado");
     }
 
-    String toFile() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    /**
+     * @brief método que formata o objeto para ser salvo em arquivo
+     *
+     * @return na sequencia HashCode, Alunos, Ano, Atividades, Disciplina,
+     * Faltas, Numero de vagas, Periodo, Professor, Sala
+     */
 }
