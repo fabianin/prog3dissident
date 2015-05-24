@@ -31,7 +31,7 @@ import org.json.JSONObject;
  */
 public class TurmaDaoTxt implements TurmaDao {
 
-    private String filePath = "txtdatabase/notas.txt";
+    private String filePath = "txtdatabase/turmas.txt";
     private File file;
     private ArrayList<Turma> turmas;
 

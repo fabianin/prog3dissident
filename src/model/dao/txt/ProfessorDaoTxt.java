@@ -29,7 +29,7 @@ import org.json.JSONObject;
  */
 public class ProfessorDaoTxt implements ProfessorDao {
 
-    private final String filePath = "txtdatabase/alunos.txt";
+    private final String filePath = "txtdatabase/professores.txt";
     private final File file;
     private final ArrayList<Professor> professores;
 
