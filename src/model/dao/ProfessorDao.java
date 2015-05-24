@@ -6,6 +6,7 @@
 package model.dao;
 
 import exceptions.ProfessorJaCadastradoException;
+import exceptions.TurmaJaCadastradaException;
 import java.io.IOException;
 import java.util.ArrayList;
 import model.pojo.Professor;
@@ -23,5 +24,7 @@ public interface ProfessorDao {
     public void adicionaProfessor(Professor professor) throws ProfessorJaCadastradoException, IOException;
 
     public void saveFile() throws IOException;
+    
+    public void adicionarTurma(int professorId, int turmaId) throws IllegalArgumentException, NullPointerException, TurmaJaCadastradaException;
 
 }

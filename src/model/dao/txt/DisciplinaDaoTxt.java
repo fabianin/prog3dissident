@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import model.dao.DisciplinaDao;
 import model.pojo.Disciplina;
 import model.pojo.Turma;
@@ -75,7 +76,7 @@ public class DisciplinaDaoTxt implements DisciplinaDao {
 
     @Override
     public Disciplina getDisciplinaById(int id) {
-        List<Disciplina> disc = (List<Disciplina>) this.disciplinas.stream().filter(disciplina -> disciplina.hashCode() == id);
+        List<Disciplina> disc = this.disciplinas.stream().filter(disciplina -> disciplina.hashCode() == id).collect(Collectors.toList());
         if (disc.size() > 0) {
             return disc.get(0);
         } else {

@@ -1,0 +1,2 @@
+{"atividades":[],"professor":1410763224,"ano":2015,"periodo":2,"sala":20,"alunos":[],"disciplina":2114897197,"numeroVagas":40,"id":-1922774141,"faltas":[]}
+{"atividades":[],"professor":1433489315,"ano":2015,"periodo":2,"sala":5,"alunos":[],"disciplina":-713677642,"numeroVagas":1,"id":1105994477,"faltas":[]}

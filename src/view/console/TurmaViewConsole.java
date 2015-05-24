@@ -26,48 +26,48 @@ import model.pojo.Turma;
  */
 public class TurmaViewConsole {
 
-    public static boolean cadastraTurma(TurmaDao turmas, DisciplinaDao disc, ProfessorDao professores) {
-        long periodo;
-        long numeroVagas;
-        long sala;
-        int disciplina;
-        long ano;
-        int professor;
+    public static void cadastraTurma(TurmaDao turmas, DisciplinaDao disc, ProfessorDao professores) {
+
+        long periodo, numeroVagas, sala, ano;
+        int disciplina, professor;
+
         Scanner sc = new Scanner(System.in);
-        System.out.println("Digite o peridoo: ");
+
+        System.out.print("Digite o peridoo: ");
         periodo = sc.nextLong();
-        System.out.println("Digite o numero de vagas: ");
+        System.out.print("Digite o numero de vagas: ");
         numeroVagas = sc.nextLong();
-        System.out.println("Digite o numero da sala: ");
+        System.out.print("Digite o numero da sala: ");
         sala = sc.nextInt();
-        System.out.println("Digite o ID da disciplina: ");
+        System.out.print("Digite o ID da disciplina: ");
         disciplina = sc.nextInt();
-        List<Disciplina> dd = disc.getDisciplinas().stream().filter(x -> x.getId()==disciplina).collect(Collectors.toList());
-        if(dd.size()<1){
-            System.out.println("Disciplina não existente...");
-            return false;
-        }
-        System.out.println("Digite o ano: ");
+        System.out.print("Digite o ano: ");
         ano = sc.nextInt();
-        System.out.println("Digite o ID do professor: ");
+        System.out.print("Digite o ID do professor: ");
         professor = sc.nextInt();
-        List<Professor> pp;
-        pp = professores.getProfessores().stream().filter(x -> x.getId()==professor).collect(Collectors.toList());
-        if(pp.size()<1){
-            System.out.println("professor não cadastrado no sistema");
-            return false;
+
+        Disciplina dd = disc.getDisciplinaById(disciplina);
+        Professor pf = professores.getProfessorById(professor);
+
+        if (dd == null) {
+            System.out.println("Disciplina não cadastrada.");
+        } else if (pf == null) {
+            System.out.println("Professor não cadastrado.");
+        } else {
+            try {
+                Turma turma = new Turma(disciplina, periodo, numeroVagas, sala, ano, professor);
+                turmas.adicionarTurma(turma);
+                professores.adicionarTurma(professor, turma.hashCode());
+                professores.saveFile();
+                System.out.println("Cadastrado com sucesso.");
+            } catch (NullPointerException | IllegalArgumentException | ProfessorNaoAptoDisciplinaException | TurmaJaCadastradaException | IOException ex) {
+                Logger.getLogger(TurmaViewConsole.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
-        try {
-            Turma turma = new Turma(disciplina, periodo, numeroVagas, sala, ano, professor);
-            turmas.adicionarTurma(turma);
-            pp = professores.getProfessores().stream().filter(x -> x.getId()==professor).collect(Collectors.toList());
-            pp.get(0).addTurmaLecionando(turma.getId());
-        } catch (NullPointerException | IllegalArgumentException | ProfessorNaoAptoDisciplinaException | TurmaJaCadastradaException | IOException ex) {
-            Logger.getLogger(TurmaViewConsole.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return true;
+
     }
-    public static void imprimiTurmas(TurmaDao turmas){
+
+    public static void imprimiTurmas(TurmaDao turmas) {
         turmas.getTurmas().stream().forEach((x) -> System.out.println(x));
     }
 
