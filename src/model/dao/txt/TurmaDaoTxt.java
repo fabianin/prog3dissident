@@ -126,5 +126,16 @@ public class TurmaDaoTxt implements TurmaDao {
         }
         throw new TurmaNaoEncontradaException();
     }
+    
+    @Override
+    public void adicionarFalta(int turmaId, int faltaId) throws FaltaJaCadastradaException, TurmaNaoEncontradaException {
+        for(Turma turma: this.turmas) {
+            if(turma.hashCode() == turmaId) {
+                turma.addFalta(faltaId);
+                return;
+            }
+        }
+        throw new TurmaNaoEncontradaException();
+    }
 
 }

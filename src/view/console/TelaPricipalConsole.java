@@ -59,6 +59,7 @@ public class TelaPricipalConsole {
                     NotaViewConsole.cadastrarNota(tpc.getNotas(), tpc.getAlunos(), tpc.getTurmas());
                     break;
                 case 7:
+                    FaltasViewConsole.cadastraFalta(tpc.getFaltas(), tpc.getTurmas(), tpc.getAlunos());
                     break;
                 case 8:
                     break;
