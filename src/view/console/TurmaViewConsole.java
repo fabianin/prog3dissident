@@ -42,7 +42,8 @@ public class TurmaViewConsole {
         sala = sc.nextInt();
         System.out.println("Digite o ID da disciplina: ");
         disciplina = sc.nextInt();
-        List<Disciplina> dd = disc.getDisciplinas().stream().filter(x -> x.getId()==disciplina).collect(Collectors.toList());
+        List<Disciplina> dd;
+        dd = disc.getDisciplinas().stream().filter(x -> x.getId()==disciplina).collect(Collectors.toList());
         if(dd.size()<1){
             System.out.println("Disciplina não existente...");
             return false;
@@ -62,6 +63,8 @@ public class TurmaViewConsole {
             turmas.adicionarTurma(turma);
             pp = professores.getProfessores().stream().filter(x -> x.getId()==professor).collect(Collectors.toList());
             pp.get(0).addTurmaLecionando(turma.getId());
+            dd = disc.getDisciplinas().stream().filter(x -> x.getId()==disciplina).collect(Collectors.toList());
+            dd.get(0).addTurma(turma.getId());
         } catch (NullPointerException | IllegalArgumentException | ProfessorNaoAptoDisciplinaException | TurmaJaCadastradaException | IOException ex) {
             Logger.getLogger(TurmaViewConsole.class.getName()).log(Level.SEVERE, null, ex);
         }
