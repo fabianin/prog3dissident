@@ -7,9 +7,12 @@ package view.console;
 
 import exceptions.AlunoJaCadastradoException;
 import java.io.IOException;
+<<<<<<< HEAD
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+=======
+>>>>>>> origin/master
 import model.dao.AlunoDao;
 import model.dao.AtividadeDao;
 import model.dao.DisciplinaDao;
