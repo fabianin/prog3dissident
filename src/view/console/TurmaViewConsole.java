@@ -8,12 +8,16 @@ package view.console;
 import exceptions.ProfessorNaoAptoDisciplinaException;
 import exceptions.TurmaJaCadastradaException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import model.dao.DisciplinaDao;
 import model.dao.ProfessorDao;
 import model.dao.TurmaDao;
+import model.pojo.Disciplina;
+import model.pojo.Professor;
 import model.pojo.Turma;
 
 /**
@@ -38,15 +42,18 @@ public class TurmaViewConsole {
         sala = sc.nextInt();
         System.out.println("Digite o ID da disciplina: ");
         disciplina = sc.nextInt();
-        if(!disc.getDisciplinas().contains(disciplina)){
-            System.out.println("Essa disciplina não existe");
+        List<Disciplina> dd = disc.getDisciplinas().stream().filter(x -> x.getId()==disciplina).collect(Collectors.toList());
+        if(dd.size()<1){
+            System.out.println("Disciplina não existente...");
             return false;
         }
         System.out.println("Digite o ano: ");
         ano = sc.nextInt();
         System.out.println("Digite o ID do professor: ");
         professor = sc.nextInt();
-        if(!professores.getProfessores().contains(professor)){
+        List<Professor> pp;
+        pp = professores.getProfessores().stream().filter(x -> x.getId()==professor).collect(Collectors.toList());
+        if(pp.size()<1){
             System.out.println("professor não cadastrado no sistema");
             return false;
         }

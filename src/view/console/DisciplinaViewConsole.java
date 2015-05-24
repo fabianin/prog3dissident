@@ -5,8 +5,12 @@
  */
 package view.console;
 
+import exceptions.DisciplinaJaCadastradaException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.dao.DisciplinaDao;
 import model.pojo.Disciplina;
 
@@ -30,7 +34,17 @@ public class DisciplinaViewConsole {
         System.out.println("Digite a carga horaria da disciplina: ");
         cargaHoraria = sc.nextLong();
         Disciplina dis = new Disciplina(nome, ementa, cargaHoraria);
+        try {
+            disciplinas.addDisciplina(dis);
+        } catch (DisciplinaJaCadastradaException | IOException ex) {
+            Logger.getLogger(DisciplinaViewConsole.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+    }
+    public void imprimiDisciplinas(DisciplinaDao disciplinas){
+        disciplinas.getDisciplinas().stream().forEach((Disciplina x) -> {
+            System.out.println(x);
+        });
     }
     
 }

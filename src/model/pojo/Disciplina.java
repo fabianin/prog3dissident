@@ -68,6 +68,13 @@ public class Disciplina {
         return this.turmas;
     }
 
+    @Override
+    public String toString() {
+        return "Disciplina{" + "\nNome: " + nome + "\nementa: " + ementa + "\ncargaHoraria: " + cargaHoraria + "\nturmas ID: " + turmas + "\nid: " + id + '}';
+    }
+    
+    
+
     /**
      * Obtém nome
      *
@@ -114,10 +121,7 @@ public class Disciplina {
             return false;
         }
         final Disciplina other = (Disciplina) obj;
-        if (this.hashCode() != other.hashCode()) {
-            return false;
-        }
-        return true;
+        return this.getId() == other.getId();
     }
 
     public int getId() {
