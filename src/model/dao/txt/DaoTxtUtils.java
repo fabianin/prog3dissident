@@ -110,8 +110,9 @@ public class DaoTxtUtils {
         int faltas = obj.getInt("faltas");
 
         int aluno = obj.getInt("aluno");
+        int turma = obj.getInt("turma");
 
-        Falta falta = new Falta(aluno, faltas);
+        Falta falta = new Falta(aluno, faltas, turma);
 
         return falta;
 
@@ -122,8 +123,9 @@ public class DaoTxtUtils {
         double valorObtido = obj.getDouble("valorObtido");
 
         int aluno = obj.getInt("aluno");
+        int turma = obj.getInt("turma");
 
-        Nota nota = new Nota(valorObtido, aluno);
+        Nota nota = new Nota(valorObtido, aluno, turma);
 
         return nota;
 
