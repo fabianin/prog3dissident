@@ -5,9 +5,12 @@
  */
 package model.dao;
 
+import exceptions.AtividadeJaCadastradaException;
 import exceptions.TurmaJaCadastradaException;
+import exceptions.TurmaNaoEncontradaException;
 import java.io.IOException;
 import java.util.ArrayList;
+import model.pojo.Atividade;
 import model.pojo.Turma;
 
 /**
@@ -23,5 +26,7 @@ public interface TurmaDao {
     public void saveFile() throws IOException;
 
     public void adicionarTurma(Turma turma) throws TurmaJaCadastradaException, IOException;
+
+    public void adicionarAtividade(int turmaId, int atividadeId) throws AtividadeJaCadastradaException, TurmaNaoEncontradaException;
 
 }

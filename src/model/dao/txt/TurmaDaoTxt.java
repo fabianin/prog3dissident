@@ -10,6 +10,7 @@ import exceptions.AtividadeJaCadastradaException;
 import exceptions.FaltaJaCadastradaException;
 import exceptions.ProfessorNaoAptoDisciplinaException;
 import exceptions.TurmaJaCadastradaException;
+import exceptions.TurmaNaoEncontradaException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import model.dao.TurmaDao;
+import model.pojo.Atividade;
 import model.pojo.Disciplina;
 import model.pojo.Nota;
 import model.pojo.Turma;
@@ -112,6 +114,17 @@ public class TurmaDaoTxt implements TurmaDao {
             this.turmas.add(turma);
             this.saveFile();
         }
+    }
+
+    @Override
+    public void adicionarAtividade(int turmaId, int atividadeId) throws AtividadeJaCadastradaException, TurmaNaoEncontradaException {
+        for (Turma turma : this.turmas) {
+            if (turma.hashCode() == turmaId) {
+                turma.addAtividade(atividadeId);
+                return;
+            }
+        }
+        throw new TurmaNaoEncontradaException();
     }
 
 }

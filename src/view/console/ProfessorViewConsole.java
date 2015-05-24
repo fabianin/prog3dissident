@@ -35,6 +35,7 @@ public class ProfessorViewConsole {
         System.out.println("");
         System.out.print("Digite o nome do professor: ");
         nome = sc.nextLine();
+        System.out.print("Digite o departamento do professor: ");
         departamento = sc.nextLine();
         System.out.print("Digite o CPF do professor: ");
         cpf = sc.nextLong();
