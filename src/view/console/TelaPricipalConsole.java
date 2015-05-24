@@ -25,7 +25,7 @@ import model.dao.txt.TurmaDaoTxt;
  * @author Elias Júnior
  */
 public class TelaPricipalConsole {
-    
+
     private final AlunoDao alunos = new AlunoDaoTxt();
     private final AtividadeDao atividades = new AtividadeDaoTxt();
     private final DisciplinaDao disciplinas = new DisciplinaDaoTxt();
@@ -35,7 +35,27 @@ public class TelaPricipalConsole {
     private final TurmaDao turmas = new TurmaDaoTxt();
 
     public static void main(String[] args) {
-        System.out.println("ahhh");
+        TelaPricipalConsole tpc = new TelaPricipalConsole();
+        tpc.showMenu();
     }
-    
+
+    private void showMenu() {
+        System.out.println("▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊");
+        System.out.println("▊▊▊▊▊▊▊▊ MENU PRINCIPAL ▊▊▊▊▊▊▊▊");
+        System.out.println("▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊▊");
+        System.out.println("");
+        System.out.println("Escolha uma das opções: ");
+        System.out.println("1) Cadastrar aluno");
+        System.out.println("2) Cadastrar professor");
+        System.out.println("3) Cadastrar disciplina");
+        System.out.println("4) Cadastrar turma");
+        System.out.println("5) Cadastrar atividade");
+        System.out.println("6) Lançar nota");
+        System.out.println("7) Lançar faltas");
+        System.out.println("8) Consultar turmas");
+        System.out.println("9) Consultar situação de aluno em uma disciplina");
+        System.out.println("10) Consu11ltar o número de turmas já oferecidas por disciplina");
+        System.out.println("11) Consultar o número de disciplinas já lecionadas por um professor");
+    }
+
 }
