@@ -19,12 +19,12 @@ public class Turma {
     private final long periodo;
     private final long numeroVagas;
     private final long sala;
-    private final Integer disciplina;
+    private final int disciplina;
     private final long ano;
     private final ArrayList<Integer> atividades = new ArrayList<>();
     private final ArrayList<Integer> alunos = new ArrayList<>();
     private final ArrayList<Integer> faltas = new ArrayList<>();
-    private final Integer professor;
+    private final int professor;
     private final int id;
 
     /**
@@ -39,7 +39,7 @@ public class Turma {
      * @throws NullPointerException
      * @throws IllegalArgumentException
      */
-    public Turma(Integer disciplina, long periodo, long numeroVagas, long sala, long ano, Integer professor)
+    public Turma(int disciplina, long periodo, long numeroVagas, long sala, long ano, int professor)
             throws NullPointerException, IllegalArgumentException, ProfessorNaoAptoDisciplinaException {
         Objects.requireNonNull(ano, "Ano não pode ser null");
         Objects.requireNonNull(professor, "Professor não pode ser null");
@@ -61,8 +61,6 @@ public class Turma {
         this.professor = professor;
         this.id = this.hashCode();
     }
-
-
 
     @Override
     public boolean equals(Object obj) {
@@ -186,5 +184,44 @@ public class Turma {
         hash = 13 * hash + Objects.hashCode(this.professor);
         return hash;
     }
-    
+
+    /**
+     * MODIFICAR DEPOIS O THROWS
+     *
+     * @param faltaId
+     */
+    public void addFalta(int faltaId) {
+        if (this.faltas.contains(faltaId)) {
+            throw new IllegalArgumentException();
+        } else {
+            this.faltas.add(faltaId);
+        }
+    }
+
+    /**
+     * MODIFICAR DEPOIS O THROWS
+     *
+     * @param alunoId
+     */
+    public void addAluno(int alunoId) {
+        if (this.alunos.contains(alunoId)) {
+            throw new IllegalArgumentException();
+        } else {
+            this.alunos.add(alunoId);
+        }
+    }
+
+    /**
+     * MODIFICAR DEPOIS O THROWS
+     *
+     * @param atividadeId
+     */
+    public void addAtividade(int atividadeId) {
+        if (this.atividades.contains(atividadeId)) {
+            throw new IllegalArgumentException();
+        } else {
+            this.atividades.add(atividadeId);
+        }
+    }
+
 }

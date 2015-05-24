@@ -60,7 +60,7 @@ public class NotaDaoTxt implements NotaDao {
     @Override
     public Nota getNotaPorAlunoId(int alunoId) {
         List<Nota> notas = this.notas.stream().filter(nota -> nota.getAluno() == alunoId).collect(Collectors.toList());
-        if (notas.size()) {
+        if (notas.size() > 0) {
             return notas.get(0);
         }
         return null;
@@ -69,7 +69,7 @@ public class NotaDaoTxt implements NotaDao {
     @Override
     public Nota getNotaPorId(int notaId) {
         List<Nota> notas = this.notas.stream().filter(nota -> nota.hashCode() == notaId).collect(Collectors.toList());
-        if (notas.size()) {
+        if (notas.size() > 0) {
             return notas.get(0);
         }
         return null;

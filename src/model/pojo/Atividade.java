@@ -55,7 +55,7 @@ public class Atividade {
      * @throws NotaJaCadastradaException
      * @throws NullPointerException
      */
-    public void addNota(Integer nota) throws NotaJaCadastradaException, NullPointerException {
+    public void addNota(int nota) throws NotaJaCadastradaException, NullPointerException {
         Objects.requireNonNull(nota); // não premite nota null
         if (!notas.contains(nota)) { // caso a nota não tenha sido cadastrada
             this.notas.add(nota); // adiciona nota na lista
@@ -122,7 +122,5 @@ public class Atividade {
         
         return this.hashCode() == other.hashCode();
     }
-
-    
 
 }

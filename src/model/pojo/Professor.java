@@ -15,6 +15,7 @@ import java.util.Objects;
  * @author Fabiano
  */
 public class Professor extends Pessoa {
+
     private final int id;
     private final String departamento;
     private ArrayList<Integer> disciplinasApto;
@@ -73,8 +74,6 @@ public class Professor extends Pessoa {
         }
         return Objects.equals(this.turmasLecionando, other.turmasLecionando);
     }
-    
-    
 
     /**
      * Adiciona uma disciplina que o professor pode lecionar
@@ -133,6 +132,14 @@ public class Professor extends Pessoa {
      */
     public ArrayList<Integer> getTurmasLecionando() {
         return turmasLecionando;
+    }
+
+    public void addTurmaLecionando(int turmaLecionandoId) throws TurmaJaCadastradaException {
+        if (this.turmasLecionando.contains(turmaLecionandoId)) {
+            throw new TurmaJaCadastradaException();
+        } else {
+            this.turmasLecionando.add(turmaLecionandoId);
+        }
     }
 
 }
