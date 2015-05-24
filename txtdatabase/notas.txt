@@ -1,3 +1,0 @@
-{"aluno":300,"valorObtido":1}
-{"aluno":200,"valorObtido":2}
-{"aluno":100,"valorObtido":3}

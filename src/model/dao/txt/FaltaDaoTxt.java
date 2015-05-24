@@ -35,20 +35,22 @@ public class FaltaDaoTxt implements FaltaDao {
     }
 
     private void initDao() {
-        try {
-            List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
-            conteudo.stream().filter(str -> !str.isEmpty()).forEach((String str) -> {
-                try {
-                    JSONObject objFalta = new JSONObject(str);
-                    Falta falta;
-                    falta = DaoTxtUtils.createFaltaFromJSON(objFalta);
-                    this.faltas.add(falta);
-                } catch (JSONException ex) {
-                    Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            });
-        } catch (IOException ex) {
-            Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+        if (this.file.canRead()) {
+            try {
+                List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
+                conteudo.stream().filter(str -> !str.isEmpty()).forEach((String str) -> {
+                    try {
+                        JSONObject objFalta = new JSONObject(str);
+                        Falta falta;
+                        falta = DaoTxtUtils.createFaltaFromJSON(objFalta);
+                        this.faltas.add(falta);
+                    } catch (JSONException ex) {
+                        Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                });
+            } catch (IOException ex) {
+                Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
