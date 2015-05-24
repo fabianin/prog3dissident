@@ -16,6 +16,7 @@ public class Falta {
     private final int aluno;
     private final int faltas;
     private final int id;
+    private final int turma;
 
     /**
      * Construtor da falta
@@ -25,13 +26,14 @@ public class Falta {
      * @throws IllegalArgumentException
      * @throws NullPointerException
      */
-    public Falta(int aluno, int faltas) throws IllegalArgumentException, NullPointerException {
+    public Falta(int aluno, int faltas, int turma) throws IllegalArgumentException, NullPointerException {
         if (faltas < 0) {
             throw new IllegalArgumentException("Faltas deve ser um valor positivo.");
         }
         this.aluno = aluno;
         this.faltas = faltas;
         this.id = this.hashCode();
+        this.turma = turma;
     }
 
     /**
