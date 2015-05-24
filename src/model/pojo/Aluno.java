@@ -36,14 +36,6 @@ public class Aluno extends Pessoa {
         this.matricula = matricula;
         this.turmas = new ArrayList<>();
     }
-    public String toFile(){
-        String str;
-        str= this.getNome()+";"+this.getCpf()+";"+this.hashCode()+";";
-        for(Turma x: this.getTurmas()){
-            str +=x.toFile()+"#";
-        }
-        return str;
-    }
 
     /**
      * Obtém a matrícula do aluno
@@ -65,6 +57,7 @@ public class Aluno extends Pessoa {
 
     /**
      * Adicionar turma em um aluno
+     *
      * @param turma turma a ser cadastrado
      * @throws TurmaJaCadastradaException
      */
