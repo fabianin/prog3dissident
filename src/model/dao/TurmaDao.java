@@ -6,6 +6,7 @@
 package model.dao;
 
 import exceptions.AtividadeJaCadastradaException;
+import exceptions.FaltaJaCadastradaException;
 import exceptions.TurmaJaCadastradaException;
 import exceptions.TurmaNaoEncontradaException;
 import java.io.IOException;
@@ -28,5 +29,7 @@ public interface TurmaDao {
     public void adicionarTurma(Turma turma) throws TurmaJaCadastradaException, IOException;
 
     public void adicionarAtividade(int turmaId, int atividadeId) throws AtividadeJaCadastradaException, TurmaNaoEncontradaException;
+    
+    public void adicionarFalta(int turmaId, int faltaId) throws FaltaJaCadastradaException, TurmaNaoEncontradaException;
 
 }

@@ -180,6 +180,7 @@ public class DaoTxtUtils {
         JSONObject notaJson = new JSONObject();
         notaJson.put("valorObtido", nota.getValorObtido());
         notaJson.put("aluno", nota.getAluno());
+        notaJson.put("id", nota.hashCode());
         return notaJson.toString();
     }
 
@@ -191,6 +192,7 @@ public class DaoTxtUtils {
         JSONArray turmasJson = new JSONArray();
         aluno.getTurmas().stream().forEach((id) -> turmasJson.put(id));
         alunoJson.put("turmas", turmasJson);
+        alunoJson.put("id", aluno.hashCode());
         return alunoJson.toString();
     }
 
@@ -202,6 +204,7 @@ public class DaoTxtUtils {
         JSONArray notasJson = new JSONArray();
         atividade.getNotas().stream().forEach((id) -> notasJson.put(id));
         atividadeJson.put("notas", notasJson);
+        atividadeJson.put("id", atividade.hashCode());
         return atividade.toString();
     }
 
@@ -213,6 +216,7 @@ public class DaoTxtUtils {
         JSONArray turmasJson = new JSONArray();
         disciplina.getTurmas().stream().forEach((id) -> turmasJson.put(id));
         disciplinaJson.put("turmas", turmasJson);
+        disciplinaJson.put("id", disciplina.hashCode());
         return disciplinaJson.toString();
     }
 
@@ -220,6 +224,7 @@ public class DaoTxtUtils {
         JSONObject faltaJson = new JSONObject();
         faltaJson.put("faltas", falta.getFaltas());
         faltaJson.put("aluno", falta.getAluno());
+        faltaJson.put("id", falta.hashCode());
         return faltaJson.toString();
     }
 
@@ -234,6 +239,7 @@ public class DaoTxtUtils {
         professor.getTurmasLecionando().stream().forEach((id) -> turmasLecionandoJson.put(id));
         professorJson.put("disciplinasApto", disciplinasAptoJson);
         professorJson.put("turmasLecionando", turmasLecionandoJson);
+        professorJson.put("id", professor.hashCode());
         return professorJson.toString();
     }
 
@@ -254,6 +260,7 @@ public class DaoTxtUtils {
         turmaJson.put("atividades", atividadesJson);
         turmaJson.put("alunos", alunosJson);
         turmaJson.put("faltas", faltasJson);
+        turmaJson.put("id", turma.hashCode());
         return turmaJson.toString();
     }
 
