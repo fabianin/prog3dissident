@@ -49,8 +49,12 @@ public class DisciplinaViewConsole {
         });
     }
     
-    public static void consultarTurmas(DisciplinaDao disciplinas, int disciplinaId){
+    public static void consultarTurmas(DisciplinaDao disciplinas){
+        int disciplinaId;
         List<Disciplina> dd;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite o ID da disciplina que deseja consultar");
+        disciplinaId = sc.nextInt();
         dd = disciplinas.getDisciplinas().stream().filter(x -> x.getId()==disciplinaId).collect(Collectors.toList());
         System.out.println("Existem " + dd.get(0).getTurmas().size()+" turmas dessa disciplina");
 
