@@ -18,7 +18,7 @@ import java.util.Objects;
 public class Aluno extends Pessoa {
 
     private final long matricula;   
-    private final ArrayList<Turma> turmas;
+    private final ArrayList<Integer> turmas;
 
     /**
      * Construtor do aluno
@@ -52,7 +52,7 @@ public class Aluno extends Pessoa {
      *
      * @return Lista de turmas
      */
-    public ArrayList<Turma> getTurmas() {
+    public ArrayList<Integer> getTurmas() {
         return this.turmas;
     }
 
@@ -62,7 +62,7 @@ public class Aluno extends Pessoa {
      * @param turma turma a ser cadastrado
      * @throws TurmaJaCadastradaException
      */
-    public void addTurma(Turma turma) throws TurmaJaCadastradaException {
+    public void addTurma(Integer turma) throws TurmaJaCadastradaException {
         if (!this.turmas.contains(turma)) {
             this.turmas.add(turma);
         } else {

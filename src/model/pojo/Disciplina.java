@@ -19,7 +19,7 @@ public class Disciplina {
     private final String nome;
     private final String ementa;
     private final long cargaHoraria;
-    private final ArrayList<Turma> turmas;
+    private final ArrayList<Integer> turmas;
 
     /**
      * Construtor da disciplina
@@ -29,7 +29,7 @@ public class Disciplina {
      * @param cargaHoraria Carga horária da disciplina
      * @throws IllegalArgumentException
      */
-    public Disciplina(String nome, String ementa, long cargaHoraria, ArrayList<Turma> turmas) throws IllegalArgumentException {
+    public Disciplina(String nome, String ementa, long cargaHoraria, ArrayList<Integer> turmas) throws IllegalArgumentException {
         Objects.requireNonNull(nome, "Nome não pode ser vazio");
         Objects.requireNonNull(ementa, "Ementa não pode ser vazio.");
         if (cargaHoraria < 1) {
@@ -48,7 +48,7 @@ public class Disciplina {
      * @param turma Turma a ser adicionada
      * @throws exceptions.TurmaJaCadastradaException
      */
-    public void addTurma(Turma turma) throws TurmaJaCadastradaException {
+    public void addTurma(Integer turma) throws TurmaJaCadastradaException {
         Objects.requireNonNull(turma, "Turma não pode ser null.");
         if (!this.turmas.contains(turma)) { // caso a turma não exista nesta disciplina
             this.turmas.add(turma);
@@ -62,7 +62,7 @@ public class Disciplina {
      *
      * @return lista de turmas
      */
-    public ArrayList<Turma> getTurmas() {
+    public ArrayList<Integer> getTurmas() {
         return this.turmas;
     }
 

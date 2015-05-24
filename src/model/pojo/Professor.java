@@ -17,8 +17,8 @@ import java.util.Objects;
 public class Professor extends Pessoa {
 
     private final String departamento;
-    private ArrayList<Disciplina> disciplinasApto;
-    private ArrayList<Turma> turmasLecionando;
+    private ArrayList<Integer> disciplinasApto;
+    private ArrayList<Integer> turmasLecionando;
 
     /**
      * Construtor do professor
@@ -53,7 +53,7 @@ public class Professor extends Pessoa {
      * @throws NullPointerException
      * @throws DisciplinaJaCadastradaException
      */
-    public void addDisciplinaApto(Disciplina disciplina) throws IllegalArgumentException, NullPointerException, DisciplinaJaCadastradaException {
+    public void addDisciplinaApto(Integer disciplina) throws IllegalArgumentException, NullPointerException, DisciplinaJaCadastradaException {
         Objects.requireNonNull(disciplina, "Não pode ser NULL");
         if (this.disciplinasApto.contains(disciplina)) {
             throw new DisciplinaJaCadastradaException("Você não pode adicionar duas disciplinas iguais a um mesmo professor.");
@@ -68,7 +68,7 @@ public class Professor extends Pessoa {
      * @throws IllegalArgumentException
      * @throws NullPointerException
      */
-    public void addTurma(Turma turma) throws IllegalArgumentException, NullPointerException, TurmaJaCadastradaException {
+    public void addTurma(Integer turma) throws IllegalArgumentException, NullPointerException, TurmaJaCadastradaException {
         Objects.requireNonNull(turma, "Turma não pode ser null");
         if (this.turmasLecionando.contains(turma)) {
             throw new TurmaJaCadastradaException("Você não pode adicionar duas turmas em um mesmo professor");
@@ -91,7 +91,7 @@ public class Professor extends Pessoa {
      *
      * @return lista de turma
      */
-    public ArrayList<Disciplina> getDisciplinasApto() {
+    public ArrayList<Integer> getDisciplinasApto() {
         return disciplinasApto;
     }
 
@@ -100,7 +100,7 @@ public class Professor extends Pessoa {
      *
      * @return lista de turma
      */
-    public ArrayList<Turma> getTurmasLecionando() {
+    public ArrayList<Integer> getTurmasLecionando() {
         return turmasLecionando;
     }
 

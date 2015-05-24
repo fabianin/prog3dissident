@@ -16,7 +16,7 @@ import java.util.Objects;
  */
 public class Atividade {
 
-    private final ArrayList<Nota> notas;
+    private final ArrayList<Integer> notas;
     private final String nome;
     private final Calendar data;
     private final String tipo;
@@ -53,7 +53,7 @@ public class Atividade {
      * @throws NotaJaCadastradaException
      * @throws NullPointerException
      */
-    public void addNota(Nota nota) throws NotaJaCadastradaException, NullPointerException {
+    public void addNota(Integer nota) throws NotaJaCadastradaException, NullPointerException {
         Objects.requireNonNull(nota); // não premite nota null
         if (!notas.contains(nota)) { // caso a nota não tenha sido cadastrada
             this.notas.add(nota); // adiciona nota na lista
@@ -67,7 +67,7 @@ public class Atividade {
      *
      * @return Notas da atividade
      */
-    public ArrayList<Nota> getNotas() {
+    public ArrayList<Integer> getNotas() {
         return this.notas;
     }
 

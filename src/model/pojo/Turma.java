@@ -21,9 +21,9 @@ public class Turma {
     private final long sala;
     private final Disciplina disciplina;
     private final long ano;
-    private final ArrayList<Atividade> atividades = new ArrayList<>();
-    private final ArrayList<Aluno> alunos = new ArrayList<>();
-    private final ArrayList<Falta> faltas = new ArrayList<>();
+    private final ArrayList<Integer> atividades = new ArrayList<>();
+    private final ArrayList<Integer> alunos = new ArrayList<>();
+    private final ArrayList<Integer> faltas = new ArrayList<>();
     private final Professor professor;
 
     /**
@@ -151,7 +151,7 @@ public class Turma {
      *
      * @return lista de atividade
      */
-    public ArrayList<Atividade> getAtividades() {
+    public ArrayList<Integer> getAtividades() {
         return this.atividades;
     }
 
@@ -160,7 +160,7 @@ public class Turma {
      *
      * @return lista de aluno
      */
-    public ArrayList<Aluno> getAlunos() {
+    public ArrayList<Integer> getAlunos() {
         return this.alunos;
     }
 
@@ -169,24 +169,8 @@ public class Turma {
      *
      * @return lista de falta
      */
-    public ArrayList<Falta> getFaltas() {
+    public ArrayList<Integer> getFaltas() {
         return this.faltas;
-    }
-
-    /**
-     * Recebe um aluno e retorna o numero de falta desse aluno na referida turma
-     *
-     * @param aluno
-     * @return
-     * @throws IllegalArgumentException
-     */
-    public long getFaltas(Aluno aluno) throws IllegalArgumentException {
-        for (Falta falta : this.getFaltas()) {
-            if (aluno.equals(falta.getAluno())) {
-                return falta.getFaltas();
-            }
-        }
-        throw new IllegalArgumentException("Aluno não existe.");
     }
 
     /**
@@ -205,32 +189,4 @@ public class Turma {
                 + "\r\nAno: " + this.getAno() + "\r\nAtividades: " + this.getAtividades() + "\r\nAlunos: "
                 + this.getAlunos() + "\r\nFaltas: " + this.getFaltas() + "\r\nProfessor=" + this.getProfessor();
     }
-
-    /**
-     * Retorna a média do aluno na turma
-     *
-     * @param aluno
-     * @return média do aluno na turma
-     */
-    public double getMedia(Aluno aluno) throws IllegalArgumentException {
-        double total = 0.0;
-        if (this.getAlunos().contains(aluno)) {
-            for (Atividade atividade : this.getAtividades()) {
-                for (Nota nota : atividade.getNotas()) {
-                    if (nota.getAluno().equals(aluno)) {
-                        total += nota.getValorObtido();
-                    }
-                }
-            }
-            return total / this.getAtividades().size();
-        }
-        throw new IllegalArgumentException("Aluno não encontrado");
-    }
-
-    /**
-     * @brief método que formata o objeto para ser salvo em arquivo
-     *
-     * @return na sequencia HashCode, Alunos, Ano, Atividades, Disciplina,
-     * Faltas, Numero de vagas, Periodo, Professor, Sala
-     */
 }
