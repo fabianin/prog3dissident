@@ -25,11 +25,11 @@ public class AlunoViewConsole {
     public AlunoViewConsole() {
     }
 
-    public void imprimirAlunos(AlunoDao alunos) {
+    public static void imprimirAlunos(AlunoDao alunos) {
         alunos.getAlunos().stream().forEach((x) -> System.out.println(x));
     }
 
-    public void cadastraAluno(AlunoDao alunos) {
+    public static void cadastraAluno(AlunoDao alunos) {
 
         Scanner sc = new Scanner(System.in);
         String nome;

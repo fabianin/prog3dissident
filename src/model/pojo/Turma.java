@@ -227,6 +227,15 @@ public class Turma {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Turma{" + "\nperiodo: " + periodo + "\nnumeroVagas: " + numeroVagas + "\nsala: " +
+                sala + "\ndisciplina ID:" + disciplina + "\nano: " + ano + "\natividades ID's: " + atividades + "\nalunos ID's: " + alunos + "\nfaltas: " + 
+                faltas + "\nprofessor: " + professor + "\nid: " + id + '}';
+    }
+    
+    
+
     public int getId() {
         return this.id;
     }

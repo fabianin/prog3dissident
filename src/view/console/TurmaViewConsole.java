@@ -26,7 +26,7 @@ import model.pojo.Turma;
  */
 public class TurmaViewConsole {
 
-    public boolean cadastraTurma(TurmaDao turmas, DisciplinaDao disc, ProfessorDao professores) {
+    public static boolean cadastraTurma(TurmaDao turmas, DisciplinaDao disc, ProfessorDao professores) {
         long periodo;
         long numeroVagas;
         long sala;
@@ -66,6 +66,9 @@ public class TurmaViewConsole {
             Logger.getLogger(TurmaViewConsole.class.getName()).log(Level.SEVERE, null, ex);
         }
         return true;
+    }
+    public static void imprimiTurmas(TurmaDao turmas){
+        turmas.getTurmas().stream().forEach((x) -> System.out.println(x));
     }
 
 }

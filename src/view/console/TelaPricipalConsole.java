@@ -40,24 +40,21 @@ public class TelaPricipalConsole {
 
     public static void main(String[] args) {
         TelaPricipalConsole tpc = new TelaPricipalConsole();
-        AlunoViewConsole alvc = new AlunoViewConsole();
-        TurmaViewConsole tvc = new TurmaViewConsole();
-        DisciplinaViewConsole dvc = new DisciplinaViewConsole();
         int opcao;
         do {
             opcao = tpc.showMenu();
             switch (opcao) {
                 case 1:
-                    alvc.cadastraAluno(tpc.getAlunos());
+                    AlunoViewConsole.cadastraAluno(tpc.getAlunos());
 //                    alvc.imprimirAlunos(tpc.getAlunos());
                     break;
                 case 2:
                     break;
-                case 3: dvc.cadastraDisciplina(tpc.getDisciplinas());
+                case 3: DisciplinaViewConsole.cadastraDisciplina(tpc.getDisciplinas());
                     break;
-                case 4: tvc.cadastraTurma(tpc.getTurmas(), tpc.getDisciplinas(), tpc.getProfessores());
+                case 4: TurmaViewConsole.cadastraTurma(tpc.getTurmas(), tpc.getDisciplinas(), tpc.getProfessores());
                     break;
-                case 5: dvc.imprimiDisciplinas(tpc.getDisciplinas());
+                case 5: 
                     break;
                 default:
                     System.out.println("Nenhuma opção selecionada");

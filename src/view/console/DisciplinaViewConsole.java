@@ -19,7 +19,7 @@ import model.pojo.Disciplina;
  * @author Fabiano
  */
 public class DisciplinaViewConsole {
-    public void cadastraDisciplina(DisciplinaDao disciplinas){
+    public static void cadastraDisciplina(DisciplinaDao disciplinas){
         System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎");
         System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎ CADASTRO DISCIPLINA ∎∎∎∎∎∎∎∎∎∎∎∎∎");
         System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎");
@@ -41,7 +41,7 @@ public class DisciplinaViewConsole {
         }
         
     }
-    public void imprimiDisciplinas(DisciplinaDao disciplinas){
+    public static void imprimiDisciplinas(DisciplinaDao disciplinas){
         disciplinas.getDisciplinas().stream().forEach((Disciplina x) -> {
             System.out.println(x);
         });
