@@ -29,13 +29,12 @@ public class DisciplinaDaoTxt implements DisciplinaDao {
 
     private final String filePath;
     private final File file;
-    private List<String> fileContent;
     private ArrayList<Disciplina> disciplinas;
 
     public DisciplinaDaoTxt() throws IOException {
         this.filePath = "txtdatabase/disciplinas.txt";
         this.file = new File(this.filePath);
-        this.fileContent = FileUtils.readLines(this.file, "UTF-8");
+        this.initDao();
     }
 
     private void initDao() {
@@ -53,13 +52,13 @@ public class DisciplinaDaoTxt implements DisciplinaDao {
                     Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });
-        } catch (IOException e) {
-            System.out.println("Houve um erro: " + e.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public ArrayList<Disciplina> getDisciplinas() {
-        return disciplinas;
+        return this.disciplinas;
     }
 
     @Override
@@ -73,12 +72,29 @@ public class DisciplinaDaoTxt implements DisciplinaDao {
 
     @Override
     public Disciplina getDisciplinaById(int id) {
-        List<Disciplina> disci = (List<Disciplina>) this.disciplinas.stream().filter(x -> x.getId() == id);
-        if (disci.size() > 0) {
-            return disci.get(0);
+        List<Disciplina> disciplinas = (List<Disciplina>) this.disciplinas.stream().filter(disciplina -> disciplina.hashCode() == id);
+        if (disciplinas.size() > 0) {
+            return disciplinas.get(0);
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void saveFile() throws IOException {
+        File f = new File(this.filePath);
+        if (f.isFile()) {
+            FileUtils.forceDelete(f);
+        }
+        this.disciplinas.stream().forEach(item -> {
+            try {
+                FileUtils.writeStringToFile(f, DaoTxtUtils.toJSON(item) + "\r\n", "UTF-8", true);
+            } catch (IOException ex) {
+                Logger.getLogger(DaoTxtUtils.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException ex) {
+                Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
 }

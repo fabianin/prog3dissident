@@ -6,6 +6,7 @@
 package model.dao;
 
 import exceptions.DisciplinaJaCadastradaException;
+import java.io.IOException;
 import model.pojo.Disciplina;
 
 /**
@@ -13,7 +14,11 @@ import model.pojo.Disciplina;
  * @author Fabiano
  */
 public interface DisciplinaDao {
-    public void addDisciplina(Disciplina disciplina)throws DisciplinaJaCadastradaException;
+
+    public void addDisciplina(Disciplina disciplina) throws DisciplinaJaCadastradaException;
+
     public Disciplina getDisciplinaById(int id);
     
+    public void saveFile() throws IOException;
+
 }

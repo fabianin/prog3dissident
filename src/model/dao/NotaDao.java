@@ -6,6 +6,7 @@
 package model.dao;
 
 import exceptions.NotaJaCadastradaException;
+import java.io.IOException;
 import java.util.ArrayList;
 import model.pojo.Nota;
 
@@ -44,5 +45,12 @@ public interface NotaDao {
      * @param nota
      */
     public void adicionaNota(Nota nota) throws NotaJaCadastradaException;
+
+    /**
+     * Salva o arquivo atual
+     *
+     * @throws IOException
+     */
+    public void saveFile() throws IOException;
 
 }

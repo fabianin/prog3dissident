@@ -5,7 +5,8 @@
  */
 package model.dao.txt;
 
-import exceptions.NotaJaCadastradaException;
+import exceptions.AlunoJaCadastradoException;
+import exceptions.TurmaJaCadastradaException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,9 +14,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import model.dao.NotaDao;
+import model.dao.AlunoDao;
 import model.pojo.Aluno;
+import model.pojo.Disciplina;
 import model.pojo.Nota;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
@@ -25,18 +26,18 @@ import org.json.JSONObject;
  *
  * @author Elias Júnior
  */
-public class NotaDaoTxt implements NotaDao {
+public class AlunoDaoTxt implements AlunoDao {
 
-    private String filePath = "txtdatabase/notas.txt";
-    private File file;
-    private ArrayList<Nota> notas;
+    private final String filePath = "txtdatabase/alunos.txt";
+    private final File file;
+    private final ArrayList<Aluno> alunos;
 
     /**
      * Construtor do DAO
      */
-    public NotaDaoTxt() {
-        this.notas = new ArrayList<>();
+    public AlunoDaoTxt() {
         this.file = new File(this.filePath);
+        this.alunos = new ArrayList<>();
         this.initDao();
     }
 
@@ -47,13 +48,16 @@ public class NotaDaoTxt implements NotaDao {
     private void initDao() {
         try {
             List<String> conteudo = FileUtils.readLines(this.file, "UTF-8");
-            conteudo.stream().filter(str -> !str.isEmpty()).forEach(str -> {
+            conteudo.stream().filter(str -> !str.isEmpty()).forEach((String str) -> {
                 try {
-                    JSONObject objNota = new JSONObject(str);
-                    Nota nota = DaoTxtUtils.createNotaFromJSON(objNota);
-                    this.notas.add(nota);
+                    JSONObject objAluno = new JSONObject(str);
+                    Aluno aluno;
+                    aluno = DaoTxtUtils.createAlunoFromJSON(objAluno);
+                    this.alunos.add(aluno);
                 } catch (JSONException ex) {
                     Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (TurmaJaCadastradaException ex) {
+                    Logger.getLogger(DisciplinaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
                 }
             });
         } catch (IOException ex) {
@@ -62,40 +66,36 @@ public class NotaDaoTxt implements NotaDao {
     }
 
     @Override
-    public ArrayList<Nota> getNotas() {
-        return this.notas;
-    }
-
-    @Override
-    public Nota getNotaPorAlunoId(int alunoId) {
-        List<Nota> notas = this.notas.stream().filter(nota -> nota.getAluno() == alunoId).collect(Collectors.toList());
-        if (notas.size() > 0) {
-            return notas.get(0);
+    public Aluno getAlunoById(int alunoId) {
+        List<Aluno> alunos = this.alunos.stream().filter(aluno -> aluno.hashCode() == alunoId).collect(Collectors.toList());
+        if (alunos.size() > 0) {
+            return alunos.get(0);
         } else {
+            return null;
         }
-        return null;
     }
 
     @Override
-    public Nota getNotaPorId(int notaId) {
-        List<Nota> notas = this.notas.stream().filter(nota -> nota.hashCode() == notaId).collect(Collectors.toList());
-        if (notas.size() > 0) {
-            return notas.get(0);
-        }
-        return null;
+    public ArrayList<Aluno> getAlunos() {
+        return this.alunos;
     }
 
     @Override
-    public void adicionaNota(Nota nota) throws NotaJaCadastradaException {
-        if (this.getNotaPorId(nota.hashCode()) == null) {
-            this.notas.add(nota);
-            try {
-                this.saveFile();
-            } catch (IOException ex) {
-                Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
-            }
+    public Aluno getAlunoByMatricula(long matricula) {
+        List<Aluno> alunos = this.alunos.stream().filter(aluno -> aluno.getMatricula() == matricula).collect(Collectors.toList());
+        if (alunos.size() > 0) {
+            return alunos.get(0);
         } else {
-            throw new NotaJaCadastradaException();
+            return null;
+        }
+    }
+
+    @Override
+    public void adicionaAluno(Aluno aluno) throws AlunoJaCadastradoException {
+        if (this.alunos.contains(aluno)) {
+            throw new AlunoJaCadastradoException();
+        } else {
+            this.alunos.add(aluno);
         }
     }
 
@@ -105,7 +105,7 @@ public class NotaDaoTxt implements NotaDao {
         if (f.isFile()) {
             FileUtils.forceDelete(f);
         }
-        this.notas.stream().forEach(item -> {
+        this.alunos.stream().forEach(item -> {
             try {
                 FileUtils.writeStringToFile(f, DaoTxtUtils.toJSON(item) + "\r\n", "UTF-8", true);
             } catch (IOException ex) {
