@@ -20,6 +20,4 @@ public interface AlunoDao {
 
     public ArrayList<Aluno> getAlunos();
 
-    public boolean removeAluno(Integer id);
-
 }
