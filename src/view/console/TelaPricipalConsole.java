@@ -24,28 +24,18 @@ import model.dao.txt.TurmaDaoTxt;
  *
  * @author Elias Júnior
  */
-public class TelaPrincipalConsole {
-
-    private final AlunoDao alunos;
-    private final AtividadeDao atividades;
-    private final DisciplinaDao disciplinas;
-    private final FaltaDao faltas;
-    private final NotaDao notas;
-    private final ProfessorDao professores;
-    private final TurmaDao turmas;
-
-    public TelaPrincipalConsole() {
-        this.alunos = new AlunoDaoTxt();
-        this.atividades = new AtividadeDaoTxt();
-        this.disciplinas = new DisciplinaDaoTxt();
-        this.faltas = new FaltaDaoTxt();
-        this.notas = new NotaDaoTxt();
-        this.professores = new ProfessorDaoTxt();
-        this.turmas = new TurmaDaoTxt();
-    }
+public class TelaPricipalConsole {
+    
+    private final AlunoDao alunos = new AlunoDaoTxt();
+    private final AtividadeDao atividades = new AtividadeDaoTxt();
+    private final DisciplinaDao disciplinas = new DisciplinaDaoTxt();
+    private final FaltaDao faltas = new FaltaDaoTxt();
+    private final NotaDao notas = new NotaDaoTxt();
+    private final ProfessorDao professores = new ProfessorDaoTxt();
+    private final TurmaDao turmas = new TurmaDaoTxt();
 
     public static void main(String[] args) {
-        TelaPrincipalConsole tpc = new TelaPrincipalConsole();
+        System.out.println("ahhh");
     }
-
+    
 }
