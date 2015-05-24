@@ -40,13 +40,14 @@ public class TelaPricipalConsole {
 
     public static void main(String[] args) {
         TelaPricipalConsole tpc = new TelaPricipalConsole();
-        AlunoView alv = new AlunoView();
+        AlunoViewConsole alvc = new AlunoViewConsole();
         int opcao;
         do {
             opcao = tpc.showMenu();
             switch (opcao) {
                 case 1:
-                    alv.cadastraAluno(tpc.getAlunos());
+                    alvc.cadastraAluno(tpc.getAlunos());
+//                    alvc.imprimirAlunos(tpc.getAlunos());
                     break;
                 default:
                     System.out.println("Nenhuma opção selecionada");
