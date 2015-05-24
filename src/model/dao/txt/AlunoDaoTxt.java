@@ -5,14 +5,18 @@
  */
 package model.dao.txt;
 
+import exceptions.TurmaJaCadastradaException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import model.dao.AlunoDao;
+import model.dao.TurmaDao;
 import model.pojo.Aluno;
+import model.pojo.Turma;
 import org.apache.commons.io.FileUtils;
 
 /**
@@ -25,21 +29,19 @@ public class AlunoDaoTxt implements AlunoDao {
     private final String filePath;
     private final File file;
     private List<String> fileContent;
+    private TurmaDao turmaDao;
 
     public AlunoDaoTxt() {
         this.filePath = "txtdatabase/alunos.txt";
         this.file = new File(this.filePath);
         this.lastId = 0;
+        this.turmaDao = new TurmaDaoTxt();
         try {
             this.fileContent = FileUtils.readLines(this.file, "UTF-8");
             this.defLastId();
         } catch (IOException e) {
             System.out.println("Não encontrado");
         }
-    }
-
-    private void setLastId(Integer id) {
-        this.lastId = id;
     }
 
     private void setLastId(String id) {
@@ -79,6 +81,13 @@ public class AlunoDaoTxt implements AlunoDao {
                     String nome = colunas[2];
                     long cpf = Long.parseLong(colunas[3]);
                     Aluno aluno = new Aluno(matricula, nome, cpf);
+                    for (Turma turma : this.turmaDao.getTurmasDeAluno(id)) {
+                        try {
+                            aluno.addTurma(turma);
+                        } catch (TurmaJaCadastradaException ex) {
+                            Logger.getLogger(AlunoDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
                     return aluno;
                 }
             }
@@ -103,10 +112,18 @@ public class AlunoDaoTxt implements AlunoDao {
         for (String line : this.fileContent) {
             if (!line.isEmpty()) {
                 String[] colunas = line.split(";");
+                Integer id = Integer.parseInt(colunas[0]);
                 long matricula = Long.parseLong(colunas[1]);
                 String nome = colunas[2];
                 long cpf = Long.parseLong(colunas[3]);
                 Aluno aluno = new Aluno(matricula, nome, cpf);
+                for (Turma turma : this.turmaDao.getTurmasDeAluno(id)) {
+                    try {
+                        aluno.addTurma(turma);
+                    } catch (TurmaJaCadastradaException ex) {
+                        Logger.getLogger(AlunoDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                 alunos.add(aluno);
             }
         }

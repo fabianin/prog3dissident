@@ -5,6 +5,7 @@
  */
 package model.pojo;
 
+import exceptions.TurmaJaCadastradaException;
 import java.util.ArrayList;
 
 /**
@@ -54,9 +55,18 @@ public class Aluno extends Pessoa {
         return turmas;
     }
 
+    public void addTurma(Turma turma) throws TurmaJaCadastradaException {
+        if (!this.turmas.contains(turma)) {
+            this.turmas.add(turma);
+        } else {
+            throw new TurmaJaCadastradaException("Turma já está cadastrada.");
+        }
+    }
+
     @Override
     public String toString() {
-        return "Aluno{" + "matricula=" + matricula + '}';
+        String str = "Aluno: \n " + "matricula: " + this.getMatricula() + "\n nome: " + this.getNome() + "\n cpf: " + this.getCpf();
+        return str;
     }
 
     @Override
