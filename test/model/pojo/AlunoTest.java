@@ -48,8 +48,6 @@ public class AlunoTest {
         long expResult = 0L;
         long result = instance.getMatricula();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -62,8 +60,6 @@ public class AlunoTest {
         ArrayList<Turma> expResult = null;
         ArrayList<Turma> result = instance.getTurmas();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -76,8 +72,6 @@ public class AlunoTest {
         String expResult = "";
         String result = instance.toString();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
