@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import model.dao.TurmaDao;
 import model.pojo.Disciplina;
 import model.pojo.Nota;
@@ -72,17 +73,42 @@ public class TurmaDaoTxt implements TurmaDao {
 
     @Override
     public Turma getTurmaById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Turma> turmas = this.turmas.stream().filter(turma -> turma.hashCode() == id).collect(Collectors.toList());
+        if (turmas.size() > 0) {
+            return turmas.get(0);
+        }
+        return null;
     }
 
     @Override
     public ArrayList<Turma> getTurmas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.turmas;
     }
 
     @Override
     public void saveFile() throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        File f = new File(this.filePath);
+        if (f.isFile()) {
+            FileUtils.forceDelete(f);
+        }
+        this.turmas.stream().forEach(item -> {
+            try {
+                FileUtils.writeStringToFile(f, DaoTxtUtils.toJSON(item) + "\r\n", "UTF-8", true);
+            } catch (IOException ex) {
+                Logger.getLogger(DaoTxtUtils.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JSONException ex) {
+                Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
+    }
+
+    @Override
+    public void adicionarTurma(Turma turma) throws TurmaJaCadastradaException {
+        if (this.turmas.contains(turma.hashCode())) {
+            throw new TurmaJaCadastradaException();
+        } else {
+            this.turmas.add(turma);
+        }
     }
 
 }

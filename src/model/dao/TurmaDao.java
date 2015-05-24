@@ -5,6 +5,7 @@
  */
 package model.dao;
 
+import exceptions.TurmaJaCadastradaException;
 import java.io.IOException;
 import java.util.ArrayList;
 import model.pojo.Turma;
@@ -20,5 +21,7 @@ public interface TurmaDao {
     public ArrayList<Turma> getTurmas();
 
     public void saveFile() throws IOException;
+
+    public void adicionarTurma(Turma turma) throws TurmaJaCadastradaException;
 
 }

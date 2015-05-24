@@ -97,7 +97,7 @@ public class DisciplinaDaoTxt implements DisciplinaDao {
             } catch (IOException ex) {
                 Logger.getLogger(DaoTxtUtils.class.getName()).log(Level.SEVERE, null, ex);
             } catch (JSONException ex) {
-                Logger.getLogger(NotaDaoTxt.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(DaoTxtUtils.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
