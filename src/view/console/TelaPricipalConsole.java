@@ -5,8 +5,6 @@
  */
 package view.console;
 
-import exceptions.AlunoJaCadastradoException;
-import java.io.IOException;
 import java.util.Scanner;
 import model.dao.AlunoDao;
 import model.dao.AtividadeDao;
@@ -22,7 +20,6 @@ import model.dao.txt.FaltaDaoTxt;
 import model.dao.txt.NotaDaoTxt;
 import model.dao.txt.ProfessorDaoTxt;
 import model.dao.txt.TurmaDaoTxt;
-import model.pojo.Aluno;
 
 /**
  *
@@ -48,6 +45,29 @@ public class TelaPricipalConsole {
                 case 1:
                     alvc.cadastraAluno(tpc.getAlunos());
 //                    alvc.imprimirAlunos(tpc.getAlunos());
+                    break;
+                case 2:
+                    ProfessorViewConsole.cadastraProfessor(tpc.getProfessores());
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    AtividadeViewConsole.cadastraAtividade(tpc.getAtividades(), tpc.getTurmas());
+                    break;
+                case 6:
+                    NotaViewConsole.cadastrarNota(tpc.getNotas(), tpc.getAlunos(), tpc.getTurmas());
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                case 9:
+                    break;
+                case 10:
+                    break;
+                case 11:
                     break;
                 default:
                     System.out.println("Nenhuma opção selecionada");
@@ -87,8 +107,6 @@ public class TelaPricipalConsole {
         return answer;
 
     }
-
-    
 
     public AlunoDao getAlunos() {
         return alunos;

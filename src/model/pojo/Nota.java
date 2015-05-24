@@ -17,6 +17,7 @@ public class Nota {
 
     private double valorObtido;
     private final int aluno;
+    private final int turma;
 
     /**
      * Construtor da nota
@@ -25,7 +26,7 @@ public class Nota {
      * @param aluno Aluno da nota
      * @throws IllegalArgumentException
      */
-    public Nota(double valorObtido, int aluno) throws IllegalArgumentException {
+    public Nota(double valorObtido, int aluno, int turma) throws IllegalArgumentException {
         Objects.requireNonNull(aluno, "Aluno não pode ser null.");
         if (valorObtido < 0 || valorObtido > 10) {
             throw new IllegalArgumentException("Valor obtido deve ser entre 0 e 10.");
@@ -33,6 +34,7 @@ public class Nota {
         this.valorObtido = valorObtido;
         this.aluno = aluno;
         this.id = this.hashCode();
+        this.turma = turma;
     }
 
     /**
