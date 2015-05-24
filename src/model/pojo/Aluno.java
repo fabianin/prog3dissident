@@ -7,6 +7,7 @@ package model.pojo;
 
 import exceptions.TurmaJaCadastradaException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Essa classe representa a entidade aluno e o ID de cada objeto será a própria
@@ -36,11 +37,12 @@ public class Aluno extends Pessoa {
         this.matricula = matricula;
         this.turmas = new ArrayList<>();
     }
-    public String toFile(){
+
+    public String toFile() {
         String str;
-        str= this.getNome()+";"+this.getCpf()+";"+this.hashCode()+";";
-        for(Turma x: this.getTurmas()){
-            str +=x.toFile()+"#";
+        str = this.getNome() + ";" + this.getCpf() + ";" + this.hashCode() + ";";
+        for (Turma x : this.getTurmas()) {
+            str += x.toFile() + "#";
         }
         return str;
     }
@@ -65,6 +67,7 @@ public class Aluno extends Pessoa {
 
     /**
      * Adicionar turma em um aluno
+     *
      * @param turma turma a ser cadastrado
      * @throws TurmaJaCadastradaException
      */
@@ -84,8 +87,9 @@ public class Aluno extends Pessoa {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + (int) (this.matricula ^ (this.matricula >>> 32));
+        int hash = 7;
+        hash = 19 * hash + (int) (this.matricula ^ (this.matricula >>> 32));
+        hash = 19 * hash + Objects.hashCode(this.turmas);
         return hash;
     }
 
@@ -98,7 +102,10 @@ public class Aluno extends Pessoa {
             return false;
         }
         final Aluno other = (Aluno) obj;
-        return (this.matricula == other.matricula);
+        if (this.hashCode() != other.hashCode()) {
+            return false;
+        }
+        return true;
     }
 
 }

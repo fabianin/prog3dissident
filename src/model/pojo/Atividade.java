@@ -100,9 +100,11 @@ public class Atividade {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 89 * hash + Objects.hashCode(this.nome);
-        hash = 89 * hash + Objects.hashCode(this.data);
+        int hash = 7;
+        hash = 37 * hash + Objects.hashCode(this.notas);
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.data);
+        hash = 37 * hash + Objects.hashCode(this.tipo);
         return hash;
     }
 
@@ -115,16 +117,12 @@ public class Atividade {
             return false;
         }
         final Atividade other = (Atividade) obj;
-        if (!Objects.equals(this.nome, other.nome)) {
-            return false;
-        }
-        if (!Objects.equals(this.data, other.data)) {
-            return false;
-        }
-        if (!Objects.equals(this.tipo, other.tipo)) {
+        if (this.hashCode() != other.hashCode()) {
             return false;
         }
         return true;
     }
+
+    
 
 }
