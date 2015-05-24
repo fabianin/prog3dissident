@@ -6,14 +6,13 @@
 package model.dao.txt;
 
 import exceptions.FaltaJaCadastradaException;
-import exceptions.TurmaJaCadastradaException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.pojo.Disciplina;
+import model.dao.FaltaDao;
 import model.pojo.Falta;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
@@ -23,7 +22,7 @@ import org.json.JSONObject;
  *
  * @author Fabiano
  */
-public class FaltaDaoTxt {
+public class FaltaDaoTxt implements FaltaDao{
 
     private final String filePath = "txtdatabase/faltas.txt";
     private final File file;
