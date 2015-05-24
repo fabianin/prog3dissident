@@ -62,6 +62,7 @@ public class NotaDaoTxt implements NotaDao {
         List<Nota> notas = this.notas.stream().filter(nota -> nota.getAluno() == alunoId).collect(Collectors.toList());
         if (notas.size()) {
             return notas.get(0);
+        } else {
         }
         return null;
     }
