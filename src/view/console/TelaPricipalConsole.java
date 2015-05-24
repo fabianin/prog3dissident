@@ -28,8 +28,6 @@ import model.pojo.Aluno;
  *
  * @author Elias Júnior
  */
-
-
 public class TelaPricipalConsole {
 
     private final AlunoDao alunos = new AlunoDaoTxt();
@@ -122,6 +120,34 @@ public class TelaPricipalConsole {
         System.out.println("Fim!");
         System.out.println("");
 
+    }
+
+    public AlunoDao getAlunos() {
+        return alunos;
+    }
+
+    public AtividadeDao getAtividades() {
+        return atividades;
+    }
+
+    public DisciplinaDao getDisciplinas() {
+        return disciplinas;
+    }
+
+    public FaltaDao getFaltas() {
+        return faltas;
+    }
+
+    public NotaDao getNotas() {
+        return notas;
+    }
+
+    public ProfessorDao getProfessores() {
+        return professores;
+    }
+
+    public TurmaDao getTurmas() {
+        return turmas;
     }
 
 }
