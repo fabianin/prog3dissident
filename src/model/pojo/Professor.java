@@ -15,7 +15,7 @@ import java.util.Objects;
  * @author Fabiano
  */
 public class Professor extends Pessoa {
-
+    private final int id;
     private final String departamento;
     private ArrayList<Integer> disciplinasApto;
     private ArrayList<Integer> turmasLecionando;
@@ -34,6 +34,7 @@ public class Professor extends Pessoa {
             throw new IllegalArgumentException("Departamento não pode estar vazio.");
         }
         this.departamento = departamento;
+        this.id = this.hashCode();
     }
 
     /**
@@ -44,6 +45,36 @@ public class Professor extends Pessoa {
     public String getDepartamento() {
         return this.departamento;
     }
+
+    @Override
+    public final int hashCode() {
+        int hash = 5;
+        hash = 41 * hash + Objects.hashCode(this.nome);
+        hash = 41 * hash + Objects.hashCode(this.departamento);
+        hash = 41 * hash + Objects.hashCode(this.disciplinasApto);
+        hash = 41 * hash + Objects.hashCode(this.turmasLecionando);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Professor other = (Professor) obj;
+        if (!Objects.equals(this.departamento, other.departamento)) {
+            return false;
+        }
+        if (!Objects.equals(this.disciplinasApto, other.disciplinasApto)) {
+            return false;
+        }
+        return Objects.equals(this.turmasLecionando, other.turmasLecionando);
+    }
+    
+    
 
     /**
      * Adiciona uma disciplina que o professor pode lecionar

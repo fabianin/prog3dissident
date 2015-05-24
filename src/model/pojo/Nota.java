@@ -13,8 +13,10 @@ import java.util.Objects;
  */
 public class Nota {
 
+    private final int id;
+
     private final double valorObtido;
-    private final Aluno aluno;
+    private final Integer aluno;
 
     /**
      * Construtor da nota
@@ -23,13 +25,14 @@ public class Nota {
      * @param aluno Aluno da nota
      * @throws IllegalArgumentException
      */
-    public Nota(double valorObtido, Aluno aluno) throws IllegalArgumentException {
+    public Nota(double valorObtido, Integer aluno) throws IllegalArgumentException {
         Objects.requireNonNull(aluno, "Aluno não pode ser null.");
         if (valorObtido < 0 || valorObtido > 10) {
             throw new IllegalArgumentException("Valor obtido deve ser entre 0 e 10.");
         }
         this.valorObtido = valorObtido;
         this.aluno = aluno;
+        this.id = this.hashCode();
     }
 
     /**
@@ -46,12 +49,35 @@ public class Nota {
         return "valor Obtido = " + valorObtido + "\r\n";
     }
 
+    @Override
+    public final int hashCode() {
+        int hash = 7;
+        hash = 67 * hash + (int) (Double.doubleToLongBits(this.valorObtido) ^ (Double.doubleToLongBits(this.valorObtido) >>> 32));
+        hash = 67 * hash + Objects.hashCode(this.aluno);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Nota other = (Nota) obj;
+        if (Double.doubleToLongBits(this.valorObtido) != Double.doubleToLongBits(other.valorObtido)) {
+            return false;
+        }
+        return Objects.equals(this.aluno, other.aluno);
+    }
+
     /**
      * Obtém o aluno
      *
      * @return Aluno
      */
-    public Aluno getAluno() {
+    public Integer getAluno() {
         return aluno;
     }
 

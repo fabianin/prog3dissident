@@ -12,8 +12,8 @@ import java.util.Objects;
  * @author Fabiano
  */
 public abstract class Pessoa {
-
-    private final String nome;
+    
+    final String nome;
     private final long cpf;
 
     /**

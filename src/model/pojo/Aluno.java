@@ -19,6 +19,7 @@ public class Aluno extends Pessoa {
 
     private final long matricula;   
     private final ArrayList<Integer> turmas;
+    private int id;
 
     /**
      * Construtor do aluno
@@ -36,6 +37,7 @@ public class Aluno extends Pessoa {
         }
         this.matricula = matricula;
         this.turmas = new ArrayList<>();
+        this.id = this.hashCode();
     }
 
     /**
@@ -77,12 +79,13 @@ public class Aluno extends Pessoa {
     }
 
     @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 19 * hash + (int) (this.matricula ^ (this.matricula >>> 32));
-        hash = 19 * hash + Objects.hashCode(this.turmas);
+    public final int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + (int) (this.matricula ^ (this.matricula >>> 32));
         return hash;
     }
+
+    
 
     @Override
     public boolean equals(Object obj) {

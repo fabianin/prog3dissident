@@ -19,12 +19,13 @@ public class Turma {
     private final long periodo;
     private final long numeroVagas;
     private final long sala;
-    private final Disciplina disciplina;
+    private final Integer disciplina;
     private final long ano;
     private final ArrayList<Integer> atividades = new ArrayList<>();
     private final ArrayList<Integer> alunos = new ArrayList<>();
     private final ArrayList<Integer> faltas = new ArrayList<>();
-    private final Professor professor;
+    private final Integer professor;
+    private final int id;
 
     /**
      * Construtor de uma turma
@@ -38,7 +39,7 @@ public class Turma {
      * @throws NullPointerException
      * @throws IllegalArgumentException
      */
-    public Turma(Disciplina disciplina, long periodo, long numeroVagas, long sala, long ano, Professor professor)
+    public Turma(Integer disciplina, long periodo, long numeroVagas, long sala, long ano, Integer professor)
             throws NullPointerException, IllegalArgumentException, ProfessorNaoAptoDisciplinaException {
         Objects.requireNonNull(ano, "Ano não pode ser null");
         Objects.requireNonNull(professor, "Professor não pode ser null");
@@ -51,8 +52,6 @@ public class Turma {
             throw new IllegalArgumentException("Sala não pode ser menor que 1");
         } else if (numeroVagas < 1) {
             throw new IllegalArgumentException("Numero de vagas não pode ser 0 ou negativo");
-        } else if (!professor.getDisciplinasApto().contains(disciplina)) {
-            throw new ProfessorNaoAptoDisciplinaException("Este professor não está apto a dar essa disciplina.");
         }
         this.disciplina = disciplina;
         this.periodo = periodo;
@@ -60,13 +59,10 @@ public class Turma {
         this.sala = sala;
         this.ano = ano;
         this.professor = professor;
+        this.id = this.hashCode();
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        return hash;
-    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -95,10 +91,7 @@ public class Turma {
         if (this.ano != other.ano) {
             return false;
         }
-        if (!Objects.equals(this.professor, other.professor)) {
-            return false;
-        }
-        return true;
+        return (this.hashCode() == other.hashCode());
     }
 
     /**
@@ -133,7 +126,7 @@ public class Turma {
      *
      * @return disciplina
      */
-    public Disciplina getDisciplina() {
+    public Integer getDisciplina() {
         return this.disciplina;
     }
 
@@ -178,15 +171,20 @@ public class Turma {
      *
      * @return professor
      */
-    public Professor getProfessor() {
+    public Integer getProfessor() {
         return this.professor;
     }
 
     @Override
-    public String toString() {
-        return "Turma: \r\nPeriodo: " + this.getPeriodo() + "\r\nNumero de vagas: "
-                + this.getNumeroVagas() + "\r\nSala: " + this.getSala() + "\r\nDisciplina: " + this.getDisciplina()
-                + "\r\nAno: " + this.getAno() + "\r\nAtividades: " + this.getAtividades() + "\r\nAlunos: "
-                + this.getAlunos() + "\r\nFaltas: " + this.getFaltas() + "\r\nProfessor=" + this.getProfessor();
+    public final int hashCode() {
+        int hash = 5;
+        hash = 13 * hash + (int) (this.periodo ^ (this.periodo >>> 32));
+        hash = 13 * hash + (int) (this.numeroVagas ^ (this.numeroVagas >>> 32));
+        hash = 13 * hash + (int) (this.sala ^ (this.sala >>> 32));
+        hash = 13 * hash + Objects.hashCode(this.disciplina);
+        hash = 13 * hash + (int) (this.ano ^ (this.ano >>> 32));
+        hash = 13 * hash + Objects.hashCode(this.professor);
+        return hash;
     }
+    
 }

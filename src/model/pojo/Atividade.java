@@ -20,6 +20,7 @@ public class Atividade {
     private final String nome;
     private final Calendar data;
     private final String tipo;
+    private final int id;
 
     /**
      * Construtor para atividade
@@ -44,6 +45,7 @@ public class Atividade {
         this.data = data; // define data
         this.tipo = tipo; // define tipo
         this.notas = new ArrayList<>(); // cria nova lista vazia para as notas
+        this.id = this.hashCode();
     }
 
     /**
@@ -99,7 +101,7 @@ public class Atividade {
     }
 
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int hash = 7;
         hash = 37 * hash + Objects.hashCode(this.notas);
         hash = 37 * hash + Objects.hashCode(this.nome);
@@ -117,10 +119,8 @@ public class Atividade {
             return false;
         }
         final Atividade other = (Atividade) obj;
-        if (this.hashCode() != other.hashCode()) {
-            return false;
-        }
-        return true;
+        
+        return this.hashCode() == other.hashCode();
     }
 
     
