@@ -112,5 +112,14 @@ public class FaltaDaoTxt implements FaltaDao {
             return null;
         }
     }
+    public Falta getFaltaByIdAluno(int AlunoId) {
+        List<Falta> falta;
+        falta = (List<Falta>) this.faltas.stream().filter(fal -> fal.getAluno() == AlunoId);
+        if (falta.size() > 0) {
+            return falta.get(0);
+        } else {
+            return null;
+        }
+    }
 
 }

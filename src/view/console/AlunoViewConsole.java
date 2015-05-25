@@ -7,12 +7,23 @@ package view.console;
 
 import exceptions.AlunoJaCadastradoException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.dao.AlunoDao;
+import model.dao.AtividadeDao;
+import model.dao.DisciplinaDao;
+import model.dao.FaltaDao;
+import model.dao.NotaDao;
+import model.dao.TurmaDao;
 import model.dao.txt.AlunoDaoTxt;
 import model.pojo.Aluno;
+import model.pojo.Atividade;
+import model.pojo.Disciplina;
+import model.pojo.Falta;
+import model.pojo.Nota;
+import model.pojo.Turma;
 
 /**
  *
@@ -59,6 +70,36 @@ public class AlunoViewConsole {
         System.out.println("Fim!");
         System.out.println("");
 
+    }
+    public static void consultaAluno(int alunoId, AtividadeDao atividades, NotaDao notas, FaltaDao faltas, TurmaDao turmas, AlunoDao alunos, DisciplinaDao disciplinas){
+        Aluno al = alunos.getAlunoById(alunoId);
+        ArrayList<Turma> listaTurmas = new ArrayList<>();
+        for(int x : al.getTurmas()){
+            listaTurmas.add(turmas.getTurmaById(x));
+        }
+        for(Turma t : listaTurmas){
+            double total=0.0;
+            ArrayList<Atividade> listaAtividades  = new ArrayList<>();
+            Disciplina d = disciplinas.getDisciplinaById(t.getDisciplina());
+            Falta f = faltas.getFaltaByIdAluno(alunoId);
+            for(int a : t.getAtividades()){
+                listaAtividades.add(atividades.getAtividadeById(a));
+                ArrayList<Nota> listaNotas = new ArrayList<>();
+                for(Atividade z : listaAtividades){
+                    listaNotas.add(notas.getNotaPorAlunoId(alunoId));
+                }
+                for(Nota m : listaNotas){
+                    total+=m.getValorObtido();
+                }
+                total /=listaNotas.size();
+            }
+            double pFaltas = f.getFaltas()/d.getCargaHoraria();
+            if(total >= 6 && pFaltas < 0.25){
+                System.out.println("O aluno está aprovado na turma: "+t.getId());
+            } else{
+                System.out.println("O aluno está reprovado na turma: "+t.getId());
+            }
+        }
     }
 
 }

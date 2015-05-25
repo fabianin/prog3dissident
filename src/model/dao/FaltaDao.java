@@ -23,5 +23,7 @@ public interface FaltaDao {
     public void addFalta(Falta falta) throws FaltaJaCadastradaException, IOException;
 
     public ArrayList<Falta> getFaltas();
+    
+    public Falta getFaltaByIdAluno(int AlunoId);
 
 }
