@@ -71,33 +71,38 @@ public class AlunoViewConsole {
         System.out.println("");
 
     }
-    public static void consultaAluno(int alunoId, AtividadeDao atividades, NotaDao notas, FaltaDao faltas, TurmaDao turmas, AlunoDao alunos, DisciplinaDao disciplinas){
+
+    public static void consultaAluno(AtividadeDao atividades, NotaDao notas, FaltaDao faltas, TurmaDao turmas, AlunoDao alunos, DisciplinaDao disciplinas) {
+        Scanner sc = new Scanner(System.in);
+        int alunoId;
+        System.out.println("Digite o ID do aluno que deseja consultar");
+        alunoId = sc.nextInt();
         Aluno al = alunos.getAlunoById(alunoId);
         ArrayList<Turma> listaTurmas = new ArrayList<>();
-        for(int x : al.getTurmas()){
+        for (int x : al.getTurmas()) {
             listaTurmas.add(turmas.getTurmaById(x));
         }
-        for(Turma t : listaTurmas){
-            double total=0.0;
-            ArrayList<Atividade> listaAtividades  = new ArrayList<>();
+        for (Turma t : listaTurmas) {
+            double total = 0.0;
+            ArrayList<Atividade> listaAtividades = new ArrayList<>();
             Disciplina d = disciplinas.getDisciplinaById(t.getDisciplina());
             Falta f = faltas.getFaltaByIdAluno(alunoId);
-            for(int a : t.getAtividades()){
+            for (int a : t.getAtividades()) {
                 listaAtividades.add(atividades.getAtividadeById(a));
                 ArrayList<Nota> listaNotas = new ArrayList<>();
-                for(Atividade z : listaAtividades){
+                for (Atividade z : listaAtividades) {
                     listaNotas.add(notas.getNotaPorAlunoId(alunoId));
                 }
-                for(Nota m : listaNotas){
-                    total+=m.getValorObtido();
+                for (Nota m : listaNotas) {
+                    total += m.getValorObtido();
                 }
-                total /=listaNotas.size();
+                total /= listaNotas.size();
             }
-            double pFaltas = f.getFaltas()/d.getCargaHoraria();
-            if(total >= 6 && pFaltas < 0.25){
-                System.out.println("O aluno está aprovado na turma: "+t.getId());
-            } else{
-                System.out.println("O aluno está reprovado na turma: "+t.getId());
+            double pFaltas = f.getFaltas() / d.getCargaHoraria();
+            if (total >= 6 && pFaltas < 0.25) {
+                System.out.println("O aluno está aprovado na turma: " + t.getId());
+            } else {
+                System.out.println("O aluno está reprovado na turma: " + t.getId());
             }
         }
     }

@@ -63,7 +63,7 @@ public class TelaPricipalConsole {
                     break;
                 case 8:
                     break;
-                case 9:
+                case 9: AlunoViewConsole.consultaAluno(tpc.getAtividades(), tpc.getNotas(),tpc.getFaltas(), tpc.getTurmas(), tpc.getAlunos(), tpc.getDisciplinas());
                     break;
                 case 10: DisciplinaViewConsole.consultarTurmas(tpc.getDisciplinas());
                     break;
