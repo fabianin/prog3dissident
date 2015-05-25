@@ -98,7 +98,7 @@ public class TelaPricipalConsole {
         System.out.println("9) Consultar situação de aluno em uma disciplina");
         System.out.println("10) Consu11ltar o número de turmas já oferecidas por disciplina");
         System.out.println("11) Consultar o número de disciplinas já lecionadas por um professor");
-        System.out.println("(11) Matricular aluno em uma turma");
+        System.out.println("(12) Matricular aluno em uma turma");
         System.out.println("");
         System.out.print("Escolha uma das opções: ");
 
