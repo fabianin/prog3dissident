@@ -45,6 +45,9 @@ public class Falta {
         return this.faltas;
     }
 
+    public int getTurma() {
+        return turma;
+    }
 
     /**
      * Obtém aluno relacionado a falta

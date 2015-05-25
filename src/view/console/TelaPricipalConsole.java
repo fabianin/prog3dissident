@@ -48,9 +48,11 @@ public class TelaPricipalConsole {
                 case 2:
                     ProfessorViewConsole.cadastraProfessor(tpc.getProfessores());
                     break;
-                case 3: DisciplinaViewConsole.cadastraDisciplina(tpc.getDisciplinas());
+                case 3:
+                    DisciplinaViewConsole.cadastraDisciplina(tpc.getDisciplinas());
                     break;
-                case 4: TurmaViewConsole.cadastraTurma(tpc.getTurmas(), tpc.getDisciplinas(), tpc.getProfessores());
+                case 4:
+                    TurmaViewConsole.cadastraTurma(tpc.getTurmas(), tpc.getDisciplinas(), tpc.getProfessores());
                     break;
                 case 5:
                     AtividadeViewConsole.cadastraAtividade(tpc.getAtividades(), tpc.getTurmas());
@@ -62,12 +64,15 @@ public class TelaPricipalConsole {
                     FaltasViewConsole.cadastraFalta(tpc.getFaltas(), tpc.getTurmas(), tpc.getAlunos());
                     break;
                 case 8:
+                    TurmaViewConsole.consultaTurma(tpc.getTurmas(), tpc.getNotas(), tpc.getFaltas(), tpc.getAlunos(), tpc.getDisciplinas(), tpc.getAtividades());
                     break;
                 case 9: AlunoViewConsole.consultaAluno(tpc.getAtividades(), tpc.getNotas(),tpc.getFaltas(), tpc.getTurmas(), tpc.getAlunos(), tpc.getDisciplinas());
                     break;
-                case 10: DisciplinaViewConsole.consultarTurmas(tpc.getDisciplinas());
+                case 10:
+                    DisciplinaViewConsole.consultarTurmas(tpc.getDisciplinas());
                     break;
-                case 11: ProfessorViewConsole.numDisciplinaLecionada(tpc.getProfessores());
+                case 11:
+                    ProfessorViewConsole.numDisciplinaLecionada(tpc.getProfessores());
                     break;
                 case 12: AlunoViewConsole.MatricularAluno(tpc.getAlunos(), tpc.getTurmas());
                 default:

@@ -41,7 +41,7 @@ public class AtividadeViewConsole {
         nome = sc.nextLine();
         System.out.print("Digite a data da atividade (dd/mm/yy): ");
         dataStr = sc.nextLine();
-        data = new SimpleDateFormat(dataStr);
+        data = new SimpleDateFormat("25/01/1994");
         System.out.print("Digite o tipo da atividade: ");
         tipo = sc.nextLine();
         System.out.print("Digite o ID da turma: ");
@@ -51,6 +51,7 @@ public class AtividadeViewConsole {
 
         try {
             turmaDao.adicionarAtividade(turmaId, atividade.hashCode());
+            turmaDao.saveFile();
             dao.adicionarAtividade(atividade);
         } catch (AtividadeJaCadastradaException ex) {
             System.out.println("A atividade já está cadastrada nessa turma.");
