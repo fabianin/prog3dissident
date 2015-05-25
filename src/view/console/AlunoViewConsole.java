@@ -6,6 +6,7 @@
 package view.console;
 
 import exceptions.AlunoJaCadastradoException;
+import exceptions.TurmaJaCadastradaException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -103,6 +104,32 @@ public class AlunoViewConsole {
                 System.out.println("O aluno está aprovado na turma: " + t.getId());
             } else {
                 System.out.println("O aluno está reprovado na turma: " + t.getId());
+            }
+        }
+    }
+    public static void MatricularAluno(AlunoDao alunos, TurmaDao turmas){
+        int alunoId;
+        int turmaId;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Digite o ID do aluno");
+        alunoId = sc.nextInt();
+        Aluno al;
+        al = alunos.getAlunoById(alunoId);
+        if(al != null){
+            System.out.println("Digite o ID da turma que deseja matricular o aluno");
+            turmaId = sc.nextInt();
+            Turma tu = turmas.getTurmaById(turmaId);
+            if(tu!=null){
+                try {
+                    tu.addAluno(alunoId);
+                } catch (AlunoJaCadastradoException ex) {
+                    Logger.getLogger(AlunoViewConsole.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                try {
+                    al.addTurma(turmaId);
+                } catch (TurmaJaCadastradaException ex) {
+                    Logger.getLogger(AlunoViewConsole.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }
