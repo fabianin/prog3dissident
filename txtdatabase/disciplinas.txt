@@ -2,3 +2,4 @@
 {"turmas":[],"ementa":"HASDFKASD","nome":"Programacao","id":-302172128,"cargaHoraria":49}
 {"turmas":[],"ementa":"JADSFLAJSFf","nome":"Matematica","id":740594968,"cargaHoraria":80}
 {"turmas":[],"ementa":"ajsdfl ajsdfl ajsd","nome":"ED1","id":-713677642,"cargaHoraria":48}
+{"turmas":[],"ementa":"tudo","nome":"Calculo","id":-890281625,"cargaHoraria":60}

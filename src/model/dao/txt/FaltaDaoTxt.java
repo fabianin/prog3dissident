@@ -112,6 +112,7 @@ public class FaltaDaoTxt implements FaltaDao {
             return null;
         }
     }
+    @Override
     public Falta getFaltaByIdAluno(int AlunoId) {
         List<Falta> falta;
         falta = (List<Falta>) this.faltas.stream().filter(fal -> fal.getAluno() == AlunoId);
