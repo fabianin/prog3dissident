@@ -52,6 +52,10 @@ public class Nota {
         }
         this.valorObtido = valorObtido;
     }
+
+    public int getTurma() {
+        return turma;
+    }
     
 
     @Override

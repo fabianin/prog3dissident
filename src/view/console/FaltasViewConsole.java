@@ -53,6 +53,7 @@ public class FaltasViewConsole {
             } else {
                 faltaDao.addFalta(falta);
                 turmaDao.adicionarFalta(turmaId, falta.hashCode());
+                turmaDao.saveFile();
             }
         } catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());

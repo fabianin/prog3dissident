@@ -181,6 +181,7 @@ public class DaoTxtUtils {
         notaJson.put("valorObtido", nota.getValorObtido());
         notaJson.put("aluno", nota.getAluno());
         notaJson.put("id", nota.hashCode());
+        notaJson.put("turma", nota.getTurma());
         return notaJson.toString();
     }
 
@@ -199,13 +200,13 @@ public class DaoTxtUtils {
     public static String toJSON(Atividade atividade) throws JSONException {
         JSONObject atividadeJson = new JSONObject();
         atividadeJson.put("nome", atividade.getNome());
-        atividadeJson.put("data", atividade.getData().toString());
+        atividadeJson.put("data", "");
         atividadeJson.put("tipo", atividade.getTipo());
         JSONArray notasJson = new JSONArray();
         atividade.getNotas().stream().forEach((id) -> notasJson.put(id));
         atividadeJson.put("notas", notasJson);
         atividadeJson.put("id", atividade.hashCode());
-        return atividade.toString();
+        return atividadeJson.toString();
     }
 
     public static String toJSON(Disciplina disciplina) throws JSONException {
@@ -225,6 +226,7 @@ public class DaoTxtUtils {
         faltaJson.put("faltas", falta.getFaltas());
         faltaJson.put("aluno", falta.getAluno());
         faltaJson.put("id", falta.hashCode());
+        faltaJson.put("turma", falta.getTurma());
         return faltaJson.toString();
     }
 
