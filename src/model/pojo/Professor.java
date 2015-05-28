@@ -6,6 +6,7 @@
 package model.pojo;
 
 import exceptions.DisciplinaJaCadastradaException;
+import exceptions.ProfessorNaoAptoDisciplinaException;
 import exceptions.TurmaJaCadastradaException;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -84,7 +85,7 @@ public class Professor extends Pessoa {
      * @throws NullPointerException
      * @throws DisciplinaJaCadastradaException
      */
-    public void addDisciplinaApto(Integer disciplina) throws IllegalArgumentException, NullPointerException, DisciplinaJaCadastradaException {
+    public void addDisciplinaApto(Integer disciplina) throws IllegalArgumentException, DisciplinaJaCadastradaException {
         if (this.disciplinasApto.contains(disciplina)) {
             throw new DisciplinaJaCadastradaException("Você não pode adicionar duas disciplinas iguais a um mesmo professor.");
         }

@@ -43,7 +43,7 @@ public class Turma {
      * @throws IllegalArgumentException
      */
     public Turma(int disciplina, long periodo, long numeroVagas, long sala, long ano, int professor)
-            throws IllegalArgumentException, ProfessorNaoAptoDisciplinaException {
+            throws IllegalArgumentException {
         if (periodo < 1) {
             throw new IllegalArgumentException("Período não pode ser menor que 1");
         } else if (numeroVagas < 0) {
@@ -226,12 +226,10 @@ public class Turma {
 
     @Override
     public String toString() {
-        return "Turma{" + "\nperiodo: " + periodo + "\nnumeroVagas: " + numeroVagas + "\nsala: " +
-                sala + "\ndisciplina ID:" + disciplina + "\nano: " + ano + "\natividades ID's: " + atividades + "\nalunos ID's: " + alunos + "\nfaltas: " + 
-                faltas + "\nprofessor: " + professor + "\nid: " + id + '}';
+        return "Turma{" + "\nperiodo: " + periodo + "\nnumeroVagas: " + numeroVagas + "\nsala: "
+                + sala + "\ndisciplina ID:" + disciplina + "\nano: " + ano + "\natividades ID's: " + atividades + "\nalunos ID's: " + alunos + "\nfaltas: "
+                + faltas + "\nprofessor: " + professor + "\nid: " + id + '}';
     }
-    
-    
 
     public int getId() {
         return this.id;

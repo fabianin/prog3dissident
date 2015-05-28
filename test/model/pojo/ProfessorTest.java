@@ -5,6 +5,9 @@
  */
 package model.pojo;
 
+import exceptions.DisciplinaJaCadastradaException;
+import exceptions.ProfessorNaoAptoDisciplinaException;
+import exceptions.TurmaJaCadastradaException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -30,6 +33,30 @@ public class ProfessorTest {
         assertFalse(professor1.equals(professor3));
         assertFalse(professor1.equals(professor4));
         assertFalse(professor1.equals(professor5));
+    }
+
+    @Test
+    public void adicionaDisciplina() throws IllegalArgumentException, DisciplinaJaCadastradaException {
+        Professor professor = new Professor("Nome", 123, "Teste");
+        professor.addDisciplinaApto(10);
+        professor.addDisciplinaApto(11);
+        assertTrue(professor.getDisciplinasApto().contains(10));
+        assertTrue(professor.getDisciplinasApto().contains(11));
+        assertFalse(professor.getDisciplinasApto().contains(12));
+    }
+
+    @Test(expected = DisciplinaJaCadastradaException.class)
+    public void adicionaDisciplinaRepetida() throws IllegalArgumentException, DisciplinaJaCadastradaException {
+        Professor professor = new Professor("Nome", 123, "Teste");
+        professor.addDisciplinaApto(10);
+        professor.addDisciplinaApto(10);
+    }
+
+    @Test(expected = TurmaJaCadastradaException.class)
+    public void adicionaTurmaLecionandoIgual() throws TurmaJaCadastradaException, ProfessorNaoAptoDisciplinaException, IllegalArgumentException, DisciplinaJaCadastradaException {
+        Professor professor = new Professor("Nome", 123, "Teste");
+        professor.addTurmaLecionando(10);
+        professor.addTurmaLecionando(10);
     }
 
 }
