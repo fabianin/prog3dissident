@@ -25,6 +25,6 @@ public interface ProfessorDao {
 
     public void saveFile() throws IOException;
     
-    public void adicionarTurma(int professorId, int turmaId) throws IllegalArgumentException, NullPointerException, TurmaJaCadastradaException;
+    public void adicionarTurma(int professorId, int turmaId) throws TurmaJaCadastradaException, IOException;
 
 }

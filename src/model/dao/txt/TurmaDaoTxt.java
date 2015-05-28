@@ -117,21 +117,23 @@ public class TurmaDaoTxt implements TurmaDao {
     }
 
     @Override
-    public void adicionarAtividade(int turmaId, int atividadeId) throws AtividadeJaCadastradaException, TurmaNaoEncontradaException {
+    public void adicionarAtividade(int turmaId, int atividadeId) throws AtividadeJaCadastradaException, TurmaNaoEncontradaException, IOException {
         for (Turma turma : this.turmas) {
             if (turma.hashCode() == turmaId) {
                 turma.addAtividade(atividadeId);
+                this.saveFile();
                 return;
             }
         }
         throw new TurmaNaoEncontradaException();
     }
-    
+
     @Override
-    public void adicionarFalta(int turmaId, int faltaId) throws FaltaJaCadastradaException, TurmaNaoEncontradaException {
-        for(Turma turma: this.turmas) {
-            if(turma.hashCode() == turmaId) {
+    public void adicionarFalta(int turmaId, int faltaId) throws FaltaJaCadastradaException, TurmaNaoEncontradaException, IOException {
+        for (Turma turma : this.turmas) {
+            if (turma.hashCode() == turmaId) {
                 turma.addFalta(faltaId);
+                this.saveFile();
                 return;
             }
         }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import model.dao.FaltaDao;
 import model.pojo.Falta;
 import org.apache.commons.io.FileUtils;
@@ -105,17 +106,18 @@ public class FaltaDaoTxt implements FaltaDao {
      */
     @Override
     public Falta getFaltaById(int id) {
-        List<Falta> falta = (List<Falta>) this.faltas.stream().filter(fal -> fal.hashCode() == id);
+        List<Falta> falta = (List<Falta>) this.faltas.stream().filter(fal -> fal.hashCode() == id).collect(Collectors.toList());
         if (falta.size() > 0) {
             return falta.get(0);
         } else {
             return null;
         }
     }
+
     @Override
-    public Falta getFaltaByIdAluno(int AlunoId) {
+    public Falta getFaltaByIdAluno(int alunoId, int turmaId) {
         List<Falta> falta;
-        falta = (List<Falta>) this.faltas.stream().filter(fal -> fal.getAluno() == AlunoId);
+        falta = (List<Falta>) this.faltas.stream().filter(fal -> fal.getAluno() == alunoId && fal.getTurma() == turmaId).collect(Collectors.toList());
         if (falta.size() > 0) {
             return falta.get(0);
         } else {

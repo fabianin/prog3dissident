@@ -3,3 +3,4 @@
 {"cpf":726472923,"departamento":"JDH","nome":"Marcos","turmasLecionando":[],"id":730182526,"disciplinasApto":[]}
 {"cpf":92626649362,"departamento":"URK","nome":"Maria","turmasLecionando":[1105994477],"id":-1755483474,"disciplinasApto":[]}
 {"cpf":26485773994,"departamento":"EGWK","nome":"Gustavo","turmasLecionando":[],"id":-707249640,"disciplinasApto":[]}
+{"cpf":100,"departamento":"Departamento","nome":"Nome","turmasLecionando":[10],"id":1085325324,"disciplinasApto":[]}

@@ -51,8 +51,6 @@ public class Professor extends Pessoa {
         int hash = 5;
         hash = 41 * hash + Objects.hashCode(this.nome);
         hash = 41 * hash + Objects.hashCode(this.departamento);
-        hash = 41 * hash + Objects.hashCode(this.disciplinasApto);
-        hash = 41 * hash + Objects.hashCode(this.turmasLecionando);
         return hash;
     }
 
@@ -71,7 +69,7 @@ public class Professor extends Pessoa {
         if (!Objects.equals(this.getNome(), other.getNome())) {
             return false;
         }
-        if (this.getCpf() != other.getCpf()) {
+        if (!Objects.equals(this.getCpf(), other.getCpf())) {
             return false;
         }
         return true;

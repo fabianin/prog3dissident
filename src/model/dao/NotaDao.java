@@ -29,7 +29,7 @@ public interface NotaDao {
      * @param alunoId
      * @return
      */
-    public Nota getNotaPorAlunoId(int alunoId);
+    public Nota getNotaPorAlunoId(int alunoId, int turmaId);
 
     /**
      * Obtém uma nota à partir de um ID da nota

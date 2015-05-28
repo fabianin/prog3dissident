@@ -28,8 +28,8 @@ public interface TurmaDao {
 
     public void adicionarTurma(Turma turma) throws TurmaJaCadastradaException, IOException;
 
-    public void adicionarAtividade(int turmaId, int atividadeId) throws AtividadeJaCadastradaException, TurmaNaoEncontradaException;
+    public void adicionarAtividade(int turmaId, int atividadeId) throws AtividadeJaCadastradaException, TurmaNaoEncontradaException, IOException;
     
-    public void adicionarFalta(int turmaId, int faltaId) throws FaltaJaCadastradaException, TurmaNaoEncontradaException;
+    public void adicionarFalta(int turmaId, int faltaId) throws FaltaJaCadastradaException, TurmaNaoEncontradaException, IOException;
 
 }

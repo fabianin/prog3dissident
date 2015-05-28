@@ -21,7 +21,7 @@ public interface AtividadeDao {
     public ArrayList<Atividade> getAtividades();
 
     public void saveFile() throws IOException;
-    
+
     public void adicionarAtividade(Atividade atividade) throws AtividadeJaCadastradaException, IOException;
 
 }

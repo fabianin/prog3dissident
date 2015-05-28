@@ -24,6 +24,6 @@ public interface FaltaDao {
 
     public ArrayList<Falta> getFaltas();
     
-    public Falta getFaltaByIdAluno(int AlunoId);
+    public Falta getFaltaByIdAluno(int alunoId, int turmaId);
 
 }

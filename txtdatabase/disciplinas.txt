@@ -3,3 +3,4 @@
 {"turmas":[],"ementa":"JADSFLAJSFf","nome":"Matematica","id":740594968,"cargaHoraria":80}
 {"turmas":[],"ementa":"ajsdfl ajsdfl ajsd","nome":"ED1","id":-713677642,"cargaHoraria":48}
 {"turmas":[],"ementa":"tudo","nome":"Calculo","id":-890281625,"cargaHoraria":60}
+{"turmas":[],"ementa":"Ementa","nome":"Nome","id":-1791222253,"cargaHoraria":100}

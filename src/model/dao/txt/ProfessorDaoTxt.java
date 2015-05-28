@@ -108,12 +108,13 @@ public class ProfessorDaoTxt implements ProfessorDao {
             }
         });
     }
-    
+
     @Override
-    public void adicionarTurma(int professorId, int turmaId) throws IllegalArgumentException, NullPointerException, TurmaJaCadastradaException {
-        for(Professor professor: this.professores) {
-            if(professor.hashCode() == professorId) {
+    public void adicionarTurma(int professorId, int turmaId) throws TurmaJaCadastradaException, IOException {
+        for (Professor professor : this.professores) {
+            if (professor.hashCode() == professorId) {
                 professor.addTurma(turmaId);
+                this.saveFile();
                 return;
             }
         }

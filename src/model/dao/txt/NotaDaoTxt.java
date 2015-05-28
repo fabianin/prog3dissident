@@ -69,8 +69,8 @@ public class NotaDaoTxt implements NotaDao {
     }
 
     @Override
-    public Nota getNotaPorAlunoId(int alunoId) {
-        List<Nota> notas = this.notas.stream().filter(nota -> nota.getAluno() == alunoId).collect(Collectors.toList());
+    public Nota getNotaPorAlunoId(int alunoId, int turmaId) {
+        List<Nota> notas = this.notas.stream().filter(nota -> nota.getAluno() == alunoId && nota.getTurma() == turmaId).collect(Collectors.toList());
         if (notas.size() > 0) {
             return notas.get(0);
         } else {

@@ -6,3 +6,4 @@
 {"turmas":[],"matricula":374832323,"cpf":95857373,"nome":"�rika","id":374832614}
 {"turmas":[],"matricula":1234871234,"cpf":294854945,"nome":"David","id":1234871525}
 {"turmas":[],"matricula":3,"cpf":12,"nome":"Luiz","id":294}
+{"turmas":[],"matricula":10,"cpf":10,"nome":"Teste","id":301}
