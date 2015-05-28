@@ -24,10 +24,10 @@ public class Nota {
      *
      * @param valorObtido Valor obtido
      * @param aluno Aluno da nota
+     * @param turma ID da turma
      * @throws IllegalArgumentException
      */
     public Nota(double valorObtido, int aluno, int turma) throws IllegalArgumentException {
-        Objects.requireNonNull(aluno, "Aluno não pode ser null.");
         if (valorObtido < 0 || valorObtido > 10) {
             throw new IllegalArgumentException("Valor obtido deve ser entre 0 e 10.");
         }
@@ -56,7 +56,6 @@ public class Nota {
     public int getTurma() {
         return turma;
     }
-    
 
     @Override
     public String toString() {
@@ -70,8 +69,6 @@ public class Nota {
         hash = 67 * hash + Objects.hashCode(this.aluno);
         return hash;
     }
-    
-    
 
     @Override
     public boolean equals(Object obj) {
@@ -85,7 +82,13 @@ public class Nota {
         if (Double.doubleToLongBits(this.valorObtido) != Double.doubleToLongBits(other.valorObtido)) {
             return false;
         }
-        return Objects.equals(this.aluno, other.aluno);
+        if (this.aluno != other.aluno) {
+            return false;
+        }
+        if (this.turma != other.turma) {
+            return false;
+        }
+        return true;
     }
 
     /**

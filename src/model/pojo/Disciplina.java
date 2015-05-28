@@ -31,8 +31,6 @@ public class Disciplina {
      * @throws IllegalArgumentException
      */
     public Disciplina(String nome, String ementa, long cargaHoraria) throws IllegalArgumentException {
-        Objects.requireNonNull(nome, "Nome não pode ser vazio");
-        Objects.requireNonNull(ementa, "Ementa não pode ser vazio.");
         if (cargaHoraria < 1) {
             throw new IllegalArgumentException("Carga horária não pode ser menor que 1.");
         }
@@ -50,8 +48,7 @@ public class Disciplina {
      * @param turma Turma a ser adicionada
      * @throws exceptions.TurmaJaCadastradaException
      */
-    public void addTurma(Integer turma) throws TurmaJaCadastradaException {
-        Objects.requireNonNull(turma, "Turma não pode ser null.");
+    public void addTurma(int turma) throws TurmaJaCadastradaException {
         if (!this.turmas.contains(turma)) { // caso a turma não exista nesta disciplina
             this.turmas.add(turma);
         } else {
@@ -72,8 +69,6 @@ public class Disciplina {
     public String toString() {
         return "Disciplina{" + "\nNome: " + nome + "\nementa: " + ementa + "\ncargaHoraria: " + cargaHoraria + "\nturmas ID: " + turmas + "\nid: " + id + '}';
     }
-    
-    
 
     /**
      * Obtém nome
@@ -127,8 +122,5 @@ public class Disciplina {
     public int getId() {
         return id;
     }
-    
-    
-    
 
 }

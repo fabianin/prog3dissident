@@ -32,15 +32,7 @@ public class Atividade {
      * @throws IllegalArgumentException Caso tenha conteúdos em branco ou
      * valores inválidos
      */
-    public Atividade(String nome, Calendar data, String tipo) throws NullPointerException, IllegalArgumentException {
-        Objects.requireNonNull(nome, "Nome não pode ser null."); // não permite nome null
-        Objects.requireNonNull(data, "Data não pode ser null."); // não permite data null
-        Objects.requireNonNull(tipo, "Tipo não pode ser null."); // não permite tipo null
-        if (nome.isEmpty()) { // não permite nome em branco
-            throw new IllegalArgumentException("Nome não pode estar em branco.");
-        } else if (tipo.isEmpty()) { // não permite tipo em branco
-            throw new IllegalArgumentException("Tipo não pode estar em branco.");
-        }
+    public Atividade(String nome, Calendar data, String tipo) {
         this.nome = nome; // define nome
         this.data = data; // define data
         this.tipo = tipo; // define tipo
@@ -55,8 +47,7 @@ public class Atividade {
      * @throws NotaJaCadastradaException
      * @throws NullPointerException
      */
-    public void addNota(int nota) throws NotaJaCadastradaException, NullPointerException {
-        Objects.requireNonNull(nota); // não premite nota null
+    public void addNota(int nota) throws NotaJaCadastradaException {
         if (!notas.contains(nota)) { // caso a nota não tenha sido cadastrada
             this.notas.add(nota); // adiciona nota na lista
         } else { // caso já tenha cadastrado, lança exception
@@ -119,7 +110,7 @@ public class Atividade {
             return false;
         }
         final Atividade other = (Atividade) obj;
-        
+
         return this.hashCode() == other.hashCode();
     }
 

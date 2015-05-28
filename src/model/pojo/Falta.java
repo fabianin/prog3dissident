@@ -23,10 +23,11 @@ public class Falta {
      *
      * @param aluno Aluno relacionado a falta
      * @param faltas Faltas deste aluno
+     * @param turma ID da turma
      * @throws IllegalArgumentException
      * @throws NullPointerException
      */
-    public Falta(int aluno, int faltas, int turma) throws IllegalArgumentException, NullPointerException {
+    public Falta(int aluno, int faltas, int turma) throws IllegalArgumentException {
         if (faltas < 0) {
             throw new IllegalArgumentException("Faltas deve ser um valor positivo.");
         }
@@ -75,11 +76,16 @@ public class Falta {
             return false;
         }
         final Falta other = (Falta) obj;
-        if (!Objects.equals(this.aluno, other.aluno)) {
+        if (this.aluno != other.aluno) {
             return false;
         }
-        return this.faltas == other.faltas;
+        if (this.faltas != other.faltas) {
+            return false;
+        }
+        if (this.turma != other.turma) {
+            return false;
+        }
+        return true;
     }
-    
 
 }

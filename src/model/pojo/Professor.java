@@ -18,8 +18,8 @@ public class Professor extends Pessoa {
 
     private final int id;
     private final String departamento;
-    private ArrayList<Integer> disciplinasApto;
-    private ArrayList<Integer> turmasLecionando;
+    private final ArrayList<Integer> disciplinasApto;
+    private final ArrayList<Integer> turmasLecionando;
 
     /**
      * Construtor do professor
@@ -30,10 +30,6 @@ public class Professor extends Pessoa {
      */
     public Professor(String nome, long cpf, String departamento) {
         super(nome, cpf);
-        Objects.requireNonNull(departamento, "Departamento não pode ser null.");
-        if (departamento.isEmpty()) {
-            throw new IllegalArgumentException("Departamento não pode estar vazio.");
-        }
         this.departamento = departamento;
         this.id = this.hashCode();
         this.disciplinasApto = new ArrayList<>();
@@ -71,10 +67,13 @@ public class Professor extends Pessoa {
         if (!Objects.equals(this.departamento, other.departamento)) {
             return false;
         }
-        if (!Objects.equals(this.disciplinasApto, other.disciplinasApto)) {
+        if (!Objects.equals(this.getNome(), other.getNome())) {
             return false;
         }
-        return Objects.equals(this.turmasLecionando, other.turmasLecionando);
+        if (this.getCpf() != other.getCpf()) {
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -86,7 +85,6 @@ public class Professor extends Pessoa {
      * @throws DisciplinaJaCadastradaException
      */
     public void addDisciplinaApto(Integer disciplina) throws IllegalArgumentException, NullPointerException, DisciplinaJaCadastradaException {
-        Objects.requireNonNull(disciplina, "Não pode ser NULL");
         if (this.disciplinasApto.contains(disciplina)) {
             throw new DisciplinaJaCadastradaException("Você não pode adicionar duas disciplinas iguais a um mesmo professor.");
         }
@@ -101,7 +99,6 @@ public class Professor extends Pessoa {
      * @throws NullPointerException
      */
     public void addTurma(Integer turma) throws IllegalArgumentException, NullPointerException, TurmaJaCadastradaException {
-        Objects.requireNonNull(turma, "Turma não pode ser null");
         if (this.turmasLecionando.contains(turma)) {
             throw new TurmaJaCadastradaException("Você não pode adicionar duas turmas em um mesmo professor");
         } else {

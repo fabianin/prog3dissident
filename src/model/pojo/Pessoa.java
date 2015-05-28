@@ -5,8 +5,6 @@
  */
 package model.pojo;
 
-import java.util.Objects;
-
 /**
  *
  * @author Fabiano
@@ -23,11 +21,7 @@ public abstract class Pessoa {
      * @param cpf CPF da pessoa
      * @throws IllegalArgumentException
      */
-    public Pessoa(String nome, long cpf) throws IllegalArgumentException, NullPointerException {
-        Objects.requireNonNull(nome, "Nome não pode ser null.");
-        if (nome.isEmpty()) {
-            throw new IllegalArgumentException("Nome não pode estar vazio.");
-        }
+    public Pessoa(String nome, long cpf) {
         this.nome = nome;
         this.cpf = cpf;
     }
