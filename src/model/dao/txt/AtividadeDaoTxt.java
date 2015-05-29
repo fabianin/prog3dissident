@@ -2,7 +2,6 @@ package model.dao.txt;
 
 import exceptions.AtividadeJaCadastradaException;
 import exceptions.NotaJaCadastradaException;
-import exceptions.TurmaJaCadastradaException;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,36 +10,27 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import model.dao.AtividadeDao;
-import model.dao.txt.DaoTxtUtils;
-import model.dao.txt.DisciplinaDaoTxt;
-import model.dao.txt.NotaDaoTxt;
 import model.pojo.Atividade;
-import model.pojo.Disciplina;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Elias Júnior
  */
 public class AtividadeDaoTxt implements AtividadeDao {
-    
+
     private final String filePath = "txtdatabase/atividades.txt";
     private final File file;
-    private ArrayList<Atividade> atividades;
-    
+    private final ArrayList<Atividade> atividades;
+
     public AtividadeDaoTxt() {
         this.file = new File(this.filePath);
         this.atividades = new ArrayList<>();
         this.initDao();
     }
-    
+
     private void initDao() {
         if (this.file.canRead()) {
             try {
@@ -62,7 +52,7 @@ public class AtividadeDaoTxt implements AtividadeDao {
             }
         }
     }
-    
+
     @Override
     public Atividade getAtividadeById(int id) {
         List<Atividade> atividades = (List<Atividade>) this.atividades.stream().filter(atividade -> atividade.hashCode() == id).collect(Collectors.toList());
@@ -72,12 +62,12 @@ public class AtividadeDaoTxt implements AtividadeDao {
             return null;
         }
     }
-    
+
     @Override
     public ArrayList<Atividade> getAtividades() {
         return this.atividades;
     }
-    
+
     @Override
     public void saveFile() throws IOException {
         File f = new File(this.filePath);
@@ -94,7 +84,7 @@ public class AtividadeDaoTxt implements AtividadeDao {
             }
         });
     }
-    
+
     @Override
     public void adicionarAtividade(Atividade atividade) throws AtividadeJaCadastradaException, IOException {
         if (this.atividades.contains(atividade)) {
@@ -104,5 +94,5 @@ public class AtividadeDaoTxt implements AtividadeDao {
             this.saveFile();
         }
     }
-    
+
 }

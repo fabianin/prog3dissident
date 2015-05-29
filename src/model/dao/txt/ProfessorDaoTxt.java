@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.dao.txt;
 
-import exceptions.AlunoJaCadastradoException;
 import exceptions.DisciplinaJaCadastradaException;
 import exceptions.ProfessorJaCadastradoException;
 import exceptions.TurmaJaCadastradaException;
@@ -17,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import model.dao.ProfessorDao;
-import model.pojo.Aluno;
 import model.pojo.Professor;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;

@@ -7,14 +7,8 @@ import exceptions.FaltaJaCadastradaException;
 import exceptions.NotaJaCadastradaException;
 import exceptions.ProfessorNaoAptoDisciplinaException;
 import exceptions.TurmaJaCadastradaException;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.function.Consumer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.pojo.Aluno;
 import model.pojo.Atividade;
 import model.pojo.Disciplina;
@@ -22,7 +16,6 @@ import model.pojo.Falta;
 import model.pojo.Nota;
 import model.pojo.Professor;
 import model.pojo.Turma;
-import org.apache.commons.io.FileUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,6 +26,14 @@ import org.json.JSONObject;
  */
 public class DaoTxtUtils {
 
+    /**
+     * Cria um Aluno à partir de um JSON
+     *
+     * @param obj Objeto JSON
+     * @return Objeto Aluno
+     * @throws JSONException Caso haja uma exceção no JSON
+     * @throws TurmaJaCadastradaException caso a turma já esteja cadastrada
+     */
     public static Aluno createAlunoFromJSON(JSONObject obj) throws JSONException, TurmaJaCadastradaException {
 
         String nome = obj.getString("nome");
@@ -52,6 +53,21 @@ public class DaoTxtUtils {
 
     }
 
+    /**
+     * Cria uma Turma à partir de um JSON
+     *
+     * @param obj Objeto JSON
+     * @return Objeto Turma
+     * @throws JSONException Caso haja uma exceção no JSON
+     * @throws exceptions.ProfessorNaoAptoDisciplinaException Caso o professor
+     * não esteja apto para aquela disciplina
+     * @throws exceptions.AlunoJaCadastradoException Caso o aluno já esteja
+     * cadastrado
+     * @throws exceptions.FaltaJaCadastradaException Caso a falta já esteja
+     * cadastrada
+     * @throws exceptions.AtividadeJaCadastradaException Caso a atividade já
+     * esteja cadastrada
+     */
     public static Turma createTurmaFromJSON(JSONObject obj) throws JSONException, NullPointerException, IllegalArgumentException, ProfessorNaoAptoDisciplinaException, FaltaJaCadastradaException, AlunoJaCadastradoException, AtividadeJaCadastradaException {
 
         long periodo = obj.getLong("periodo");
@@ -86,6 +102,14 @@ public class DaoTxtUtils {
 
     }
 
+    /**
+     * Cria uma Disciplina à partir de um JSON
+     *
+     * @param obj Objeto JSON
+     * @return Objeto Disciplina
+     * @throws JSONException Caso haja uma exceção no JSON
+     * @throws TurmaJaCadastradaException caso a turma já esteja cadastrada
+     */
     public static Disciplina createDisciplinaFromJSON(JSONObject obj) throws JSONException, TurmaJaCadastradaException {
 
         String nome = obj.getString("nome");
@@ -105,6 +129,13 @@ public class DaoTxtUtils {
 
     }
 
+    /**
+     * Cria uma Falta à partir de um JSON
+     *
+     * @param obj Objeto JSON
+     * @return Objeto Falta
+     * @throws JSONException Caso haja uma exceção no JSON
+     */
     public static Falta createFaltaFromJSON(JSONObject obj) throws JSONException {
 
         int faltas = obj.getInt("faltas");
@@ -118,6 +149,13 @@ public class DaoTxtUtils {
 
     }
 
+    /**
+     * Cria uma Nota à partir de um JSON
+     *
+     * @param obj Objeto JSON
+     * @return Objeto Nota
+     * @throws JSONException Caso haja uma exceção no JSON
+     */
     public static Nota createNotaFromJSON(JSONObject obj) throws JSONException {
 
         double valorObtido = obj.getDouble("valorObtido");
@@ -131,7 +169,17 @@ public class DaoTxtUtils {
 
     }
 
-    public static Professor createProfessorFromJSON(JSONObject obj) throws JSONException, TurmaJaCadastradaException, IllegalArgumentException, NullPointerException, DisciplinaJaCadastradaException {
+    /**
+     * Cria um Professor à partir de um JSON
+     *
+     * @param obj Objeto JSON
+     * @return Objeto Professor
+     * @throws JSONException Caso haja uma exceção no JSON
+     * @throws TurmaJaCadastradaException caso a turma já esteja cadastrada
+     * @throws exceptions.DisciplinaJaCadastradaException Caso a disciplina já
+     * esteja cadastrada
+     */
+    public static Professor createProfessorFromJSON(JSONObject obj) throws JSONException, TurmaJaCadastradaException, IllegalArgumentException, DisciplinaJaCadastradaException {
 
         String nome = obj.getString("nome");
         long cpf = obj.getLong("cpf");
@@ -156,10 +204,18 @@ public class DaoTxtUtils {
 
     }
 
+    /**
+     * Cria uma Atividade à partir de um JSON
+     *
+     * @param obj Objeto JSON
+     * @return Objeto Atividade
+     * @throws JSONException Caso haja uma exceção no JSON
+     * @throws exceptions.NotaJaCadastradaException Caso a nota já esteja
+     * cadastrada
+     */
     public static Atividade createAtividadeFromJSON(JSONObject obj) throws JSONException, NotaJaCadastradaException {
 
         String nome = obj.getString("nome");
-        String dataStr = obj.getString("data");
         Calendar data = new GregorianCalendar();
         String tipo = obj.getString("tipo");
 
@@ -176,6 +232,13 @@ public class DaoTxtUtils {
 
     }
 
+    /**
+     * Cria um JSON à partir de uma Nota
+     *
+     * @param nota Nota a ser convertida
+     * @return String no formato JSON
+     * @throws JSONException Caso haja um erro no JSON
+     */
     public static String toJSON(Nota nota) throws JSONException {
         JSONObject notaJson = new JSONObject();
         notaJson.put("valorObtido", nota.getValorObtido());
@@ -185,6 +248,13 @@ public class DaoTxtUtils {
         return notaJson.toString();
     }
 
+    /**
+     * Cria um JSON à partir de uma Aluno
+     *
+     * @param aluno Aluno a ser convertido
+     * @return String no formato JSON
+     * @throws JSONException Caso haja um erro no JSON
+     */
     public static String toJSON(Aluno aluno) throws JSONException {
         JSONObject alunoJson = new JSONObject();
         alunoJson.put("matricula", aluno.getMatricula());
@@ -197,6 +267,13 @@ public class DaoTxtUtils {
         return alunoJson.toString();
     }
 
+    /**
+     * Cria um JSON à partir de uma Atividade
+     *
+     * @param atividade Atividade a ser convertido
+     * @return String no formato JSON
+     * @throws JSONException Caso haja um erro no JSON
+     */
     public static String toJSON(Atividade atividade) throws JSONException {
         JSONObject atividadeJson = new JSONObject();
         atividadeJson.put("nome", atividade.getNome());
@@ -209,6 +286,13 @@ public class DaoTxtUtils {
         return atividadeJson.toString();
     }
 
+    /**
+     * Cria um JSON à partir de uma Disciplina
+     *
+     * @param disciplina Disciplina a ser convertida
+     * @return String no formato JSON
+     * @throws JSONException Caso haja um erro no JSON
+     */
     public static String toJSON(Disciplina disciplina) throws JSONException {
         JSONObject disciplinaJson = new JSONObject();
         disciplinaJson.put("nome", disciplina.getNome());
@@ -221,6 +305,13 @@ public class DaoTxtUtils {
         return disciplinaJson.toString();
     }
 
+    /**
+     * Cria um JSON à partir de uma Falta
+     *
+     * @param falta Falta a ser convertida
+     * @return String no formato JSON
+     * @throws JSONException Caso haja um erro no JSON
+     */
     public static String toJSON(Falta falta) throws JSONException {
         JSONObject faltaJson = new JSONObject();
         faltaJson.put("faltas", falta.getFaltas());
@@ -230,6 +321,13 @@ public class DaoTxtUtils {
         return faltaJson.toString();
     }
 
+    /**
+     * Cria um JSON à partir de um Professor
+     *
+     * @param professor Professor a ser convertido
+     * @return String no formato JSON
+     * @throws JSONException Caso haja um erro no JSON
+     */
     public static String toJSON(Professor professor) throws JSONException {
         JSONObject professorJson = new JSONObject();
         professorJson.put("departamento", professor.getDepartamento());
@@ -245,6 +343,13 @@ public class DaoTxtUtils {
         return professorJson.toString();
     }
 
+    /**
+     * Cria um JSON à partir de uma turma
+     *
+     * @param turma Turma a ser convertido
+     * @return String no formato JSON
+     * @throws JSONException Caso haja um erro no JSON
+     */
     public static String toJSON(Turma turma) throws JSONException {
         JSONObject turmaJson = new JSONObject();
         turmaJson.put("periodo", turma.getPeriodo());

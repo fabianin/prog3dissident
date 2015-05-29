@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view.console;
 
 import exceptions.DisciplinaJaCadastradaException;
@@ -21,7 +16,8 @@ import model.pojo.Disciplina;
  * @author Fabiano
  */
 public class DisciplinaViewConsole {
-    public static void cadastraDisciplina(DisciplinaDao disciplinas){
+
+    public static void cadastraDisciplina(DisciplinaDao disciplinas) {
         System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎");
         System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎ CADASTRO DISCIPLINA ∎∎∎∎∎∎∎∎∎∎∎∎∎");
         System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎");
@@ -41,28 +37,28 @@ public class DisciplinaViewConsole {
         } catch (DisciplinaJaCadastradaException | IOException ex) {
             Logger.getLogger(DisciplinaViewConsole.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    public static void imprimiDisciplinas(DisciplinaDao disciplinas){
+
+    public static void imprimiDisciplinas(DisciplinaDao disciplinas) {
         disciplinas.getDisciplinas().stream().forEach((Disciplina x) -> {
             System.out.println(x);
         });
     }
-    
-    public static void consultarTurmas(DisciplinaDao disciplinas){
+
+    public static void consultarTurmas(DisciplinaDao disciplinas) {
         int disciplinaId;
         Scanner sc = new Scanner(System.in);
         System.out.println("Digite o ID da disciplina que deseja consultar");
         disciplinaId = sc.nextInt();
         Disciplina x;
         x = disciplinas.getDisciplinaById(disciplinaId);
-        if(x!=null){
-            System.out.println("Existem " + x.getTurmas().size()+" turmas dessa disciplina");
-        }else{
+        if (x != null) {
+            System.out.println("Existem " + x.getTurmas().size() + " turmas dessa disciplina");
+        } else {
             System.out.println("Não existe uma disciplina com esse ID");
         }
-        
 
     }
-    
+
 }

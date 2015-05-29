@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.dao.txt;
 
 import exceptions.AlunoJaCadastradoException;
@@ -19,9 +14,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import model.dao.TurmaDao;
-import model.pojo.Atividade;
-import model.pojo.Disciplina;
-import model.pojo.Nota;
 import model.pojo.Turma;
 import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
@@ -33,9 +25,9 @@ import org.json.JSONObject;
  */
 public class TurmaDaoTxt implements TurmaDao {
 
-    private String filePath = "txtdatabase/turmas.txt";
-    private File file;
-    private ArrayList<Turma> turmas;
+    private final String filePath = "txtdatabase/turmas.txt";
+    private final File file;
+    private final ArrayList<Turma> turmas;
 
     public TurmaDaoTxt() {
         this.file = new File(this.filePath);

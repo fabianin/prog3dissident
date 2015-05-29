@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.dao;
 
 import exceptions.DisciplinaJaCadastradaException;
@@ -16,12 +11,36 @@ import model.pojo.Disciplina;
  */
 public interface DisciplinaDao {
 
+    /**
+     * Adiciona uma disciplina ao DAO
+     *
+     * @param disciplina Disciplina a ser adicionada
+     * @throws DisciplinaJaCadastradaException Caso a disciplina já esteja
+     * cadastrada
+     * @throws IOException Caso haja problema ao salvar o arquivo
+     */
     public void addDisciplina(Disciplina disciplina) throws DisciplinaJaCadastradaException, IOException;
 
+    /**
+     * Obtém uma disciplina à partir do ID
+     *
+     * @param id ID da disciplina a ser buscada
+     * @return Objeto Disciplina
+     */
     public Disciplina getDisciplinaById(int id);
-    
+
+    /**
+     * Salva o DAO
+     *
+     * @throws IOException Caso haja problema ao salvar o arquivo
+     */
     public void saveFile() throws IOException;
-    
+
+    /**
+     * Obtém todas as disciplinas cadastradas
+     *
+     * @return Uma lista de objeto Disciplina
+     */
     public ArrayList<Disciplina> getDisciplinas();
 
 }

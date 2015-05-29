@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.dao;
 
 import exceptions.AtividadeJaCadastradaException;
@@ -16,12 +11,36 @@ import model.pojo.Atividade;
  */
 public interface AtividadeDao {
 
+    /**
+     * Obtém uma Atividade à partir do ID
+     *
+     * @param id ID da atividade que deseja obter
+     * @return Objeto de Atividade
+     */
     public Atividade getAtividadeById(int id);
 
+    /**
+     * Obtém todas as atividades do DAO
+     *
+     * @return Lista de objetos Atividade
+     */
     public ArrayList<Atividade> getAtividades();
 
+    /**
+     * Salva os dados
+     *
+     * @throws IOException Caso haja um problema para salvar
+     */
     public void saveFile() throws IOException;
 
+    /**
+     * Adiciona uma atividade ao DAO
+     *
+     * @param atividade Atividade a ser adicionada
+     * @throws AtividadeJaCadastradaException Caso a atividade já esteja
+     * cadastrada
+     * @throws IOException Caso haja problea ao salvar o arquivo
+     */
     public void adicionarAtividade(Atividade atividade) throws AtividadeJaCadastradaException, IOException;
 
 }

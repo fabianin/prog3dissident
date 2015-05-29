@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view.console;
 
 import exceptions.ProfessorJaCadastradoException;
@@ -61,16 +56,16 @@ public class ProfessorViewConsole {
         System.out.println("");
 
     }
-    
-    public static void numDisciplinaLecionada(ProfessorDao professores){
+
+    public static void numDisciplinaLecionada(ProfessorDao professores) {
         Scanner sc = new Scanner(System.in);
         int profId;
         System.out.println("Digite o ID do professor que deseja consultar: ");
         profId = sc.nextInt();
         Professor x = professores.getProfessorById(profId);
-        if(x!=null){
-            System.out.println("Esse professor já lecionou " + x.getTurmasLecionando().size()+" turmas.");
-        } else{
+        if (x != null) {
+            System.out.println("Esse professor já lecionou " + x.getTurmasLecionando().size() + " turmas.");
+        } else {
             System.out.println("Esse professor ainda não existe no sistema. Verifique o ID");
         }
     }

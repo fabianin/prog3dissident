@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.dao.txt;
 
 import exceptions.TurmaJaCadastradaException;
@@ -16,9 +11,7 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import model.dao.DisciplinaDao;
 import model.pojo.Disciplina;
-import model.pojo.Turma;
 import org.apache.commons.io.*;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +23,7 @@ public class DisciplinaDaoTxt implements DisciplinaDao {
 
     private final String filePath = "txtdatabase/disciplinas.txt";
     private final File file;
-    private ArrayList<Disciplina> disciplinas;
+    private final ArrayList<Disciplina> disciplinas;
 
     public DisciplinaDaoTxt() {
         this.file = new File(this.filePath);

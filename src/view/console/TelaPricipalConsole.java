@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view.console;
 
 import java.util.Scanner;
@@ -66,7 +61,8 @@ public class TelaPricipalConsole {
                 case 8:
                     TurmaViewConsole.consultaTurma(tpc.getTurmas(), tpc.getNotas(), tpc.getFaltas(), tpc.getAlunos(), tpc.getDisciplinas(), tpc.getAtividades());
                     break;
-                case 9: AlunoViewConsole.consultaAluno(tpc.getAtividades(), tpc.getNotas(),tpc.getFaltas(), tpc.getTurmas(), tpc.getAlunos(), tpc.getDisciplinas());
+                case 9:
+                    AlunoViewConsole.consultaAluno(tpc.getAtividades(), tpc.getNotas(), tpc.getFaltas(), tpc.getTurmas(), tpc.getAlunos(), tpc.getDisciplinas());
                     break;
                 case 10:
                     DisciplinaViewConsole.consultarTurmas(tpc.getDisciplinas());
@@ -74,7 +70,8 @@ public class TelaPricipalConsole {
                 case 11:
                     ProfessorViewConsole.numDisciplinaLecionada(tpc.getProfessores());
                     break;
-                case 12: AlunoViewConsole.MatricularAluno(tpc.getAlunos(), tpc.getTurmas());
+                case 12:
+                    AlunoViewConsole.MatricularAluno(tpc.getAlunos(), tpc.getTurmas());
                 default:
                     System.out.println("Nenhuma opção selecionada");
                     System.out.println("");
