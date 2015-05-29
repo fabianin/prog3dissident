@@ -84,15 +84,19 @@ public class AlunoViewConsole {
             listaTurmas.add(turmas.getTurmaById(x));
         }
         for (Turma t : listaTurmas) {
+            System.out.println("Informações da turma " + t.hashCode());
             double total = 0.0;
             ArrayList<Atividade> listaAtividades = new ArrayList<>();
             Disciplina d = disciplinas.getDisciplinaById(t.getDisciplina());
-            Falta f = faltas.getFaltaByIdAluno(alunoId);
+            Falta f = faltas.getFaltaByIdAluno(alunoId, t.hashCode());
+            System.out.println("Faltas: " + f.getFaltas());
             for (int a : t.getAtividades()) {
                 listaAtividades.add(atividades.getAtividadeById(a));
                 ArrayList<Nota> listaNotas = new ArrayList<>();
                 for (Atividade z : listaAtividades) {
-                    listaNotas.add(notas.getNotaPorAlunoId(alunoId));
+                    Nota nota = notas.getNotaPorAlunoId(alunoId, t.hashCode());
+                    System.out.println("Nota: " + nota.getValorObtido() + " na atividade " + z.hashCode());
+                    listaNotas.add(nota);
                 }
                 for (Nota m : listaNotas) {
                     total += m.getValorObtido();
@@ -107,7 +111,8 @@ public class AlunoViewConsole {
             }
         }
     }
-    public static void MatricularAluno(AlunoDao alunos, TurmaDao turmas){
+
+    public static void MatricularAluno(AlunoDao alunos, TurmaDao turmas) {
         int alunoId;
         int turmaId;
         Scanner sc = new Scanner(System.in);
@@ -115,11 +120,11 @@ public class AlunoViewConsole {
         alunoId = sc.nextInt();
         Aluno al;
         al = alunos.getAlunoById(alunoId);
-        if(al != null){
+        if (al != null) {
             System.out.println("Digite o ID da turma que deseja matricular o aluno");
             turmaId = sc.nextInt();
             Turma tu = turmas.getTurmaById(turmaId);
-            if(tu!=null){
+            if (tu != null) {
                 try {
                     tu.addAluno(alunoId);
                 } catch (AlunoJaCadastradoException ex) {

@@ -127,8 +127,10 @@ public class TurmaViewConsole {
                 professores.adicionarTurma(professor, turma.hashCode());
                 professores.saveFile();
                 System.out.println("Cadastrado com sucesso.");
-            } catch (NullPointerException | IllegalArgumentException | ProfessorNaoAptoDisciplinaException | TurmaJaCadastradaException | IOException ex) {
-                Logger.getLogger(TurmaViewConsole.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (IOException ex) {
+                System.out.println("Erro ao salvar o arquivo. Você poderá perder os dados.");
+            } catch (TurmaJaCadastradaException ex) {
+                System.out.println("Turma já cadastrada.");
             }
         }
 
