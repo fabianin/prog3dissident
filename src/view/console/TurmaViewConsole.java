@@ -55,39 +55,32 @@ public class TurmaViewConsole {
         if (disciplina == null) {
             System.out.println("Disciplina inválida.");
         } else {
-            List<Turma> turmas = turmaDao.getTurmas().stream().filter(turma -> (turma.getAno() == ano && turma.getPeriodo() == periodo && turma.getDisciplina() == disciplinaId)).collect(Collectors.toList());
-            if (turmas.size() > 0) {
-                System.out.println("Listando turmas encontradas: ");
-                for (Turma turma : turmas) {
-                    System.out.println("\tExibindos dados da turma " + turma.hashCode());
-                    ArrayList<Integer> alunosIds = turma.getAlunos();
-                    ArrayList<Integer> atividadesIds = turma.getAtividades();
-                    ArrayList<Integer> faltasIds = turma.getFaltas();
-                    for (int alunoId : alunosIds) {
-                        Aluno aluno = alunoDao.getAlunoById(alunoId);
-                        System.out.println("\t\tAluno " + alunoId);
-                        System.out.println("\t\t\tFaltas: ");
-                        for (int faltaId : faltasIds) {
-                            Falta falta = faltaDao.getFaltaById(faltaId);
-                            if (falta.getAluno() == alunoId) {
-                                System.out.println("\t\t\t\t: " + falta.getFaltas());
-                            }
-                        }
-                        System.out.println("\t\t\tNotas: ");
-                        for (int atividadeId : atividadesIds) {
-                            System.out.println("\t\t\t\tAtividade: " + atividadeId);
-                            Atividade atividade = atividadeDao.getAtividadeById(atividadeId);
-                            for (int notaId : atividade.getNotas()) {
-                                Nota nota = notaDao.getNotaPorId(notaId);
-                                if (nota.getAluno() == alunoId) {
-                                    System.out.println("\t\t\t\t" + nota.getValorObtido());
-                                }
-                            }
-                        }
-                    }
-                }
-            } else {
+            List<Turma> turmas = turmaDao.getTurmas().stream().filter(t -> t.getDisciplina() == disciplinaId && t.getAno() == ano && t.getPeriodo() == periodo).collect(Collectors.toList());
+            if (turmas.isEmpty()) {
                 System.out.println("Não foi encontrado nenhuma disciplina.");
+            } else {
+                turmas.stream().forEach((turma) -> {
+                    System.out.println("Informações da turma " + turma.hashCode());
+                    turma.getAlunos().stream().forEach((alunoId) -> {
+                        Aluno aluno = alunoDao.getAlunoById(alunoId);
+                        Nota nota = notaDao.getNotaPorAlunoId(alunoId, turma.hashCode());
+                        Falta falta = faltaDao.getFaltaByIdAluno(alunoId, turma.hashCode());
+                        System.out.println("Aluno " + aluno.hashCode() + "(" + aluno.getNome() + "):");
+                        if (nota == null) {
+                            System.out.println("- Não há nota registrada");
+                        } else {
+                            System.out.println("- Nota: " + nota.getValorObtido());
+                        }
+                        if (falta == null) {
+                            System.out.println("- Não há falta registrada");
+                        } else {
+                            System.out.println("- Faltas: " + falta.getFaltas());
+                        }
+                    });
+                    if (turma.getAlunos().isEmpty()) {
+                        System.out.println("Não há alunos matriculados");
+                    }
+                });
             }
         }
 

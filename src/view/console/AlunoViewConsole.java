@@ -89,14 +89,15 @@ public class AlunoViewConsole {
             ArrayList<Atividade> listaAtividades = new ArrayList<>();
             Disciplina d = disciplinas.getDisciplinaById(t.getDisciplina());
             Falta f = faltas.getFaltaByIdAluno(alunoId, t.hashCode());
-            System.out.println("Faltas: " + f.getFaltas());
+            System.out.println("- Faltas: " + f.getFaltas());
             for (int a : t.getAtividades()) {
                 listaAtividades.add(atividades.getAtividadeById(a));
                 ArrayList<Nota> listaNotas = new ArrayList<>();
                 for (Atividade z : listaAtividades) {
                     Nota nota = notas.getNotaPorAlunoId(alunoId, t.hashCode());
-                    System.out.println("Nota: " + nota.getValorObtido() + " na atividade " + z.hashCode());
-                    listaNotas.add(nota);
+                    if (z.getNotas().contains(nota.hashCode())) {
+                        listaNotas.add(nota);
+                    }
                 }
                 for (Nota m : listaNotas) {
                     total += m.getValorObtido();
