@@ -13,7 +13,6 @@ import model.dao.DisciplinaDao;
 import model.dao.FaltaDao;
 import model.dao.NotaDao;
 import model.dao.TurmaDao;
-import model.dao.txt.AlunoDaoTxt;
 import model.pojo.Aluno;
 import model.pojo.Atividade;
 import model.pojo.Disciplina;
@@ -27,15 +26,20 @@ import model.pojo.Turma;
  */
 public class AlunoViewConsole {
 
-    private Object alunos;
-
-    public AlunoViewConsole() {
-    }
-
+    /**
+     * Imprime os alunos
+     *
+     * @param alunos DAO do aluno
+     */
     public static void imprimirAlunos(AlunoDao alunos) {
         alunos.getAlunos().stream().forEach((x) -> System.out.println(x));
     }
 
+    /**
+     * Cadastra uma aluno na interface
+     *
+     * @param alunos DAO do aluno
+     */
     public static void cadastraAluno(AlunoDao alunos) {
 
         Scanner sc = new Scanner(System.in);
@@ -68,6 +72,16 @@ public class AlunoViewConsole {
 
     }
 
+    /**
+     * Consulta um aluno
+     *
+     * @param atividades DAO atividade
+     * @param notas DAO notas
+     * @param faltas DAO faltas
+     * @param turmas DAO turmas
+     * @param alunos DAO alunos
+     * @param disciplinas DAO disciplinas
+     */
     public static void consultaAluno(AtividadeDao atividades, NotaDao notas, FaltaDao faltas, TurmaDao turmas, AlunoDao alunos, DisciplinaDao disciplinas) {
         Scanner sc = new Scanner(System.in);
         int alunoId;
@@ -108,6 +122,12 @@ public class AlunoViewConsole {
         }
     }
 
+    /**
+     * Matricula um aluno
+     *
+     * @param alunos DAO do aluno
+     * @param turmas DAO da turma
+     */
     public static void MatricularAluno(AlunoDao alunos, TurmaDao turmas) {
         int alunoId;
         int turmaId;

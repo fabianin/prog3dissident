@@ -3,10 +3,8 @@ package model.pojo;
 import exceptions.AlunoJaCadastradoException;
 import exceptions.AtividadeJaCadastradaException;
 import exceptions.FaltaJaCadastradaException;
-import exceptions.ProfessorNaoAptoDisciplinaException;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  *

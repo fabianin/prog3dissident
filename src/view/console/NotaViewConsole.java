@@ -3,8 +3,6 @@ package view.console;
 import exceptions.NotaJaCadastradaException;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.dao.AlunoDao;
 import model.dao.NotaDao;
 import model.dao.TurmaDao;
@@ -18,6 +16,13 @@ import model.pojo.Turma;
  */
 public class NotaViewConsole {
 
+    /**
+     * Cadastra uma nota
+     *
+     * @param notaDao DAO nota
+     * @param alunoDao DAO aluno
+     * @param turmaDao DAO turma
+     */
     public static void cadastrarNota(NotaDao notaDao, AlunoDao alunoDao, TurmaDao turmaDao) {
 
         Scanner sc = new Scanner(System.in);

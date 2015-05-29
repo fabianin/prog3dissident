@@ -2,12 +2,9 @@ package view.console;
 
 import exceptions.DisciplinaJaCadastradaException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 import model.dao.DisciplinaDao;
 import model.pojo.Disciplina;
 
@@ -17,6 +14,11 @@ import model.pojo.Disciplina;
  */
 public class DisciplinaViewConsole {
 
+    /**
+     * Cadastra uma disciplina
+     *
+     * @param disciplinas DAO disciplina
+     */
     public static void cadastraDisciplina(DisciplinaDao disciplinas) {
         System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎∎");
         System.out.println("∎∎∎∎∎∎∎∎∎∎∎∎∎ CADASTRO DISCIPLINA ∎∎∎∎∎∎∎∎∎∎∎∎∎");
@@ -40,12 +42,22 @@ public class DisciplinaViewConsole {
 
     }
 
+    /**
+     * Imprime disciplnas
+     *
+     * @param disciplinas DAO disciplina
+     */
     public static void imprimiDisciplinas(DisciplinaDao disciplinas) {
         disciplinas.getDisciplinas().stream().forEach((Disciplina x) -> {
             System.out.println(x);
         });
     }
 
+    /**
+     * Consulta turmas
+     *
+     * @param disciplinas DAO disciplinas
+     */
     public static void consultarTurmas(DisciplinaDao disciplinas) {
         int disciplinaId;
         Scanner sc = new Scanner(System.in);

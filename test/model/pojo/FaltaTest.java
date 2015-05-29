@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.pojo;
 
 import org.junit.Test;
@@ -13,17 +8,17 @@ import static org.junit.Assert.*;
  * @author Elias Júnior
  */
 public class FaltaTest {
-    
+
     @Test
     public void criaFalta() {
         Falta falta = new Falta(10, 10, 10);
     }
-    
-    @Test (expected = IllegalArgumentException.class)
+
+    @Test(expected = IllegalArgumentException.class)
     public void criaFaltaErrada() {
         Falta falta = new Falta(10, -10, 10);
     }
-    
+
     @Test
     public void testeEquals() {
         Falta falta1 = new Falta(10, 10, 10);
@@ -36,5 +31,5 @@ public class FaltaTest {
         assertFalse(falta1.equals(falta4));
         assertFalse(falta1.equals(falta5));
     }
-    
+
 }

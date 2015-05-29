@@ -2,12 +2,8 @@ package view.console;
 
 import exceptions.ProfessorJaCadastradoException;
 import java.io.IOException;
-import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import model.dao.DisciplinaDao;
 import model.dao.ProfessorDao;
-import model.pojo.Disciplina;
 import model.pojo.Professor;
 
 /**
@@ -16,10 +12,11 @@ import model.pojo.Professor;
  */
 public class ProfessorViewConsole {
 
-    public static void imprimirProfessores(ProfessorDao dao) {
-        System.out.println("imprimir professores aqui");
-    }
-
+    /**
+     * Cadastra um professor
+     *
+     * @param dao DAO professor
+     */
     public static void cadastraProfessor(ProfessorDao dao) {
 
         Scanner sc = new Scanner(System.in);
@@ -57,6 +54,11 @@ public class ProfessorViewConsole {
 
     }
 
+    /**
+     * Consulta disciplinas lecionadas
+     *
+     * @param professores DAO professor
+     */
     public static void numDisciplinaLecionada(ProfessorDao professores) {
         Scanner sc = new Scanner(System.in);
         int profId;

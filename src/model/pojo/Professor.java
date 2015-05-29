@@ -1,7 +1,6 @@
 package model.pojo;
 
 import exceptions.DisciplinaJaCadastradaException;
-import exceptions.ProfessorNaoAptoDisciplinaException;
 import exceptions.TurmaJaCadastradaException;
 import java.util.ArrayList;
 import java.util.Objects;

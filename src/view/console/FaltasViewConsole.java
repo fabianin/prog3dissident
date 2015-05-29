@@ -1,12 +1,9 @@
 package view.console;
 
 import exceptions.FaltaJaCadastradaException;
-import exceptions.NotaJaCadastradaException;
 import exceptions.TurmaNaoEncontradaException;
 import java.io.IOException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.dao.AlunoDao;
 import model.dao.FaltaDao;
 import model.dao.TurmaDao;
@@ -20,6 +17,13 @@ import model.pojo.Turma;
  */
 public class FaltasViewConsole {
 
+    /**
+     * Cadastra uma falta
+     *
+     * @param faltaDao DAO falta
+     * @param turmaDao DAO turma
+     * @param alunoDao DAO aluno
+     */
     public static void cadastraFalta(FaltaDao faltaDao, TurmaDao turmaDao, AlunoDao alunoDao) {
 
         Scanner sc = new Scanner(System.in);

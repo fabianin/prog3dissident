@@ -10,3 +10,4 @@
 {"atividades":[],"professor":10,"ano":10,"periodo":10,"sala":1,"alunos":[],"disciplina":10,"numeroVagas":10,"id":28136612,"faltas":[]}
 {"atividades":[],"professor":10,"ano":10,"periodo":10,"sala":1,"alunos":[],"disciplina":10,"numeroVagas":10,"id":28136612,"faltas":[]}
 {"atividades":[],"professor":10,"ano":10,"periodo":10,"sala":1,"alunos":[],"disciplina":10,"numeroVagas":10,"id":28136612,"faltas":[]}
+{"atividades":[],"professor":10,"ano":10,"periodo":10,"sala":1,"alunos":[],"disciplina":10,"numeroVagas":10,"id":28136612,"faltas":[]}

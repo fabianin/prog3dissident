@@ -1,13 +1,9 @@
 package view.console;
 
-import exceptions.ProfessorNaoAptoDisciplinaException;
 import exceptions.TurmaJaCadastradaException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import model.dao.AlunoDao;
 import model.dao.AtividadeDao;
@@ -17,7 +13,6 @@ import model.dao.NotaDao;
 import model.dao.ProfessorDao;
 import model.dao.TurmaDao;
 import model.pojo.Aluno;
-import model.pojo.Atividade;
 import model.pojo.Disciplina;
 import model.pojo.Falta;
 import model.pojo.Nota;
@@ -30,6 +25,16 @@ import model.pojo.Turma;
  */
 public class TurmaViewConsole {
 
+    /**
+     * Consulta uma turma
+     *
+     * @param turmaDao DAO turma
+     * @param notaDao DAO nota
+     * @param faltaDao DAO falta
+     * @param alunoDao DAO aluno
+     * @param disciplinaDao DAO disciplina
+     * @param atividadeDao DAO atividade
+     */
     public static void consultaTurma(TurmaDao turmaDao, NotaDao notaDao, FaltaDao faltaDao, AlunoDao alunoDao, DisciplinaDao disciplinaDao, AtividadeDao atividadeDao) {
 
         Scanner sc = new Scanner(System.in);
@@ -81,6 +86,13 @@ public class TurmaViewConsole {
 
     }
 
+    /**
+     * Cadastra uma turma
+     *
+     * @param turmas DAO turma
+     * @param disc DAO disciplina
+     * @param professores DAO professor
+     */
     public static void cadastraTurma(TurmaDao turmas, DisciplinaDao disc, ProfessorDao professores) {
 
         long periodo, numeroVagas, sala, ano;
@@ -124,6 +136,11 @@ public class TurmaViewConsole {
 
     }
 
+    /**
+     * Imprime as turmas
+     *
+     * @param turmas DAO turma
+     */
     public static void imprimiTurmas(TurmaDao turmas) {
         turmas.getTurmas().stream().forEach((x) -> System.out.println(x));
     }

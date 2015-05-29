@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model.pojo;
 
 import exceptions.TurmaJaCadastradaException;
@@ -14,17 +9,17 @@ import static org.junit.Assert.*;
  * @author Elias Júnior
  */
 public class AlunoTest {
-    
+
     @Test
     public void criaAluno() {
         Aluno aluno = new Aluno(10, "Teste", 34123421);
     }
-    
-    @Test (expected = IllegalArgumentException.class)
+
+    @Test(expected = IllegalArgumentException.class)
     public void criaAlunoMatriculaNegativa() {
         Aluno aluno = new Aluno(-1, "Teste", 1241421);
     }
-    
+
     @Test
     public void alunosIguais() {
         Aluno aluno1 = new Aluno(10, "Teste", 12345);
@@ -34,18 +29,18 @@ public class AlunoTest {
         assertFalse(aluno2.equals(aluno3));
         assertFalse(aluno1.equals(aluno3));
     }
-    
+
     @Test
     public void adicionaTurma() throws TurmaJaCadastradaException {
         Aluno aluno = new Aluno(10, "Teste", 12345);
         aluno.addTurma(10);
     }
-    
-    @Test (expected = TurmaJaCadastradaException.class)
+
+    @Test(expected = TurmaJaCadastradaException.class)
     public void adicionaTurmaRepetida() throws TurmaJaCadastradaException {
         Aluno aluno = new Aluno(10, "Teste", 12345);
         aluno.addTurma(10);
         aluno.addTurma(10);
     }
-    
+
 }

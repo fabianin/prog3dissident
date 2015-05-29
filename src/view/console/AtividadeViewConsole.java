@@ -15,10 +15,12 @@ import model.pojo.Atividade;
  */
 public class AtividadeViewConsole {
 
-    public static void imprimirAtividades() {
-        System.out.println("imprimir atividades aqui");
-    }
-
+    /**
+     * Cadastra atividade na interface
+     *
+     * @param dao DAO da atividade
+     * @param turmaDao DAO da turma
+     */
     public static void cadastraAtividade(AtividadeDao dao, TurmaDao turmaDao) {
 
         Scanner sc = new Scanner(System.in);
